@@ -12,20 +12,20 @@ import javax.sql.DataSource;
 @MapperScan("com.soo.dao")
 public class MybatisConfig {
 
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory(
-//            DataSource dataSource, ApplicationContext appCtx) throws Exception {
-//
-//        LogFactory.useLog4J2Logging();
-//
-//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-//        sqlSessionFactoryBean.setDataSource(dataSource);
-//        sqlSessionFactoryBean.setTypeAliasesPackage("com.soo.domain");
-//        sqlSessionFactoryBean.setMapperLocations(
-//                appCtx.getResource("classpath:com/soo/mapper/*Mapper.xml"));
-//
-//        return sqlSessionFactoryBean.getObject();
-//
-//    }
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(
+            DataSource dataSource, ApplicationContext appCtx) throws Exception {
+
+        LogFactory.useLog4J2Logging();
+
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.soo.domain");
+        sqlSessionFactoryBean.setMapperLocations(
+                appCtx.getResources("classpath:com/soo/mapper/*Mapper.xml"));
+
+        return sqlSessionFactoryBean.getObject();
+
+    }
 
 }

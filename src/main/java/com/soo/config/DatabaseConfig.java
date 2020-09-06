@@ -17,7 +17,7 @@ public class DatabaseConfig {
 
     @Value("${jdbc.driver}") String jdbcDriver;
 
-    @Value("${jdbc.url") String jdbcUrl;
+    @Value("${jdbc.url}") String jdbcUrl;
 
     @Value("${jdbc.username}") String jdbcUsername;
 
