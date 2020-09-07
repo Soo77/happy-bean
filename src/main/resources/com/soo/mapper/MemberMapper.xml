@@ -25,4 +25,9 @@
         from member
         order by member_no asc
     </select>
+
+    <insert id="insert" parameterType="Member">
+        insert into member(id,name,password,email,photo,rdt)
+        values(#{id},#{name},password(#{password}),#{email},#{photo},now())
+    </insert>
 </mapper>

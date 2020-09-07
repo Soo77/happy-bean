@@ -81,7 +81,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-beans
     compile group: 'org.springframework', name: 'spring-beans', version: '5.2.8.RELEASE'
 
-
+    // 파일 업로드 처리
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 
 
 
