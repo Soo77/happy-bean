@@ -1,0 +1,11 @@
+CREATE TABLE member (
+ member_no INT NOT NULL AUTO_INCREMENT,
+ id VARCHAR(20),
+ name VARCHAR(10),
+ password VARCHAR(100),
+ email VARCHAR(50),
+ photo VARCHAR(500),
+ rdt  datetime,
+ PRIMARY KEY(member_no)
+) CHARACTER SET 'utf8' 
+  COLLATE 'utf8_icelandic_ci';
