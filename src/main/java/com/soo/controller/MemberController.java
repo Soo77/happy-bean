@@ -32,11 +32,9 @@ public class MemberController {
     }
 
     @PostMapping("add")
-    public String add(Member member
-            //,MultipartFile file
-    ) throws Exception {
+    public String add(Member member,MultipartFile file) throws Exception {
         System.out.println("ho");
-        //member.setPhoto(writeFile(file));
+        member.setPhoto(writeFile(file));
         memberService.insert(member);
         return "redirect:list";
     }

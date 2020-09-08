@@ -17,11 +17,10 @@
     이름: <input type='text' name='name'><br>
     이메일: <input type='text' name='email'><br>
     암호: <input type='text' name='password'><br>
-    <!--사진: <input type='file' name='photo'><br>-->
-<input type="submit" value="회원 가입"/>
+    사진: <input type='file' name='file'><br>
+<button>회원가입</button>
 </form>
 </div>
-
 
 </body>
 </html>

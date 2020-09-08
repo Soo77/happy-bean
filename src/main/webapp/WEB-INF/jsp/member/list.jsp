@@ -13,7 +13,7 @@
 <div id='content'>
 <h1>회원 목록</h1>
 
-<a href='form'>새 회원</a><br>
+<a href='signUpForm'>새 회원</a><br>
 
 <table class='table table-hover'>
 <tr>
