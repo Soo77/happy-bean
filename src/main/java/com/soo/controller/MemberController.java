@@ -34,6 +34,11 @@ public class MemberController {
 
     }
 
+    @GetMapping("index2")
+    public void index2() {
+
+    }
+
     @GetMapping("signUpForm")
     public void signUpForm() {
     }
