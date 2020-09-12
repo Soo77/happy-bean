@@ -27,6 +27,13 @@ public class MemberController {
         uploadDir = sc.getRealPath("/upload/member");
     }
 
+
+
+    @GetMapping("index")
+    public void index() {
+
+    }
+
     @GetMapping("signUpForm")
     public void signUpForm() {
     }
