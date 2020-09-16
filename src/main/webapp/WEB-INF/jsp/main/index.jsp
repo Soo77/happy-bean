@@ -19,9 +19,9 @@
       </div>
 
       <div class="owl-carousel owl-1 ">
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/hero_1.jpg');"></div>
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/hero_2.jpg');"></div>
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/hero_3.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_1.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_2.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_3.jpg');"></div>
         
       </div>
     </div>
@@ -30,21 +30,21 @@
     <div class="container">
       <div class="feature-29192-wrap d-md-flex" style="margin-top: -20px; position: relative; z-index: 2;">
 
-        <a href="#" class="feature-29192 overlay-danger" style="background-image: url('/../../../images/img_3_gray.jpg');">
+        <a href="#" class="feature-29192 overlay-danger" style="background-image: url('/../../../images/main/img_3_gray.jpg');">
           <div class="text">
             <span class="meta">Livelihood</span>
             <h3 class="text-cursive text-white h1">Livelihood</h3>
           </div>
         </a>
 
-        <a class="feature-29192 overlay-success" style="background-image: url('/../../../images/img_2_gray.jpg');">
+        <a class="feature-29192 overlay-success" style="background-image: url('/../../../images/main/img_2_gray.jpg');">
           <div class="text">
             <span class="meta">Health</span>
             <h3 class="text-cursive text-white h1">Natural Remedies</h3>
           </div>
         </a>
 
-        <div class="feature-29192 overlay-warning" style="background-image: url('/../../../images/img_1_gray.jpg');">
+        <div class="feature-29192 overlay-warning" style="background-image: url('/../../../images/main/img_1_gray.jpg');">
           <div class="text">
             <span class="meta">School</span>
             <h3 class="text-cursive text-white h1">New Class Rooms</h3>
@@ -73,7 +73,7 @@
               <div class="cause shadow-sm">
               
                 <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/img_1.jpg" alt="Image" class="img-fluid">
+                  <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
                     <div class="custom-progress-inner">
@@ -92,7 +92,7 @@
 
                   <div class="py-4">
                     <div class="d-flex align-items-center">
-                      <img src="/../../../images/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
                       <div class="">James Smith</div>
                     </div>
                   </div>
@@ -105,7 +105,7 @@
             <div class="cause shadow-sm">
               
                 <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/img_2.jpg" alt="Image" class="img-fluid">
+                  <img src="/../../../images/main/img_2.jpg" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
                     <div class="custom-progress-inner">
@@ -124,7 +124,7 @@
 
                   <div class="py-4">
                     <div class="d-flex align-items-center">
-                      <img src="/../../../images/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
                       <div class="">James Smith</div>
                     </div>
                   </div>
@@ -138,7 +138,7 @@
             <div class="cause shadow-sm">
               
                 <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/img_3.jpg" alt="Image" class="img-fluid">
+                  <img src="/../../../images/main/img_3.jpg" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
                     <div class="custom-progress-inner">
@@ -157,7 +157,7 @@
 
                   <div class="py-4">
                     <div class="d-flex align-items-center">
-                      <img src="/../../../images/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
                       <div class="">James Smith</div>
                     </div>
                   </div>
@@ -170,7 +170,7 @@
       </div>
     </div>
 
-    <div class="bg-image overlay site-section" style="background-image: url('/../../../images/hero_1.jpg');">
+    <div class="bg-image overlay site-section" style="background-image: url('/../../../images/main/hero_1.jpg');">
       <div class="container">
 
         <div class="row align-items-center">
@@ -238,7 +238,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="event-29191 mb-5">
-              <a href="#" class="d-block mb-3"><img src="/../../../images/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
+              <a href="#" class="d-block mb-3"><img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
               <div class="px-3 d-flex">
 
                 <div class="bg-primary p-3 d-inline-block text-center rounded mr-4 date">
@@ -259,7 +259,7 @@
           </div>
           <div class="col-md-6">
             <div class="event-29191 mb-5">
-              <a href="#" class="d-block mb-3"><img src="/../../../images/img_2.jpg" alt="Image" class="img-fluid rounded"></a>
+              <a href="#" class="d-block mb-3"><img src="/../../../images/main/img_2.jpg" alt="Image" class="img-fluid rounded"></a>
               <div class="px-3 d-flex">
 
                 <div class="bg-primary p-3 d-inline-block text-center rounded mr-4 date">
@@ -282,11 +282,11 @@
       </div>
     </div>
 
-    <div class="site-section bg-image overlay-primary" style="background-image: url('/../../../images/img_1.jpg');">
+    <div class="site-section bg-image overlay-primary" style="background-image: url('/../../../images/main/img_1.jpg');">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-md-6">
-            <img src="/../../../images/img_1.jpg" alt="Image" class="img-fluid shadow">
+            <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid shadow">
           </div>
           <div class="col-md-6">
             <div class="bg-white h-100 p-4 shadow">
@@ -326,18 +326,18 @@
 
     </div>
 
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/jquery.sticky.js"></script>
-    <script src="/js/jquery.waypoints.min.js"></script>
-    <script src="/js/jquery.animateNumber.min.js"></script>
-    <script src="/js/jquery.fancybox.min.js"></script>
-    <script src="/js/jquery.easing.1.3.js"></script>
-    <script src="/js/aos.js"></script>
+    <script src="/js/main/jquery-3.3.1.min.js"></script>
+    <script src="/js/main/popper.min.js"></script>
+    <script src="/js/main/bootstrap.min.js"></script>
+    <script src="/js/main/owl.carousel.min.js"></script>
+    <script src="/js/main/jquery.sticky.js"></script>
+    <script src="/js/main/jquery.waypoints.min.js"></script>
+    <script src="/js/main/jquery.animateNumber.min.js"></script>
+    <script src="/js/main/jquery.fancybox.min.js"></script>
+    <script src="/js/main/jquery.easing.1.3.js"></script>
+    <script src="/js/main/aos.js"></script>
 
-    <script src="/js/main.js"></script>
+    <script src="/js/main/main.js"></script>
 
   </body>
 

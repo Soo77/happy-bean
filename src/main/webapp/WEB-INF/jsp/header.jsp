@@ -5,18 +5,18 @@
 
     <link href="https://fonts.googleapis.com/css?family=Mansalva|Roboto&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/fonts/main/icomoon/style.css">
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/animate.min.css">
-    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/fonts/flaticon-1/font/flaticon.css">
-    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="stylesheet" href="/css/main/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main/animate.min.css">
+    <link rel="stylesheet" href="/css/main/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/main/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/main/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/fonts/main/flaticon-1/font/flaticon.css">
+    <link rel="stylesheet" href="/css/main/aos.css?after">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main/main-style.css?after">
 
 
 
@@ -47,7 +47,7 @@
               <a href="#" class="p-3">Become A Volunteer</a>
             </div>
             <div class="col-md-6 text-md-right">
-              <a href="../member/signUpForm" class="p-3">Join</a>
+              <a href="../auth/signUpForm" class="p-3">Join</a>
               <a href="#" class="p-2"><span class="icon-twitter"></span></a>
               <a href="#" class="p-2"><span class="icon-facebook"></span></a>
             </div>

@@ -17,4 +17,7 @@ public class MainController {
     public void index() {
     }
 
+    @GetMapping("index2")
+    public void index2() {
+    }
 }

@@ -39,9 +39,7 @@ public class MemberController {
 
     }
 
-    @GetMapping("signUpForm")
-    public void signUpForm() {
-    }
+
 
     @PostMapping("add")
     public String add(Member member,MultipartFile file) throws Exception {
