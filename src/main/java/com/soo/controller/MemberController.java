@@ -27,9 +27,17 @@ public class MemberController {
         uploadDir = sc.getRealPath("/upload/member");
     }
 
-    @GetMapping("signUpForm")
-    public void signUpForm() {
+    @GetMapping("index")
+    public void index() {
+
     }
+
+    @GetMapping("index2")
+    public void index2() {
+
+    }
+
+
 
     @PostMapping("add")
     public String add(Member member,MultipartFile file) throws Exception {

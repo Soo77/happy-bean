@@ -26,13 +26,9 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] {"/app/*"};
+        return new String[] {"/"};
     }
 
-    @Override
-    protected String getServletName() {
-        return "app";
-    }
 
     @Override
     protected Filter[] getServletFilters() {
