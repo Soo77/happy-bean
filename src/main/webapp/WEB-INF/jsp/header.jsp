@@ -61,7 +61,7 @@
 
 
             <div class="site-logo">
-              <a href="index.html" class="text-white">Fundraiser</a>
+              <a href="../main/index" class="text-white">Fundraiser</a>
             </div>
 
 

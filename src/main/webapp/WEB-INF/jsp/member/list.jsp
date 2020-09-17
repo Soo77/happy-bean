@@ -13,7 +13,7 @@
 <div id='content'>
 <h1>회원 목록</h1>
 
-<a href='signUpForm'>회원가입</a><br>
+<a href='../auth/signUpForm'>회원가입</a><br>
 
 <table class='table table-hover'>
 <tr>
