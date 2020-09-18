@@ -14,6 +14,16 @@
     <link rel="stylesheet" href="/css/auth/auth-style.css">
 </head>
 <jsp:include page="../header.jsp" />
+
+<style type="text/css">
+@Font-face{
+    font-family: 'Nanum';
+    src:url("../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
+}
+</style>
+
+
+
 <body>
 
     <div class="main">
@@ -23,7 +33,7 @@
             <div class="auth-container">
                 <div class="signup-content">
                     <form action='../member/add' name="userInfo" method="POST" id="signup-form" class="signup-form" enctype='multipart/form-data' onsubmit='return submitBtn()'>
-                        <h2 class="form-title">Create account</h2>
+                        <h2 class="form-title" style="font-family: Nanum;">회원가입</h2>
                         <div class="form-group">
                             <input type="text" class="form-input" name="id" id="id" placeholder="아이디" required="" autofocus=""/>
                         </div>
