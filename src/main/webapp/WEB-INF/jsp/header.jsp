@@ -1,7 +1,11 @@
  <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
- <title>Fundraiser &mdash; Website Template by Colorlib</title>
+ <title>HappyBean &mdash; Website Template by Colorlib</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon">
+
+    <link rel="icon" href="/images/bean-icon.ico" type="image/x-icon">
 
     <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 
@@ -21,11 +25,10 @@
     <link rel="stylesheet" href="/css/main/main-style.css?after">
 
 <style type="text/css">
-	.site-logo-korean {
+.site-logo-korean {
 	font-family: 'Jeju Gothic', sans-serif;
 	font-size : 30px;
 	}
-
 </style>
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">

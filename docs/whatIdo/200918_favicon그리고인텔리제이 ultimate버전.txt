@@ -1,0 +1,16 @@
+200918
+
+오늘한일
+- 오늘~ favicon이란걸 설정해보았따.
+- ultimate로 넘어가보기!
+
+알게 된 것
+- 
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+를 통해 탭의 아이콘이 바뀐것을 알수 있었다.
+
+
+- intellij 를 ultimate로 업그레이드 할지말지 고민중이다.
+- 학교 로그인 비번 찾고 난리치고 변경하고 ultimate를 깔아보았다.
