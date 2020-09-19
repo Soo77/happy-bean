@@ -204,13 +204,13 @@ html {
     color: #fff;
     background: #00a651; }
 
-body {
+body.index-body {
   line-height: 1.7;
   color: #364d59 !important;
   font-weight: 300;
   font-size: 1rem;
   background-color: #fff; }
-  body:before {
+  body.index-body:before {
     position: absolute;
     content: "";
     left: 0;
@@ -224,9 +224,9 @@ body {
     opacity: 0;
     visibility: hidden;
     z-index: 399; }
-  body.offcanvas-menu {
+  body.index-body.offcanvas-menu {
     position: relative; }
-    body.offcanvas-menu:before {
+    body.index-body.offcanvas-menu:before {
       opacity: 1;
       visibility: visible; }
 
@@ -654,7 +654,7 @@ h1, h2, h3, h4, h5,
           max-width: 70px; }
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
-  .site-mobile-menu .site-mobile-menu-body {
+  .site-mobile-menu .site-mobile-menu-body.index-body {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -1130,24 +1130,24 @@ h1, h2, h3, h4, h5,
       .comment-list li .vcard img {
         width: 50px;
         border-radius: 50%; }
-    .comment-list li .comment-body {
+    .comment-list li .comment-body.index-body {
       float: right;
       width: calc(100% - 80px); }
-      .comment-list li .comment-body h3 {
+      .comment-list li .comment-body.index-body h3 {
         font-size: 20px;
         color: #000; }
-      .comment-list li .comment-body .meta {
+      .comment-list li .comment-body.index-body .meta {
         text-transform: uppercase;
         font-size: 13px;
         letter-spacing: .1em;
         color: #ccc; }
-      .comment-list li .comment-body .reply {
+      .comment-list li .comment-body.index-body .reply {
         padding: 5px 10px;
         background: #e6e6e6;
         color: #000;
         text-transform: uppercase;
         font-size: 14px; }
-        .comment-list li .comment-body .reply:hover {
+        .comment-list li .comment-body.index-body .reply:hover {
           color: #000;
           background: #e3e3e3; }
 
