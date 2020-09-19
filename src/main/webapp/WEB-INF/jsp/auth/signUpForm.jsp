@@ -18,7 +18,8 @@
 <style type="text/css">
 @Font-face{
     font-family: 'Nanum';
-    src:url("../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
+    src:url("../../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
+
 }
 </style>
 
@@ -33,12 +34,12 @@
             <div class="auth-container">
                 <div class="signup-content">
                     <form action='../member/add' name="userInfo" method="POST" id="signup-form" class="signup-form" enctype='multipart/form-data' onsubmit='return submitBtn()'>
-                        <h2 class="form-title" style="font-family: Nanum;">회원가입</h2>
+                        <div class="form-title" style="font-family: Nanum; font-size: 30px;">회원가입</div>
                         <div class="form-group">
                             <input type="text" class="form-input" name="id" id="id" placeholder="아이디" required="" autofocus=""/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="name" id="name" placeholder="이름" required="" autofocus=""/>
+                             <input type="text" class="form-input" name="name" id="name" placeholder="이름" required="" autofocus=""/>
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-input" name="email" id="email" placeholder="이메일" required="" autofocus=""/>
@@ -55,16 +56,15 @@
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span> <a href="#" class="term-service">약관</a> 동의</label>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submitBtn" class="form-submit" value="회원가입"/>
-                        </div>
+                            <input type="submit" name="submit" id="submitBtn" class="form-submit" value="가입하기"/>
 
 
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                        이미 가입되어있으신가요? <a href="#" class="loginhere-link" style="font-family: Nanum;">로그인하기</a>
                     </p>
                 </div>
             </div>
@@ -89,21 +89,32 @@
 
       var valid = true;
 	  var id = document.getElementById("id").value;
+	  var pw = document.getElementById("password").value;
+	  var repw = document.getElementById("re_password").value;
 	  if(Number(id)){
-	      console.log("id 숫자 체크~");
           alert("아이디는 숫자만 사용할 수 없습니다.");
           valid = false;
-          if(valid) {
-          console.log("valid는 true~");
-          } else {
-          console.log("valid는 false~");
-          }
       }
-      if(!/^[a-zA-Z]/.test(id)){
+/*      if(!/^[a-zA-Z]/.test(id)){
           alert("아이디는 영문으로 시작해야 합니다.");
+          valid = false;
+      }*/
+
+      var idRegExp = /^[A-Za-z]{1}[a-zA-z0-9]{3,12}$/; //아이디 유효성 검사
+      if (!idRegExp.test(id)) {
+          alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+          valid = false;
+      }
+      var pwRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
+      if (!pwRegExp.test(pw)) {
+          alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
           valid = false;
       }
 
+      if(pw !== repw) {
+          alert("두 비밀번호가 같지 않습니다.");
+          valid = false;
+      }
 
       if (valid) {
       console.log("valid는 true~");

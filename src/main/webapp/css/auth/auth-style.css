@@ -57,12 +57,6 @@ list-type-ulli {
   font-style: italic;
   font-weight: 900;
   src: url("../../fonts/auth/montserrat/montserrat-v12-latin-900.ttf"), url("../../fonts/auth/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("../../fonts/auth/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("../../fonts/auth/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("../../fonts/auth/montserrat/montserrat-v12-latin-900.woff2") format("truetype"); }
-@font-face {
-  font-family: 'NanumFont';
-  font-style: italic;
-  font-weight: 700;
-  src: url("../../fonts/auth/NanumFontSetup_TTF_ALL/NanumGothic.ttf");
-  /* IE9 Compat Modes */ }
 
 a:focus, a:active {
   text-decoration: none;
@@ -123,17 +117,17 @@ p {
   font-size: 15px;
   color: #777; }
 
-h2 {
+.form-title {
   line-height: 1.66;
   margin: 0;
   padding: 0;
-  font-weight: 900;
+<!--font-weight: 900;-->
   color: #222;
-  font-family: 'Montserrat';
+  <!--font-family: 'Montserrat';-->
   font-size: 24px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 40px; }
+  margin-bottom: 10px; }
 
 .clear {
   clear: both; }
@@ -336,6 +330,7 @@ input[type=checkbox]:not(old):checked + label > span:before {
   color: #555; }
 
 .term-service {
+  text-decoration: underline;
   color: #555; }
 
 .loginhere {
@@ -346,6 +341,7 @@ input[type=checkbox]:not(old):checked + label > span:before {
   margin-bottom: 5px; }
 
 .loginhere-link {
+  text-decoration: underline;
   font-weight: 700;
   color: #222; }
 
@@ -358,7 +354,7 @@ input[type=checkbox]:not(old):checked + label > span:before {
   color: #555; }
 
 @media screen and (max-width: 768px) {
-  .container {
+  .auth-container {
     width: calc(100% - 40px);
     max-width: 100%; } }
 @media screen and (max-width: 480px) {

@@ -9,8 +9,7 @@
   </head>
   <jsp:include page="../header.jsp" />
 
-    <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
+    <body class="index-body" data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <div class="owl-carousel-wrapper">
 
       <div class="box-92819">
@@ -338,7 +337,6 @@
     <script src="/js/main/aos.js"></script>
 
     <script src="/js/main/main.js"></script>
-
   </body>
 
 </html>
