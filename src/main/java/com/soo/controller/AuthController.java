@@ -20,4 +20,9 @@ public class AuthController {
     public void signUpForm() {
     }
 
+    @GetMapping("idCheckForm")
+    public void idCheckForm() {
+    }
+
+
 }

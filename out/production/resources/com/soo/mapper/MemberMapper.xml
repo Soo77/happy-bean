@@ -30,4 +30,10 @@
         insert into member(id,name,password,email,photo,rdt)
         values(#{id},#{name},password(#{password}),#{email},#{photo},now())
     </insert>
+
+    <select id="duplicateIdCheck" parameterType="String" resultType="boolean">
+       select if(count(*) > 0, 'true', 'false')
+       from member where id = #{id, jdbcType=VARCHAR}
+    </select>
+
 </mapper>

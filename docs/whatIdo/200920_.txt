@@ -1,0 +1,24 @@
+200920
+
+오늘 한일
+- 
+
+알게 된 것
+- javascript 키보드 이벤트
+onkeydown: 키를 눌렀을때 이벤트
+onkeyup: 키를 눌렀다가 뗐을 때 이벤트
+onkeypress: 실제로 글자가 써질때 이벤트
+
+JoinForm.jsp : 회원가입 화면에는 중복체크 창을 띄우는 코드 및 입력된 값들을 검사하는 코드를 추가한다.
+IdCheckForm.jsp : 아이디 중복체크 화면이다.
+
+
+
+■ Java
+
+MemberIdCheckAction.java : 아이디 중복체크를 처리하는 Action이다.
+MemberDAO.java : 기존에 만들어둔 아이디 중복체크 메서드를 사용할 것이다. 추가로 구현할 부분은 없다.
+
+<input type="button" value="중복확인" onclick="openIdChk()">    
+<input type="hidden" name="idDuplication" value="idUncheck" >
+

@@ -3,12 +3,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon">
-
+ <%--favicon--%>
+    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon"
     <link rel="icon" href="/images/bean-icon.ico" type="image/x-icon">
 
+ <%--로고(햅삐빈) 웹폰트--%>
     <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 
+ <%--원래 있던 웹폰트--%>
     <link href="https://fonts.googleapis.com/css?family=Mansalva|Roboto&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/fonts/main/icomoon/style.css">

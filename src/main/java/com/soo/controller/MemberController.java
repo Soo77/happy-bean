@@ -1,5 +1,6 @@
 package com.soo.controller;
 
+import com.soo.dao.MemberDao;
 import com.soo.domain.Member;
 import com.soo.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +49,18 @@ public class MemberController {
         member.setPhoto(writeFile(file));
         memberService.insert(member);
         return "redirect:list";
+    }
+
+    @PostMapping("checkId")
+    public String checkId(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String id = request.getParameter("id");
+        boolean result = memberService.duplicateIdCheck(id);
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        if(result)    out.println("0"); // 아이디 중복
+        else        out.println("1");
+        out.close();
+        return null;
     }
 
     @GetMapping("list")

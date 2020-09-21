@@ -7,4 +7,5 @@ import java.util.List;
 public interface MemberDao {
     List<Member> findAll() throws Exception;
     int insert(Member member) throws Exception;
+    boolean duplicateIdCheck(String id) throws Exception;
 }

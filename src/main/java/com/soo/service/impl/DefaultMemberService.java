@@ -24,4 +24,9 @@ public class DefaultMemberService implements MemberService {
     public void insert(Member member) throws Exception {
         memberDao.insert(member);
     }
+
+    @Override
+    public boolean duplicateIdCheck(String id) throws Exception {
+        return memberDao.duplicateIdCheck(id);
+    }
 }
