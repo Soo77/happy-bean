@@ -1,5 +1,6 @@
 package com.soo.controller;
 
+import com.soo.dao.MemberDao;
 import com.soo.domain.Member;
 import com.soo.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,8 +40,6 @@ public class MemberController {
     public void index2() {
 
     }
-
-
 
     @PostMapping("add")
     public String add(Member member,MultipartFile file) throws Exception {

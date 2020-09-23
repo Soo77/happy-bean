@@ -1,14 +1,17 @@
  <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <title>HappyBean</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon">
-
+ <%--favicon--%>
+    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon"
     <link rel="icon" href="/images/bean-icon.ico" type="image/x-icon">
 
+ <%--로고(햅삐빈) 웹폰트--%>
     <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 
+ <%--원래 있던 웹폰트--%>
     <link href="https://fonts.googleapis.com/css?family=Mansalva|Roboto&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/fonts/main/icomoon/style.css">
@@ -29,6 +32,10 @@
 	font-family: 'Jeju Gothic', sans-serif;
 	font-size : 30px;
 	}
+.nanumsquare {
+  font-family: 'Nanum';
+  src:url("/../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
+}
 </style>
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -58,6 +65,14 @@
               <a href="#" class="p-3">Become A Volunteer</a>
             </div>
             <div class="col-md-6 text-md-right">
+              <c:if test="${empty loginUser}">
+                <a href="../auth/signInForm" class="p-3">Login</a>
+              </c:if>
+              <c:if test="${not empty loginUser}">
+                <a href="#" class="nanumsquare">${loginUser.name} 님</a>
+                <a href="../auth/logout" class="p-3">Logout</a>
+              </c:if>
+              <%--<a href="../auth/signInForm" class="p-3">Login</a>--%>
               <a href="../auth/signUpForm" class="p-3">Join</a>
               <a href="#" class="p-2"><span class="icon-twitter"></span></a>
               <a href="#" class="p-2"><span class="icon-facebook"></span></a>

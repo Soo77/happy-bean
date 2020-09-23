@@ -30,4 +30,12 @@
         insert into member(id,name,password,email,photo,rdt)
         values(#{id},#{name},password(#{password}),#{email},#{photo},now())
     </insert>
+
+
+    <!--<select id="loginCheck" parameterType="String" resultType="int">
+      select count(*) from member where id=#{id}
+    </select>-->
+
+
+
 </mapper>
