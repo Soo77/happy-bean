@@ -41,26 +41,12 @@ public class MemberController {
 
     }
 
-
-
     @PostMapping("add")
     public String add(Member member,MultipartFile file) throws Exception {
         System.out.println("ho");
         member.setPhoto(writeFile(file));
         memberService.insert(member);
         return "redirect:list";
-    }
-
-    @PostMapping("checkId")
-    public String checkId(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String id = request.getParameter("id");
-        boolean result = memberService.duplicateIdCheck(id);
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        if(result)    out.println("0"); // 아이디 중복
-        else        out.println("1");
-        out.close();
-        return null;
     }
 
     @GetMapping("list")

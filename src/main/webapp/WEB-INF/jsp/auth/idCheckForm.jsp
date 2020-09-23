@@ -78,7 +78,7 @@
                 var param="id="+id
                 httpRequest = getXMLHttpRequest();
                 httpRequest.onreadystatechange = callback;
-                httpRequest.open("POST", "../member/checkId", true);
+                httpRequest.open("POST", "../auth/checkId", true);
                 httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 httpRequest.send(param);
             }

@@ -31,9 +31,11 @@
         values(#{id},#{name},password(#{password}),#{email},#{photo},now())
     </insert>
 
-    <select id="duplicateIdCheck" parameterType="String" resultType="boolean">
-       select if(count(*) > 0, 'true', 'false')
-       from member where id = #{id, jdbcType=VARCHAR}
-    </select>
+
+    <!--<select id="loginCheck" parameterType="String" resultType="int">
+      select count(*) from member where id=#{id}
+    </select>-->
+
+
 
 </mapper>

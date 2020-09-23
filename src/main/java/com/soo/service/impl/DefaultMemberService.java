@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DefaultMemberService implements MemberService {
@@ -25,8 +26,4 @@ public class DefaultMemberService implements MemberService {
         memberDao.insert(member);
     }
 
-    @Override
-    public boolean duplicateIdCheck(String id) throws Exception {
-        return memberDao.duplicateIdCheck(id);
-    }
 }
