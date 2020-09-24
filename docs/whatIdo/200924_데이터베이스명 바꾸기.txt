@@ -1,0 +1,22 @@
+200924
+
+오늘 한일
+- 디비를 짜야될거같다.
+- exerd 파일 만들기(응 생성만 말그대로 새프로젝트 만들기만 누름ㅋㅋ)
+- 다시보니 database 명이... happy bin(쓰레기통?ㅜㅜ) 인거다. happybean으로 이름 바꾸기. 
+
+알게 된 것
+- database 이름 바꾸기
+mysql Database 명 변경 방법
+
+테이블 이동 방법
+> create database newdb;
+> rename table olddb.tablename to newdb.tablename;
+...
+
+> drop databases olddb;
+
+요 방법을 썼다. 명확히 말하자면 데이터베이스 이름만 바꾸는 방법은 없다.
+그래서 새 db를 만들고 테이블을 옮기는 것이다. 
+
+
