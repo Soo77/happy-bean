@@ -55,6 +55,17 @@ public class AuthController {
     }
 //loginCheck
 
+    /**
+     *
+     * @param response
+     * @param session
+     * @param id
+     * @param password
+     * @return
+     * @throws Exception
+     */
+
+    // TODO: 이렇게하는거야?
     @PostMapping("login")
     public String login(HttpServletResponse response, HttpSession session, String id, String password)
             throws Exception {
