@@ -37,6 +37,14 @@ public class AuthController {
     }
 
     /* ID 중복체크 액션 */
+
+    /**
+     *
+     * @param request 파라미터에서 아이디 가져옴
+     * @param response 0이랑 1 out.println으로 써야되는데 utf-8로 변환하려고
+     * @return null... 
+     * @throws Exception
+     */
     @PostMapping("checkId")
     public String checkId(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String id = request.getParameter("id");

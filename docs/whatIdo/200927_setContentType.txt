@@ -1,0 +1,22 @@
+200927
+
+오늘 한일
+- 없듬 setCharacterEncoding setContentType 알아보기~
+
+
+알게 된 것
+- 아래 세가지
+
+request.setCharacterEncoding("UTF-8");
+폼 태그에서 입력한 값 전송할 때 Post 방식으로 보내는 값이 한글일 경우
+깨지지 않게 하는 것이 바로 request.setCharacterEncoding("UTF-8")이다.
+
+response.setCharacterEncoding("UTF-8")
+서블릿에서 화면에 데이터를 출력하기 위해선 out.println을 사용을 하는데 위 코드
+없이 쓴다면 ???과 같은 물음표가 출력이 된다.
+그것을 해결하기 위한 것이 요것이다.
+
+response.setContentType("text/html; charwet=utf-8")
+두번째의 response.setCharacterEncoding("UTF-8")이것만 쓰면 "안녕"이 "댊뀘"같이
+나온다. 브라우저마다 기본적으로 문자코드를 해석하는 디폴트가 다르기 때문이다.
+그래서 브라우저에게 메세지를 전달해야한다. 그 메세지가 바로 요것이다. 
