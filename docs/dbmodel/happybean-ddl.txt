@@ -1,0 +1,202 @@
+-- 회원
+DROP TABLE IF EXISTS `member` RESTRICT;
+
+-- 모금함
+DROP TABLE IF EXISTS `donation` RESTRICT;
+
+-- 기부내역
+DROP TABLE IF EXISTS `dona_history` RESTRICT;
+
+-- 모금함첨부파일
+DROP TABLE IF EXISTS `dona_file` RESTRICT;
+
+-- 모금함댓글
+DROP TABLE IF EXISTS `dona_comment` RESTRICT;
+
+-- 공통코드유형
+DROP TABLE IF EXISTS `large_code` RESTRICT;
+
+-- 공통코드
+DROP TABLE IF EXISTS `detail_code` RESTRICT;
+
+-- 회원
+CREATE TABLE `member` (
+	`member_no`     INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+	`id`            VARCHAR(15)  NOT NULL COMMENT '아이디', -- 아이디
+	`name`          VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
+	`email`         VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+	`password`      VARCHAR(255) NOT NULL COMMENT '비밀번호', -- 비밀번호
+	`rdt`           DATETIME     NOT NULL COMMENT '가입일', -- 가입일
+	`member_type`   INTEGER      NOT NULL COMMENT '회원구분', -- 회원구분
+	`profile_photo` VARCHAR(255) NULL     COMMENT '프로필사진' -- 프로필사진
+)
+COMMENT '회원';
+
+-- 회원
+ALTER TABLE `member`
+	ADD CONSTRAINT `PK_member` -- 회원 기본키
+		PRIMARY KEY (
+			`member_no` -- 회원번호
+		);
+
+-- 모금함
+CREATE TABLE `donation` (
+	`dona_no`            INTEGER     NOT NULL COMMENT '모금함번호', -- 모금함번호
+	`dona_name`          VARCHAR(50) NOT NULL COMMENT '모금함이름', -- 모금함이름
+	`dona_orgn_name`     VARCHAR(50) NOT NULL COMMENT '모금단체명', -- 모금단체명
+	`dona_classify_cd`   INTEGER     NULL     COMMENT '분류코드', -- 분류코드
+	`dona_text`          TEXT        NOT NULL COMMENT '모금함소개', -- 모금함소개
+	`dona_target_amount` INTEGER     NOT NULL COMMENT '목표금액', -- 목표금액
+	`dona_total_amount`  INTEGER     NOT NULL COMMENT '총모금액', -- 총모금액
+	`dona_sdt`           DATETIME    NOT NULL COMMENT '모금시작일자', -- 모금시작일자
+	`dona_edt`           DATETIME    NOT NULL COMMENT '모금종료일자', -- 모금종료일자
+	`dona_target`        TEXT        NULL     COMMENT '사업대상', -- 사업대상
+	`dona_target_number` INTEGER     NULL     COMMENT '대상수', -- 대상수
+	`dona_effect`        TEXT        NULL     COMMENT '기대효과' -- 기대효과
+)
+COMMENT '모금함';
+
+-- 모금함
+ALTER TABLE `donation`
+	ADD CONSTRAINT `PK_donation` -- 모금함 기본키
+		PRIMARY KEY (
+			`dona_no` -- 모금함번호
+		);
+
+-- 기부내역
+CREATE TABLE `dona_history` (
+	`mem_dona_no` INTEGER  NOT NULL COMMENT '회원모금함번호', -- 회원모금함번호
+	`member_no`   INTEGER  NOT NULL COMMENT '회원번호', -- 회원번호
+	`dona_no`     INTEGER  NOT NULL COMMENT '모금함번호', -- 모금함번호
+	`amount`      INTEGER  NOT NULL COMMENT '기부금액', -- 기부금액
+	`ddt`         DATETIME NOT NULL COMMENT '기부일시' -- 기부일시
+)
+COMMENT '기부내역';
+
+-- 기부내역
+ALTER TABLE `dona_history`
+	ADD CONSTRAINT `PK_dona_history` -- 기부내역 기본키
+		PRIMARY KEY (
+			`mem_dona_no` -- 회원모금함번호
+		);
+
+-- 모금함첨부파일
+CREATE TABLE `dona_file` (
+	`dona_file_no`   INTEGER      NOT NULL COMMENT '모금함첨부파일번호', -- 모금함첨부파일번호
+	`dona_no`        INTEGER      NULL     COMMENT '모금함번호', -- 모금함번호
+	`dona_file_name` VARCHAR(255) NOT NULL COMMENT '첨부파일명' -- 첨부파일명
+)
+COMMENT '모금함첨부파일';
+
+-- 모금함첨부파일
+ALTER TABLE `dona_file`
+	ADD CONSTRAINT `PK_dona_file` -- 모금함첨부파일 기본키
+		PRIMARY KEY (
+			`dona_file_no` -- 모금함첨부파일번호
+		);
+
+-- 모금함댓글
+CREATE TABLE `dona_comment` (
+	`comment_no`    INTEGER  NOT NULL COMMENT '댓글번호', -- 댓글번호
+	`dona_no`       INTEGER  NOT NULL COMMENT '모금함번호', -- 모금함번호
+	`member_no`     INTEGER  NOT NULL COMMENT '회원번호', -- 회원번호
+	`comment_conts` TEXT     NOT NULL COMMENT '내용', -- 내용
+	`comment_cdt`   DATETIME NOT NULL COMMENT '댓글작성일' -- 댓글작성일
+)
+COMMENT '모금함댓글';
+
+-- 모금함댓글
+ALTER TABLE `dona_comment`
+	ADD CONSTRAINT `PK_dona_comment` -- 모금함댓글 기본키
+		PRIMARY KEY (
+			`comment_no` -- 댓글번호
+		);
+
+-- 공통코드유형
+CREATE TABLE `large_code` (
+	`LAR_CD`    VARCHAR(255) NOT NULL COMMENT '코드유형ID', -- 코드유형ID
+	`LAR_CD_NM` VARCHAR(50)  NOT NULL COMMENT '코드유형명' -- 코드유형명
+)
+COMMENT '공통코드유형';
+
+-- 공통코드유형
+ALTER TABLE `large_code`
+	ADD CONSTRAINT `PK_large_code` -- 공통코드유형 기본키
+		PRIMARY KEY (
+			`LAR_CD` -- 코드유형ID
+		);
+
+-- 공통코드
+CREATE TABLE `detail_code` (
+	`LAR_CD`    VARCHAR(255) NOT NULL COMMENT '코드유형ID', -- 코드유형ID
+	`DTL_CD`    VARCHAR(255) NOT NULL COMMENT '상세코드', -- 상세코드
+	`DTL_CD_NM` VARCHAR(50)  NOT NULL COMMENT '상세코드명' -- 상세코드명
+)
+COMMENT '공통코드';
+
+-- 공통코드
+ALTER TABLE `detail_code`
+	ADD CONSTRAINT `PK_detail_code` -- 공통코드 기본키
+		PRIMARY KEY (
+			`DTL_CD` -- 상세코드
+		);
+
+-- 기부내역
+ALTER TABLE `dona_history`
+	ADD CONSTRAINT `FK_member_TO_dona_history` -- 회원 -> 기부내역
+		FOREIGN KEY (
+			`member_no` -- 회원번호
+		)
+		REFERENCES `member` ( -- 회원
+			`member_no` -- 회원번호
+		);
+
+-- 기부내역
+ALTER TABLE `dona_history`
+	ADD CONSTRAINT `FK_donation_TO_dona_history` -- 모금함 -> 기부내역
+		FOREIGN KEY (
+			`dona_no` -- 모금함번호
+		)
+		REFERENCES `donation` ( -- 모금함
+			`dona_no` -- 모금함번호
+		);
+
+-- 모금함첨부파일
+ALTER TABLE `dona_file`
+	ADD CONSTRAINT `FK_donation_TO_dona_file` -- 모금함 -> 모금함첨부파일
+		FOREIGN KEY (
+			`dona_no` -- 모금함번호
+		)
+		REFERENCES `donation` ( -- 모금함
+			`dona_no` -- 모금함번호
+		);
+
+-- 모금함댓글
+ALTER TABLE `dona_comment`
+	ADD CONSTRAINT `FK_donation_TO_dona_comment` -- 모금함 -> 모금함댓글
+		FOREIGN KEY (
+			`dona_no` -- 모금함번호
+		)
+		REFERENCES `donation` ( -- 모금함
+			`dona_no` -- 모금함번호
+		);
+
+-- 모금함댓글
+ALTER TABLE `dona_comment`
+	ADD CONSTRAINT `FK_member_TO_dona_comment` -- 회원 -> 모금함댓글
+		FOREIGN KEY (
+			`member_no` -- 회원번호
+		)
+		REFERENCES `member` ( -- 회원
+			`member_no` -- 회원번호
+		);
+
+-- 공통코드
+ALTER TABLE `detail_code`
+	ADD CONSTRAINT `FK_large_code_TO_detail_code` -- 공통코드유형 -> 공통코드
+		FOREIGN KEY (
+			`LAR_CD` -- 코드유형ID
+		)
+		REFERENCES `large_code` ( -- 공통코드유형
+			`LAR_CD` -- 코드유형ID
+		);
