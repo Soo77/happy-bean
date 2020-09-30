@@ -6,6 +6,8 @@
 
     <resultMap type="Member" id="MemberMap">
         <id column="member_no" property="no"/>
+        <result column="member_type_cd" property="memberTypeCode"/>
+        <result column="profile_photo" property="photo"/>
         <result column="rdt" property="registeredDate"/>
     </resultMap>
 
@@ -16,7 +18,8 @@
         name,
         password,
         email,
-        photo,
+        profile_photo,
+        member_type_cd,
         rdt
     </sql>
 

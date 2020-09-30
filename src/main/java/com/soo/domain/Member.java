@@ -12,6 +12,7 @@ public class Member implements Serializable {
     private String password;
     private String email;
     private String photo;
+    private String memberTypeCode;
     private Date registeredDate;
 
     public int getNo() {
@@ -68,5 +69,13 @@ public class Member implements Serializable {
 
     public void setRegisteredDate(Date registeredDate) {
         this.registeredDate = registeredDate;
+    }
+
+    public String getMemberTypeCode() {
+        return memberTypeCode;
+    }
+
+    public void setMemberTypeCode(String memberTypeCode) {
+        this.memberTypeCode = memberTypeCode;
     }
 }
