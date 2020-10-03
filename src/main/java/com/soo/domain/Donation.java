@@ -20,6 +20,8 @@ public class Donation implements Serializable {
     private String effect;
     private String thumbnail;
 
+    private DetailCode detailCode;
+
 
     public int getNo() {
         return no;
@@ -123,5 +125,13 @@ public class Donation implements Serializable {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public DetailCode getDetailCode() {
+        return detailCode;
+    }
+
+    public void setDetailCode(DetailCode detailCode) {
+        this.detailCode = detailCode;
     }
 }

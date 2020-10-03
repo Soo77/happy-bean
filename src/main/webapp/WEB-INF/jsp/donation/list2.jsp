@@ -21,6 +21,7 @@
       <th>제목</th>
       <th>기관명</th>
       <th>구분코드</th>
+      <th>구분코드명</th>
       <th>내용</th>
       <th>목표금액</th>
       <th>모여진금액</th>
@@ -37,6 +38,7 @@
         <td>${donation.name}</td>
         <td>${donation.orgnName}</td>
         <td>${donation.classifyCode}</td>
+        <td>${donation.detailCode.detailCodeName}</td>
         <td><p style="white-space: pre-line;">${donation.content}</p></td>
         <td>${donation.targetAmount}</td>
         <td>${donation.totalAmount}</td>

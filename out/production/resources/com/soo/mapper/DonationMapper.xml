@@ -18,29 +18,53 @@
         <result column="dona_target_number" property="targetNumber"/>
         <result column="dona_effect" property="effect"/>
         <result column="dona_thumbnail" property="thumbnail"/>
+        <collection resultMap="DetailCodeMap" property="detailCode" />
+    </resultMap>
+
+    <resultMap type="DetailCode" id="DetailCodeMap">
+        <id column="DTL_CD" property="detailCode"/>
+        <result column="LAR_CD" property="largeCode"/>
+        <result column="DTL_CD_NM" property="detailCodeName"/>
     </resultMap>
 
     <sql id="basicColumn">
         select
-        dona_no
-        ,dona_name
-        ,dona_orgn_name
-        ,dona_classify_cd
-        ,dona_text
-        ,dona_target_amount
-        ,dona_total_amount
-        ,dona_sdt
-        ,dona_edt
-        ,dona_target
-        ,dona_target_number
-        ,dona_effect
-        ,dona_thumbnail
+        do.dona_no,
+        do.dona_name,
+        do.dona_orgn_name,
+        do.dona_classify_cd,
+        do.dona_text,
+        do.dona_target_amount,
+        do.dona_total_amount,
+        do.dona_sdt,
+        do.dona_edt,
+        do.dona_target,
+        do.dona_target_number,
+        do.dona_effect,
+        do.dona_thumbnail
+    </sql>
+
+    <sql id="detailCodeColumn">
+        d.LAR_CD,
+        d.DTL_CD,
+        d.DTL_CD_NM
     </sql>
 
     <select id="findAll" resultMap="DonationMap">
-        <include refid="basicColumn"/>
-        from donation
-        order by dona_no desc
+        <include refid="basicColumn"/>,
+        <include refid="detailCodeColumn"/>
+        from donation do
+        join detail_code d
+        on do.dona_classify_cd = d.DTL_CD;
+    </select>
+
+
+    <select id="findCodeNameByCode" resultMap="DetailCodeMap">
+        <include refid="basicColumn"/>,
+        <include refid="detailCodeColumn"/>
+        from donation do
+        join detail_code d
+        on do.dona_classify_cd = d.DTL_CD;
     </select>
 
 

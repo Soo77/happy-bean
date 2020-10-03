@@ -46,13 +46,13 @@
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
                     <div class="custom-progress-inner">
-                      <div class="custom-progress bg-danger" style="width: 80%;"></div>
+                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
                     </div>
                   </div>
                 </a>
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">School</span>
+                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">School</span>
                   <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
@@ -84,13 +84,13 @@
                       <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
                         <span class="caption">100% complete</span>
                         <div class="custom-progress-inner">
-                          <div class="custom-progress bg-danger" style="width: 100%;"></div>
+                          <div class="custom-progress bg-primary" style="width: 100%;"></div>
                         </div>
                       </c:when>
                       <c:otherwise>
                         <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
                         <div class="custom-progress-inner">
-                          <div class="custom-progress bg-danger" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                          <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
                         </div>
                       </c:otherwise>
                     </c:choose>
@@ -99,17 +99,17 @@
                 </a>
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
+                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                  <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
+                    <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
                   </div>
 
                   <div class="py-4">
                     <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
+                      <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <div class="nanumsquare">${donation.orgnName}</div>
                     </div>
                   </div>
                 </div>
