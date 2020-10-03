@@ -30,8 +30,8 @@
     </select>
 
     <insert id="insert" parameterType="Member">
-        insert into member(id,name,password,email,photo,rdt)
-        values(#{id},#{name},password(#{password}),#{email},#{photo},now())
+        insert into member(id,name,password,email,profile_photo,rdt,member_type_cd)
+        values(#{id},#{name},password(#{password}),#{email},#{photo},now(),#{memberTypeCode})
     </insert>
 
 

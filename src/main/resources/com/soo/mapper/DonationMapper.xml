@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soo.dao.DonationDao">
+
+    <resultMap type="Donation" id="DonationMap">
+        <id column="dona_no" property="no"/>
+        <result column="dona_name" property="name"/>
+        <result column="dona_orgn_name" property="orgnName"/>
+        <result column="dona_classify_cd" property="classifyCode"/>
+        <result column="dona_text" property="content"/>
+        <result column="dona_target_amount" property="targetAmount"/>
+        <result column="dona_total_amount" property="totalAmount"/>
+        <result column="dona_sdt" property="startDate"/>
+        <result column="dona_edt" property="endDate"/>
+        <result column="dona_target" property="target"/>
+        <result column="dona_target_number" property="targetNumber"/>
+        <result column="dona_effect" property="effect"/>
+        <result column="dona_thumbnail" property="thumbnail"/>
+    </resultMap>
+
+    <sql id="basicColumn">
+        select
+        dona_no
+        ,dona_name
+        ,dona_orgn_name
+        ,dona_classify_cd
+        ,dona_text
+        ,dona_target_amount
+        ,dona_total_amount
+        ,dona_sdt
+        ,dona_edt
+        ,dona_target
+        ,dona_target_number
+        ,dona_effect
+        ,dona_thumbnail
+    </sql>
+
+    <select id="findAll" resultMap="DonationMap">
+        <include refid="basicColumn"/>
+        from donation
+        order by dona_no desc
+    </select>
+
+
+
+
+</mapper>

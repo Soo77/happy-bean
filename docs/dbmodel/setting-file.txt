@@ -1,0 +1,128 @@
+Theme<|||>1<|||>Windows
+SQL Attr Comment Foreground<|||>3<|||>8421504
+SQL Attr ConditionalComment Foreground<|||>3<|||>8421504
+SQL Attr DataType Foreground<|||>3<|||>128
+SQL Attr DelimitedIdentifier Foreground<|||>3<|||>32896
+SQL Attr Function Foreground<|||>3<|||>8388608
+SQL Attr Identifier Foreground<|||>3<|||>32896
+SQL Attr Key Foreground<|||>3<|||>16711680
+SQL Attr Number Foreground<|||>3<|||>8388736
+SQL Attr String Foreground<|||>3<|||>32768
+SQL Attr Symbol Foreground<|||>3<|||>16711680
+SQL Attr TableName Foreground<|||>3<|||>16711935
+SQL Attr Variable Foreground<|||>3<|||>8388736
+FieldColor_Binary<|||>3<|||>8388736
+FieldColor_Datetime<|||>3<|||>128
+FieldColor_Numeric<|||>3<|||>16711680
+FieldColor_Other<|||>3<|||>32896
+FieldColor_Real<|||>3<|||>16711752
+FieldColor_Spatial<|||>3<|||>8421376
+FieldColor_Text<|||>3<|||>32768
+LastSessions<|||>1<|||>
+LastActiveSession<|||>1<|||>Unnamed
+SessionManager_ListWidth<|||>3<|||>300
+SessionManager_WindowWidth<|||>3<|||>960
+SessionManager_WindowHeight<|||>3<|||>591
+ColWidths_connform.ListSessions<|||>1<|||>245,75,75,75,75,75,51
+ColsVisible_connform.ListSessions<|||>1<|||>0
+ColPositions_connform.ListSessions<|||>1<|||>0,1,2,3,4,5,6
+ColSort_connform.ListSessions<|||>1<|||>0,0
+DateTimeEditor_CursorPos_Type4<|||>3<|||>19
+ColWidths_frmTableEditor.listColumns<|||>1<|||>46,141,223,90,134,120,128,173,130,199,100,100
+ColsVisible_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
+ColPositions_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
+ColSort_frmTableEditor.listColumns<|||>1<|||>-1,0
+ColWidths_frmTableEditor.treeIndexes<|||>1<|||>440,100,80
+ColsVisible_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
+ColPositions_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
+ColSort_frmTableEditor.treeIndexes<|||>1<|||>-1,0
+ColWidths_frmTableEditor.listForeignKeys<|||>1<|||>483,100,100,140,80,80
+ColsVisible_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
+ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
+ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
+dbtreewidth<|||>3<|||>216
+MainWinOnMonitor<|||>3<|||>0
+MainWinWidth<|||>3<|||>654
+MainWinHeight<|||>3<|||>687
+ColWidths_MainForm.ListDatabases<|||>1<|||>225,120,75,75,75,75,75,75,75,75,180
+ColsVisible_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
+ColPositions_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
+ColSort_MainForm.ListDatabases<|||>1<|||>0,0
+ColWidths_MainForm.ListVariables<|||>1<|||>240,300,248
+ColsVisible_MainForm.ListVariables<|||>1<|||>0,1,2
+ColPositions_MainForm.ListVariables<|||>1<|||>0,1,2
+ColSort_MainForm.ListVariables<|||>1<|||>0,0
+ColWidths_MainForm.ListStatus<|||>1<|||>240,248,150,150
+ColsVisible_MainForm.ListStatus<|||>1<|||>0,1,2,3
+ColPositions_MainForm.ListStatus<|||>1<|||>0,1,2,3
+ColSort_MainForm.ListStatus<|||>1<|||>0,0
+ColWidths_MainForm.ListProcesses<|||>1<|||>105,120,120,120,120,75,75,10
+ColsVisible_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
+ColPositions_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
+ColSort_MainForm.ListProcesses<|||>1<|||>0,1
+ColWidths_MainForm.ListCommandStats<|||>1<|||>180,150,150,150,158
+ColsVisible_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
+ColPositions_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
+ColSort_MainForm.ListCommandStats<|||>1<|||>1,1
+ColWidths_MainForm.ListTables<|||>1<|||>180,105,105,180,180,105,150,75,105,105,105,105,105,135,180,105,105,105,75
+ColsVisible_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,18
+ColPositions_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
+ColSort_MainForm.ListTables<|||>1<|||>0,0
+MemoEditorWidth<|||>3<|||>198
+MemoEditorHeight<|||>3<|||>150
+MainWinLeft<|||>3<|||>-7
+MainWinTop<|||>3<|||>0
+FileDialogEncoding_MainForm<|||>3<|||>0
+ExportSQL_CreateDatabases<|||>3<|||>1
+ExportSQL_CreateTables<|||>3<|||>1
+ExportSQL_Filenames<|||>1<|||>C:\Users\Soohyun\Desktop\림유한테줄happybindb.sql<{{{><}}}>
+querymemoheight<|||>3<|||>30
+sqloutheight<|||>3<|||>56
+PreferencesWindowWidth<|||>3<|||>900
+PreferencesWindowHeight<|||>3<|||>720
+StopOnErrorsInBatchMode<|||>3<|||>0
+DisplayBLOBsAsText<|||>3<|||>0
+MainWinMaximized<|||>3<|||>1
+SessionManager_WindowTop<|||>3<|||>89
+PromptSaveFileOnTabClose<|||>3<|||>0
+SQLFile0<|||>1<|||>C:\Users\Soohyun\AppData\Roaming\HeidiSQL\Backups\query-tab-2020-04-16_22-03-44-112.sql
+SQLFile1<|||>1<|||>C:\Users\Soohyun\Downloads\limDB.sql
+Servers\Unnamed\SessionCreated<|||>1<|||>2019-11-03 18:37:27
+Servers\Unnamed\Host<|||>1<|||>127.0.0.1
+Servers\Unnamed\WindowsAuth<|||>3<|||>0
+Servers\Unnamed\CleartextPluginEnabled<|||>3<|||>0
+Servers\Unnamed\User<|||>1<|||>root
+Servers\Unnamed\Password<|||>1<|||>6
+Servers\Unnamed\LoginPrompt<|||>3<|||>0
+Servers\Unnamed\Port<|||>1<|||>3306
+Servers\Unnamed\NetType<|||>3<|||>0
+Servers\Unnamed\Compressed<|||>3<|||>0
+Servers\Unnamed\LocalTimeZone<|||>3<|||>0
+Servers\Unnamed\QueryTimeout<|||>3<|||>30
+Servers\Unnamed\KeepAlive<|||>3<|||>20
+Servers\Unnamed\FullTableStatus<|||>3<|||>1
+Servers\Unnamed\Databases<|||>1<|||>
+Servers\Unnamed\Comment<|||>1<|||>
+Servers\Unnamed\StartupScriptFilename<|||>1<|||>
+Servers\Unnamed\TreeBackground<|||>3<|||>536870911
+Servers\Unnamed\SSHtunnelHost<|||>1<|||>
+Servers\Unnamed\SSHtunnelHostPort<|||>3<|||>22
+Servers\Unnamed\SSHtunnelUser<|||>1<|||>
+Servers\Unnamed\SSHtunnelPassword<|||>1<|||>7
+Servers\Unnamed\SSHtunnelTimeout<|||>3<|||>4
+Servers\Unnamed\SSHtunnelPrivateKey<|||>1<|||>
+Servers\Unnamed\SSHtunnelPort<|||>3<|||>3307
+Servers\Unnamed\SSL_Active<|||>3<|||>0
+Servers\Unnamed\SSL_Key<|||>1<|||>
+Servers\Unnamed\SSL_Cert<|||>1<|||>
+Servers\Unnamed\SSL_CA<|||>1<|||>
+Servers\Unnamed\SSL_Cipher<|||>1<|||>
+Servers\Unnamed\ServerVersionFull<|||>1<|||>10.5.5-MariaDB - mariadb.org binary distribution
+Servers\Unnamed\ConnectCount<|||>3<|||>27
+Servers\Unnamed\ServerVersion<|||>3<|||>100505
+Servers\Unnamed\LastConnect<|||>1<|||>2020-10-02 11:51:23
+Servers\Unnamed\lastUsedDB<|||>1<|||>happybean_db
+Servers\Unnamed\RefusedCount<|||>3<|||>26
+Servers\Unnamed\happybean_db|donation\Sort<|||>1<|||>0_dona_no|
+Servers\Unnamed\happybean_db|dona_file\Sort<|||>1<|||>0_dona_file_no|
+Servers\Unnamed\happybin_db|member\Sort<|||>1<|||>0_email|

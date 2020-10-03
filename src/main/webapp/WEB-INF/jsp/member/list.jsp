@@ -24,6 +24,7 @@
   <th>이메일</th>
   <th>사진</th>
   <th>등록일</th>
+  <th>멤버등급코드</th>
 </tr>
 <c:forEach items="${members}" var="member">
   <tr>
@@ -34,6 +35,7 @@
     <td>${member.email}</td>
     <td>${member.photo}</td>
     <td>${member.registeredDate}</td>
+    <td>${member.memberTypeCode}</td>
   </tr>
 </c:forEach>
 </table>

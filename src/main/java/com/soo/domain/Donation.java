@@ -1,0 +1,127 @@
+package com.soo.domain;
+
+import java.io.Serializable;
+import java.sql.Date;
+
+public class Donation implements Serializable {
+    private static final long serialVersionUID= 1L;
+
+    private int no;
+    private String name;
+    private String orgnName;
+    private String classifyCode;
+    private String content;
+    private int targetAmount;
+    private int totalAmount;
+    private Date startDate;
+    private Date endDate;
+    private String target;
+    private int targetNumber;
+    private String effect;
+    private String thumbnail;
+
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOrgnName() {
+        return orgnName;
+    }
+
+    public void setOrgnName(String orgnName) {
+        this.orgnName = orgnName;
+    }
+
+    public String getClassifyCode() {
+        return classifyCode;
+    }
+
+    public void setClassifyCode(String classifyCode) {
+        this.classifyCode = classifyCode;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getTargetAmount() {
+        return targetAmount;
+    }
+
+    public void setTargetAmount(int targetAmount) {
+        this.targetAmount = targetAmount;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public int getTargetNumber() {
+        return targetNumber;
+    }
+
+    public void setTargetNumber(int targetNumber) {
+        this.targetNumber = targetNumber;
+    }
+
+    public String getEffect() {
+        return effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+}

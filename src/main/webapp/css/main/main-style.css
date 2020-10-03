@@ -1768,7 +1768,8 @@ h1, h2, h3, h4, h5,
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.8); }
   .cause .cause-link {
     display: block;
-    position: relative; }
+    position: relative;
+  }
   .cause h3 {
     font-size: 26px !important; }
     .cause h3 a {

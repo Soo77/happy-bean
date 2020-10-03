@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.*"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -68,16 +72,29 @@
         </div>
 
         <div class="row">
+          <c:forEach items="${donations}" var="donation">
+
           <div class="col-md-4">
               <div class="cause shadow-sm">
-              
+                <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
                 <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
+                  <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-danger" style="width: 80%;"></div>
-                    </div>
+                    <c:choose>
+                      <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                        <span class="caption">100% complete</span>
+                        <div class="custom-progress-inner">
+                          <div class="custom-progress bg-danger" style="width: 100%;"></div>
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                        <div class="custom-progress-inner">
+                          <div class="custom-progress bg-danger" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                        </div>
+                      </c:otherwise>
+                    </c:choose>
+
                   </div>
                 </a>
 
@@ -99,7 +116,8 @@
               
               </div>
           </div>
-          <div class="col-md-4">
+          </c:forEach>
+          <%--<div class="col-md-4">
             
             <div class="cause shadow-sm">
               
@@ -264,7 +282,7 @@
               </div>
 
           </div>
-
+--%>
           <div class="col-12">
             <span class="p-3">1</span>
             <a href="#" class="p-3">2</a>
@@ -308,6 +326,23 @@
     <script src="js/main/aos.js"></script>
 
     <script src="js/main/main.js"></script>
+
+
+
+    <script>
+      var percentVal = $('input[name=percentage]').val();
+      parseFloat(percentVal.toFixed(2))
+
+      var resultVal = 0;
+      if(percentVal > 100) {
+        resultVal = 100;
+      } else {
+        resultVal = percentVal;
+      }
+
+
+    </script>
+
 
   </body>
 
