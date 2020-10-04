@@ -9,7 +9,7 @@
         <result column="dona_name" property="name"/>
         <result column="dona_orgn_name" property="orgnName"/>
         <result column="dona_classify_cd" property="classifyCode"/>
-        <result column="dona_text" property="content"/>
+        <result column="dona_text" property="donaContent"/>
         <result column="dona_target_amount" property="targetAmount"/>
         <result column="dona_total_amount" property="totalAmount"/>
         <result column="dona_sdt" property="startDate"/>

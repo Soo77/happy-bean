@@ -314,18 +314,6 @@
 
     </div>
 
-    <script src="js/main/jquery-3.3.1.min.js"></script>
-    <script src="js/main/popper.min.js"></script>
-    <script src="js/main/bootstrap.min.js"></script>
-    <script src="js/main/owl.carousel.min.js"></script>
-    <script src="js/main/jquery.sticky.js"></script>
-    <script src="js/main/jquery.waypoints.min.js"></script>
-    <script src="js/main/jquery.animateNumber.min.js"></script>
-    <script src="js/main/jquery.fancybox.min.js"></script>
-    <script src="js/main/jquery.easing.1.3.js"></script>
-    <script src="js/main/aos.js"></script>
-
-    <script src="js/main/main.js"></script>
 
 
 

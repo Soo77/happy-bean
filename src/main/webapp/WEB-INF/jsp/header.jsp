@@ -38,6 +38,15 @@
 }
 </style>
 
+ <style type="text/css">
+   @Font-face {
+     font-family: 'Nanum';
+     src: url("../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
+   }
+ </style>
+
+
+
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
@@ -95,7 +104,7 @@
               <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li class="active"><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
-                <li><a href="../donation/list" class="nanumsquare">기부</a></li>
+                <li><a href="../donation/list" class="">기부</a></li>
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
               </ul>

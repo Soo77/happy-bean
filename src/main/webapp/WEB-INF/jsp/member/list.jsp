@@ -29,7 +29,7 @@
 <c:forEach items="${members}" var="member">
   <tr>
     <td>${member.no}</td>
-    <td>${member.id}</a></td>
+    <td>${member.id}</td>
     <td>${member.name}</td>
     <td>${member.password}</td>
     <td>${member.email}</td>

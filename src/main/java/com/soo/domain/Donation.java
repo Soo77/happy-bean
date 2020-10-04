@@ -10,7 +10,7 @@ public class Donation implements Serializable {
     private String name;
     private String orgnName;
     private String classifyCode;
-    private String content;
+    private String donaContent;
     private int targetAmount;
     private int totalAmount;
     private Date startDate;
@@ -55,12 +55,12 @@ public class Donation implements Serializable {
         this.classifyCode = classifyCode;
     }
 
-    public String getContent() {
-        return content;
+    public String getDonaContent() {
+        return donaContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDonaContent(String donaContent) {
+        this.donaContent = donaContent;
     }
 
     public int getTargetAmount() {

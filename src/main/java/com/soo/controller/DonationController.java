@@ -39,4 +39,8 @@ public class DonationController {
         model.addAttribute("donations", donations);
     }
 
+    @GetMapping("form")
+    public void form() throws Exception {
+    }
+
 }
