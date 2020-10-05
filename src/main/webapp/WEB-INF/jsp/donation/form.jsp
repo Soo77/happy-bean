@@ -35,11 +35,11 @@
                     <label for="name">모금함 제목</label>
                     <input type="text" name="name" class="form-control" id="name">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group pt-3">
                     <label for="orgnName">모금단체명</label>
                     <input type="text" name="orgnName" class="form-control" id="orgnName">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group pt-3">
                     <label for="classSelect">모금분야 선택</label>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
@@ -54,34 +54,31 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group pt-3">
                     <label for="donacontents">모금함 소개글</label>
                     <textarea name="donaContent" id="donacontents" cols="30" rows="10" class="form-control"></textarea>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group pt-3">
                     <label for="targetAmount">목표 금액</label>
                     <input type="text" name="targetAmount" class="form-control" id="targetAmount">
                   </div>
-                  <div class="form-group">
-                    <div class="row">
-
-                      <div class="modal-alerts"></div>
-
-                      <div id="datepicker" role="form" class="form-horizontal"></div>
-
-                      <label for="date" class="col-sm-1 control-label">Date</label>
-
-                      <div class="col-sm-2">
-
-                        <input id="date" type="text" name="date" class="input-date form-control"/>
-
-                      </div>
-
-                    </div>
-
-
-
+                  <div class="form-group pt-3">
+                    <label for="sdt">사업시작일</label>
+                    <input max="9999-12-31" name="startDate" id="sdt" type="date" class="form-control" placeholder="Regular">
                   </div>
+                  <div class="form-group pt-3">
+                    <label for="edt">사업종료일</label>
+                    <input max="9999-12-31" name="endDate" id="edt" type="date" class="form-control" placeholder="Regular">
+                  </div>
+                  <div class="form-group pt-3">
+                    <label for="thumbnail">썸네일 사진</label>
+                    <input type="file" name="thumbnail" class="form-control-file" id="thumbnail" aria-describedby="inputGroupFileAddon01">
+                  </div>
+
+
+
+
+
                   <div class="form-group">
                     <label for="website">Website</label>
                     <input type="url" class="form-control" id="website">
