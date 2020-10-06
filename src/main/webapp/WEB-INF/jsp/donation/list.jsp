@@ -288,6 +288,8 @@
             <a href="#" class="p-3">2</a>
             <a href="#" class="p-3">3</a>
             <a href="#" class="p-3">4</a>
+
+            <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
           </div>
 
 

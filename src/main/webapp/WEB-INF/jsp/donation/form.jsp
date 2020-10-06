@@ -30,7 +30,8 @@
 
               <div class="comment-form-wrap">
                 <h3 class="form-title" style="font-family: Nanum; font-size: 30px;">기부 모금함 등록하기</h3>
-                <form action="#" class="pt-5">
+                <form action="add" class="pt-5" method="POST" id="signup-form"
+                      enctype='multipart/form-data'>
                   <div class="form-group">
                     <label for="name">모금함 제목</label>
                     <input type="text" name="name" class="form-control" id="name">
@@ -71,24 +72,12 @@
                     <input max="9999-12-31" name="endDate" id="edt" type="date" class="form-control" placeholder="Regular">
                   </div>
                   <div class="form-group pt-3">
-                    <label for="thumbnail">썸네일 사진</label>
-                    <input type="file" name="thumbnail" class="form-control-file" id="thumbnail" aria-describedby="inputGroupFileAddon01">
+                    <label for="file">썸네일 사진</label>
+                    <input type="file" name="file" class="form-control-file" id="file" aria-describedby="inputGroupFileAddon01">
                   </div>
+                  <%-- form 입력란 끝 --%>
 
-
-
-
-
-                  <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
+                  <div class="form-group pt-3">
                     <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
                   </div>
 

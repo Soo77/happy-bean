@@ -22,4 +22,9 @@ public class DefaultDonationService implements DonationService {
     public List<Donation> list() throws Exception {
         return donationDao.findAll();
     }
+
+    @Override
+    public void insert(Donation donation) throws Exception {
+        donationDao.insert(donation);
+    }
 }

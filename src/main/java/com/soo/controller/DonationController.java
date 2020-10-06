@@ -10,14 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -26,10 +30,18 @@ public class DonationController {
 
     @Resource private DonationService donationService;
 
+    String uploadDir;
+
+    public DonationController(ServletContext sc) {
+        uploadDir = sc.getRealPath("/upload/donation/thumbnail");
+    }
+
     /* 기부 리스트 */
     @GetMapping("list")
-    public void list(Model model) throws Exception {
+    public void list(Model model, HttpServletRequest request) throws Exception {
+        String rootPath = request.getSession().getServletContext().getContext("/upload").getRealPath("") ;
         List<Donation> donations = donationService.list();
+        System.out.println(rootPath);
         model.addAttribute("donations", donations);
     }
 
@@ -41,6 +53,23 @@ public class DonationController {
 
     @GetMapping("form")
     public void form() throws Exception {
+    }
+
+    @PostMapping("add")
+    public String add(Donation donation, MultipartFile file) throws Exception {
+        donation.setThumbnail(writeFile(file));
+        donation.setTotalAmount(0);
+        donationService.insert(donation);
+        return "redirect:list";
+    }
+
+    private String writeFile(MultipartFile file) throws Exception {
+        if(file.isEmpty())
+            return null;
+
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(uploadDir + "/" + filename));
+        return filename;
     }
 
 }

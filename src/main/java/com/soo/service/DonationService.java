@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface DonationService {
     List<Donation> list() throws Exception;
-
+    void insert(Donation donation) throws Exception;
 }
 

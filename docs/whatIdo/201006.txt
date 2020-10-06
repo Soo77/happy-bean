@@ -1,0 +1,13 @@
+201006
+
+오늘 한일
+- donation add 기능 추가.
+- 근데 사진이.. 어디에저장되었는지 알수가없었는데 알아냈다. build폴더 안이었다 ㅠ.
+- 낼은 getRealpath 경로를 바꿀수있는지좀 알아봐야겠다.
+
+알게 된 것
+- IntelliJ Gradle 프로젝트 - out, build 폴더
+IntelliJ 에서 Gradle 기반 프로젝트를 개발하면, 아래 그림과 같이 build 폴더와 out  폴더가 있는 것을 발견하게 된다.
+막상 열어보면, 둘다 컴파일한 class 파일을 가지고 있다.
+왜 컴파일한 같은 파일을 중복으로 가지고 있는 것일까 하고 의아해 할 수 있다.
+결론부터 말하자면, gradle build 시에는 build 폴더에, IntelliJ 에서 빌드시에는 out 폴더에 build 파일이 생성되게 된다.
