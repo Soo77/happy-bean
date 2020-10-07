@@ -15,12 +15,13 @@
       
 
       <div class="box-92819">
-        <h1 class="text-white mb-3">Causes</h1>
-        <p class="lead text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt ab doloremque a quia laboriosam suscipit, iure illum perspiciatis!</p>
+        <h1 class="text-white mb-3">Donation</h1>
+        <p class="lead text-white nanumsquare">일상의 작은 관심이 더 나은 세상을 만듭니다.<br>
+          당신의 가치 있는 응원, 해피빈 기부로 전하세요. </p>
       </div>
 
       
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_2.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');"></div>
       
     </div>
     
@@ -40,8 +41,8 @@
           </div>
           <div class="col-md-7">
             <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
+
+              <a href='detail?no=${donation.no}' class="cause-link d-block">
                   <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
@@ -53,7 +54,7 @@
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
                   <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
+                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati 외않나와 ${loginUser.memberTypeCode}</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
                     <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
@@ -78,7 +79,7 @@
               <div class="cause shadow-sm">
                 <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
                 <a href="#" class="cause-link d-block">
-                  <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid">
+                  <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
 
                   <div class="custom-progress-wrap">
                     <c:choose>
@@ -118,179 +119,16 @@
               </div>
           </div>
           </c:forEach>
-          <%--<div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_2.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
 
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">Health</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_3.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-warning" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border ">
-                  <span class="badge-warning py-1 small px-2 rounded mb-3 d-inline-block">Livelihood</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
-
-
-          <div class="col-md-4">
-              <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">99% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-danger" style="width: 99%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-          </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_2.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">Health</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_3.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-warning" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border ">
-                  <span class="badge-warning py-1 small px-2 rounded mb-3 d-inline-block">Livelihood</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
---%>
           <div class="col-12">
             <span class="p-3">1</span>
             <a href="#" class="p-3">2</a>
             <a href="#" class="p-3">3</a>
             <a href="#" class="p-3">4</a>
 
+            <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
             <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
+            </c:if>
           </div>
 
 

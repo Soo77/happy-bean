@@ -2,6 +2,9 @@
 
 오늘 한일
 - getRealpath 경로를 바꿀수있는지좀 알아봐야겠다.
+- donation 리스트에 사진 띄우기
+- 운영자로 들어갔을 때 모금함 추가버튼 보이게 만듦. 필터적용은 안함.
+주소로 들어가면 들어가짐ㅋ_ㅋ
 
 알게 된 것
 - 1. System.out.println(this.getServletContext().getRealPath("/"));
@@ -27,3 +30,8 @@ jsp쪽에는
 <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid">
 이렇게 넣고..ㅋ_ㅋ
 왜안됐는지 몰으겠다~! 지금은 아주 자알된다.
+
+아마 .jpg를 안붙여서 사진이 안보였던거같다. 경로는 맞는듯.
+파일이름 리턴할때 +".jpg"를해주었다.
+
+

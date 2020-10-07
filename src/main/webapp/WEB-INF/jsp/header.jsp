@@ -79,7 +79,7 @@
                 <a href="../auth/signUpForm" class="p-3">Join</a>
               </c:if>
               <c:if test="${not empty loginUser}">
-                <a href="#" class="nanumsquare">${loginUser.name} 님</a>
+                <a href="#" class="nanumsquare">${loginUser.name} 님 </a>
                 <a href="../auth/logout" class="p-3">Logout</a>
               </c:if>
             <%--<a href="../auth/signInForm" class="p-3">Login</a>--%>

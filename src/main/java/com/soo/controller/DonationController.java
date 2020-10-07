@@ -45,16 +45,12 @@ public class DonationController {
         model.addAttribute("donations", donations);
     }
 
-    @GetMapping("list2")
-    public void list2(Model model) throws Exception {
-        List<Donation> donations = donationService.list();
-        model.addAttribute("donations", donations);
-    }
-
+    /* 기부 추가 입력폼 */
     @GetMapping("form")
     public void form() throws Exception {
     }
 
+    /* 기부 추가 기능 */
     @PostMapping("add")
     public String add(Donation donation, MultipartFile file) throws Exception {
         donation.setThumbnail(writeFile(file));
@@ -63,6 +59,7 @@ public class DonationController {
         return "redirect:list";
     }
 
+    /* 사진파일명 만들고 로컬에 저장 후 파일명 리턴 */
     private String writeFile(MultipartFile file) throws Exception {
         if(file.isEmpty())
             return null;
@@ -71,5 +68,11 @@ public class DonationController {
         file.transferTo(new File(uploadDir + "/" + filename));
         return filename;
     }
+
+    @GetMapping("detail")
+    public void detail() throws Exception {
+    }
+
+
 
 }

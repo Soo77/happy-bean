@@ -52,7 +52,8 @@
         <include refid="detailCodeColumn"/>
         from donation do
         join detail_code d
-        on do.dona_classify_cd = d.DTL_CD;
+        on do.dona_classify_cd = d.DTL_CD
+        order by dona_no desc;
     </select>
 
 

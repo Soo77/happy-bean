@@ -83,6 +83,7 @@ public class AuthController {
         params.put("id", id);
         params.put("password", password);
 
+        //Member member = authService.findByIdPw(params);
         Member member = authService.findByIdPw(params);
         System.out.println("im here");
         if (member == null) {
