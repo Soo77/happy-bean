@@ -1,0 +1,29 @@
+201007
+
+오늘 한일
+- getRealpath 경로를 바꿀수있는지좀 알아봐야겠다.
+
+알게 된 것
+- 1. System.out.println(this.getServletContext().getRealPath("/"));
+    서블릿 context 까지의 실제 경로
+
+2. System.out.println(req.getContextPath());
+    톰캣 webapps 에서 서블릿 컨텍스트까지의 경로
+
+3. System.out.println(req.getServletPath());
+    서블릿 컨텍스트에서 현재 실행중인 서블릿의 경로
+
+- 절대 상대 경로
+절대경로란?
+경로의 처음부터 마지막까지 완전히 적혀진 경로이다.
+상대경로란?
+현재 위치의 문서를 기준으로 경로를 인식하는 방법이다.
+
+- 와... 난리난리 쳤는데 ㅠㅠ  어떻게 하다보니 됨.. 왜 된지 모르겟음.. ㅇ_ㅇ;;;
+그냥 controller 에 
+uploadDir = sc.getRealPath("/upload/donation/thumbnail");
+하고 
+jsp쪽에는
+<img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid">
+이렇게 넣고..ㅋ_ㅋ
+왜안됐는지 몰으겠다~! 지금은 아주 자알된다.

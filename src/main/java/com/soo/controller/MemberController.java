@@ -57,7 +57,7 @@ public class MemberController {
             return null;
 
         String filename = UUID.randomUUID().toString();
-        file.transferTo(new File(uploadDir + "/" + filename));
+        file.transferTo(new File(uploadDir + "/" + filename + ".jpg"));
         return filename;
     }
 

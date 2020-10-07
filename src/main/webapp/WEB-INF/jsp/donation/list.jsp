@@ -79,6 +79,7 @@
                 <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
                 <a href="#" class="cause-link d-block">
                   <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid">
+
                   <div class="custom-progress-wrap">
                     <c:choose>
                       <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">

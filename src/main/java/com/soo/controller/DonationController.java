@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -27,21 +28,20 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/donation")
 public class DonationController {
-
     @Resource private DonationService donationService;
 
     String uploadDir;
 
     public DonationController(ServletContext sc) {
         uploadDir = sc.getRealPath("/upload/donation/thumbnail");
+        /*uploadDir = "/C:/Users/Soohyun/git/happy-bin/src/main/webapp/upload/donation/thumbnail";*/
     }
 
     /* 기부 리스트 */
     @GetMapping("list")
-    public void list(Model model, HttpServletRequest request) throws Exception {
-        String rootPath = request.getSession().getServletContext().getContext("/upload").getRealPath("") ;
+    public void list(Model model, HttpServletRequest req) throws Exception {
         List<Donation> donations = donationService.list();
-        System.out.println(rootPath);
+        System.out.println("3:"+uploadDir);
         model.addAttribute("donations", donations);
     }
 
@@ -67,7 +67,7 @@ public class DonationController {
         if(file.isEmpty())
             return null;
 
-        String filename = UUID.randomUUID().toString();
+        String filename = UUID.randomUUID().toString()+".jpg";
         file.transferTo(new File(uploadDir + "/" + filename));
         return filename;
     }
