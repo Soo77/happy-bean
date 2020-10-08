@@ -70,7 +70,41 @@
         values(#{name},#{orgnName},#{classifyCode},#{donaContent},#{targetAmount},#{totalAmount},#{startDate},#{endDate},#{thumbnail})
     </insert>
 
+    <select id="findBy" parameterType="int" resultMap="DonationMap">
+        <include refid="basicColumn"/>,
+        <include refid="detailCodeColumn"/>
+        from donation do
+        join detail_code d
+        on do.dona_classify_cd = d.DTL_CD
+        and do.dona_no=#{value}
+    </select>
 
+    <delete id="delete" parameterType="int">
+        delete from donation
+        where dona_no=#{value}
+    </delete>
 
+    <update id="update" parameterType="Donation">
+        update donation set
+        <!--<set>
+            <if test="name != null">dona_name=#{name},</if>
+            <if test="orgnName != null">dona_orgn_name=#{orgnName},</if>
+            &lt;!&ndash;<if test="classifyCode != null">dona_classify_cd=#{classifyCode},</if>&ndash;&gt;
+            <if test="donaContent != null">dona_text=#{donaContent},</if>
+            <if test="targetAmount > 0">dona_target_amount=#{targetAmount},</if>
+            <if test="totalAmount > 0">dona_total_amount=#{totalAmount},</if>
+            <if test="startDate != null">dona_sdt=#{startDate},</if>
+            <if test="endDate != null">dona_edt=#{endDate}</if>
+            &lt;!&ndash;<if test="thumbnail != null">dona_thumbnail=#{thumbnail}</if>&ndash;&gt;
+
+        </set>-->
+        dona_name=#{name},
+        dona_orgn_name=#{orgnName},
+        dona_text=#{donaContent},
+        dona_target_amount=#{targetAmount},
+        dona_sdt=#{startDate},
+        dona_edt=#{endDate}
+        where dona_no=#{no}
+    </update>
 
 </mapper>

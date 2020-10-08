@@ -15,9 +15,6 @@ public class Donation implements Serializable {
     private int totalAmount;
     private Date startDate;
     private Date endDate;
-    private String target;
-    private int targetNumber;
-    private String effect;
     private String thumbnail;
 
     private DetailCode detailCode;
@@ -93,30 +90,6 @@ public class Donation implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
-
-    public int getTargetNumber() {
-        return targetNumber;
-    }
-
-    public void setTargetNumber(int targetNumber) {
-        this.targetNumber = targetNumber;
-    }
-
-    public String getEffect() {
-        return effect;
-    }
-
-    public void setEffect(String effect) {
-        this.effect = effect;
     }
 
     public String getThumbnail() {

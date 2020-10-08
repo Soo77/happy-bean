@@ -42,7 +42,7 @@
           <div class="col-md-7">
             <div class="cause shadow-sm">
 
-              <a href='detail?no=${donation.no}' class="cause-link d-block">
+              <a href='#' class="cause-link d-block">
                   <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
@@ -54,7 +54,7 @@
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
                   <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati 외않나와 ${loginUser.memberTypeCode}</a></h3>
+                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
                     <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
@@ -78,7 +78,7 @@
           <div class="col-md-4">
               <div class="cause shadow-sm">
                 <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
-                <a href="#" class="cause-link d-block">
+                <a href="detail?no=${donation.no}" class="cause-link d-block">
                   <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
 
                   <div class="custom-progress-wrap">

@@ -27,4 +27,25 @@ public class DefaultDonationService implements DonationService {
     public void insert(Donation donation) throws Exception {
         donationDao.insert(donation);
     }
+
+    @Override
+    public Donation get(int no) throws Exception {
+        Donation donation = donationDao.findBy(no);
+        if(donation == null) {
+            throw new Exception("해당 번호의 데이터가 없습니다!");
+        }
+        return donation;
+    }
+
+    @Override
+    public void update(Donation donation) throws Exception {
+        donationDao.update(donation);
+    }
+
+    @Override
+    public void delete(int no) throws Exception {
+        if(donationDao.delete(no) == 0) {
+            throw new Exception("해당 데이터가 없습니다.");
+        }
+    }
 }

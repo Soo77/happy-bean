@@ -70,7 +70,23 @@ public class DonationController {
     }
 
     @GetMapping("detail")
-    public void detail() throws Exception {
+    public void detail(Model model, int no) throws Exception {
+        Donation donation = donationService.get(no);
+        model.addAttribute("donation", donation);
+    }
+
+    @GetMapping("detail_form")
+    public void detailForm(Model model, int no) throws Exception {
+        Donation donation = donationService.get(no);
+        model.addAttribute("donation", donation);
+    }
+
+    @PostMapping("update")
+    public String update(Donation donation) throws Exception {
+        System.out.println("들어와용");
+        donationService.update(donation);
+        System.out.println("업데이트했어용.");
+        return "redirect:list";
     }
 
 

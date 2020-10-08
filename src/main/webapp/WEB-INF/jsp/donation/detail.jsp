@@ -9,14 +9,20 @@
 <jsp:include page="../header.jsp"/>
 
     <div class="ftco-blocks-cover-1">
-      <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');"
-      >
+      <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');">
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-              <span class="d-block mb-3 text-white" data-aos="fade-up">Oct 09, 2019 <span class="mx-2 text-primary">&bullet;</span> by James Miller</span>
-                <h1 class="mb-4 text-cursive h1" data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains</h1>
+              <span class="d-block mb-3 text-white" data-aos="fade-up">카테고리>${donation.detailCode.detailCodeName} <span class="mx-2 text-primary">&bullet;</span> ${donation.name}</span>
+              <h1 class="mb-4 text-cursive h1" data-aos="fade-up" data-aos-delay="100">Thank you for supporting our lifesaving work.</h1>
             </div>
+              <%--<div class="box-92819">
+                <h1 class="text-white mb-3">Donation</h1>
+                <p class="lead text-white nanumsquare">카테고리>${donation.detailCode.detailCodeName} · 모금단체 ${donation.orgnName}<br>
+                  ${donation.name} </p>
+                &lt;%&ndash;<span class="d-block mb-3  nanumsquare" data-aos="fade-up">카테고리>${donation.detailCode.detailCodeName}<span class="mx-2 text-white nanumsquare">&bullet;</span>모금단체 ${donation.orgnName}</span>
+                <h1 class="mb-4 nanumsquare h1" data-aos="fade-up" data-aos-delay="100">${donation.name}</h1>&ndash;%&gt;
+              </div>--%>
           </div>
         </div>
       </div>
@@ -27,23 +33,13 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7 mr-auto blog-content">
-            <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <div class="pb-5">
+            <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
+            </div>
 
-            <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
-
-            <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-
-            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-            <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
-
-            <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-            
-            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-
+            <div>
+              ${donation.donaContent}
+            </div>
 
             <div class="pt-5">
               <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
