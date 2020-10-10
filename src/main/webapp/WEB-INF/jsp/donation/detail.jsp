@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.*"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -34,7 +36,9 @@
         <div class="row">
           <div class="col-md-7 mr-auto blog-content">
             <div class="pb-5">
-            <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
+              <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
+              <button type="button" class="btn btn-outline-danger nanumsquare" onclick = "location.href = 'delete?no=${donation.no}'">삭제</button>
+
             </div>
 
             <div>
@@ -160,7 +164,7 @@
 
           </div>
           <div class="col-md-4 sidebar">
-            <div class="sidebar-box">
+            <%--<div class="sidebar-box">
               <form action="#" class="search-form">
                 <div class="form-group">
                   <span class="icon fa fa-search"></span>
@@ -177,13 +181,73 @@
                 <li><a href="#">HTML <span>(42)</span></a></li>
                 <li><a href="#">Web Development <span>(14)</span></a></li>
               </div>
-            </div>
+            </div>--%>
             <div class="sidebar-box">
-              <img src="/../../../images/main/person_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-4 w-50 rounded-circle">
-              <h3 class="text-black">About The Author</h3>
+              <div class="cause shadow-sm">
+                <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
+                <a href="detail?no=${donation.no}" class="cause-link d-block">
+                  <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
+
+                  <div class="custom-progress-wrap">
+                    <c:choose>
+                      <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                        <span class="caption">100% complete</span>
+                        <div class="custom-progress-inner">
+                          <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                        <div class="custom-progress-inner">
+                          <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                        </div>
+                      </c:otherwise>
+                    </c:choose>
+
+                  </div>
+                </a>
+
+                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
+                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                  <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
+                  <div class="border-top border-light border-bottom py-2 d-flex">
+                    <div class="pt-2">Donated</div>
+                    <div class="ml-auto" style="font-size:x-large"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
+                  </div>
+
+                  <div class="py-4">
+                    <div class="d-flex align-items-center">
+                      <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <div class="nanumsquare">${donation.orgnName}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
               <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-              <p><a href="#" class="btn btn-primary btn-md text-white">Read More</a></p>
+              <p><form action="/donation/donate" method="post" class="footer-suscribe-form">
+                <input type='hidden' name='no' id='no' value='${donation.no}'>
+                <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
+                    <div class="input-group mb-3">
+                      <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="Enter amount" aria-label="Enter Email" aria-describedby="button-addon2">
+                      <div class="input-group-append">
+                        <%--<button type="button" class="btn btn-primary text-white"  id="button-addon2">기부하기</button>--%>
+                        <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon2">
+                      </div>
+                    </div>
+                  </form></p>
             </div>
+              마이해피머니: ${loginUser.money}
+              ${loginUser.name}
+              ${loginUser.no}
+              ${loginUser.password}
+              ${loginUser.email}
+              ${loginUser.photo}
+              ${loginUser.memberTypeCode}
+              ${loginUser.registeredDate}
+
 
             <div class="sidebar-box">
               <h3 class="text-black">Paragraph</h3>

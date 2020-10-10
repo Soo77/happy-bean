@@ -107,4 +107,21 @@ public class Donation implements Serializable {
     public void setDetailCode(DetailCode detailCode) {
         this.detailCode = detailCode;
     }
+
+    @Override
+    public String toString() {
+        return "Donation{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", orgnName='" + orgnName + '\'' +
+                ", classifyCode='" + classifyCode + '\'' +
+                ", donaContent='" + donaContent + '\'' +
+                ", targetAmount=" + targetAmount +
+                ", totalAmount=" + totalAmount +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", detailCode=" + detailCode +
+                '}';
+    }
 }

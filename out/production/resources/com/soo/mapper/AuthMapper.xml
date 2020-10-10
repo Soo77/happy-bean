@@ -20,7 +20,8 @@
         email,
         member_type_cd,
         profile_photo,
-        rdt
+        rdt,
+        money
     </sql>
 
     <select id="duplicateIdCheck" parameterType="String" resultType="boolean">

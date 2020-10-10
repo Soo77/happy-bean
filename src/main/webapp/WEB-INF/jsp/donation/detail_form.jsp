@@ -28,10 +28,12 @@
 
               <!-- END comment-list -->
 
+
               <div class="comment-form-wrap">
                 <h3 class="form-title" style="font-family: Nanum; font-size: 30px;">기부 모금함 등록하기</h3>
                 <form action="update" class="pt-5" method="POST" id="signup-form"
                       enctype='multipart/form-data'>
+                  <input type='hidden' name='no' id='no' value='${donation.no}'>
                   <div class="form-group">
                     <label for="name">모금함 제목</label>
                     <input type="text" name="name" class="form-control" id="name" value="${donation.name}">
@@ -78,7 +80,8 @@
                   <%-- form 입력란 끝 --%>
 
                   <div class="form-group pt-3">
-                    <input type="submit" value="update" class="btn btn-primary btn-md text-white">
+                    <input type="submit" value="수정하기" class="btn btn-primary btn-md text-white">
+
                   </div>
 
                 </form>

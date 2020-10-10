@@ -85,26 +85,29 @@
     </delete>
 
     <update id="update" parameterType="Donation">
-        update donation set
-        <!--<set>
+        update donation
+        <set>
             <if test="name != null">dona_name=#{name},</if>
             <if test="orgnName != null">dona_orgn_name=#{orgnName},</if>
-            &lt;!&ndash;<if test="classifyCode != null">dona_classify_cd=#{classifyCode},</if>&ndash;&gt;
+            <if test="classifyCode != null">dona_classify_cd=#{classifyCode},</if>
             <if test="donaContent != null">dona_text=#{donaContent},</if>
             <if test="targetAmount > 0">dona_target_amount=#{targetAmount},</if>
             <if test="totalAmount > 0">dona_total_amount=#{totalAmount},</if>
             <if test="startDate != null">dona_sdt=#{startDate},</if>
-            <if test="endDate != null">dona_edt=#{endDate}</if>
-            &lt;!&ndash;<if test="thumbnail != null">dona_thumbnail=#{thumbnail}</if>&ndash;&gt;
+            <if test="endDate != null">dona_edt=#{endDate},</if>
+            <if test="thumbnail != null">dona_thumbnail=#{thumbnail}</if>
 
-        </set>-->
-        dona_name=#{name},
+        </set>
+<!--       dona_name=#{name},
         dona_orgn_name=#{orgnName},
         dona_text=#{donaContent},
         dona_target_amount=#{targetAmount},
         dona_sdt=#{startDate},
-        dona_edt=#{endDate}
+        dona_edt=#{endDate}*/ -->
         where dona_no=#{no}
     </update>
+
+
+
 
 </mapper>

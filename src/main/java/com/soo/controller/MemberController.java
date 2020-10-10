@@ -41,6 +41,7 @@ public class MemberController {
         System.out.println("ho");
         member.setPhoto(writeFile(file));
         member.setMemberTypeCode("M01002"); // 일반회원 코드
+        member.setMoney(0);
         memberService.insert(member);
         return "redirect:../main/index";
     }

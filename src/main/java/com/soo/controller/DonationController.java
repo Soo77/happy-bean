@@ -7,9 +7,7 @@ import com.soo.service.DonationService;
 import com.soo.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -27,8 +25,10 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/donation")
+@SessionAttributes("loginUser")
 public class DonationController {
     @Resource private DonationService donationService;
+    @Resource private MemberService memberService;
 
     String uploadDir;
 
@@ -84,11 +84,39 @@ public class DonationController {
     @PostMapping("update")
     public String update(Donation donation) throws Exception {
         System.out.println("들어와용");
+        System.out.println("짠:"+donation);
         donationService.update(donation);
         System.out.println("업데이트했어용.");
         return "redirect:list";
     }
 
+    @GetMapping("delete")
+    public String delete(int no) throws Exception {
+        donationService.delete(no);
+        return "redirect:list";
+    }
+
+    @PostMapping("donate")
+    public String donate(@ModelAttribute("loginUser") Member member, Model model, int no, int memberNo, int money) throws Exception {
+        Donation donation = donationService.get(no);
+        member = memberService.get(memberNo);
+        donation.setTotalAmount(donation.getTotalAmount()+money);
+        member.setMoney(member.getMoney()-money);
+
+        memberService.update(member);
+        donationService.update(donation);
+
+        model.addAttribute("donation", donation);
+        model.addAttribute("loginUser", member);
+
+        System.out.println("멤버의돈:" + member.getMoney());
+        System.out.println("기부된 돈전체:" + donation.getTotalAmount());
+        System.out.println("입력된 머니:" + money);
+
+
+        return "redirect:detail?no="+no;
+        //return "redirect:list";
+    }
 
 
 }
