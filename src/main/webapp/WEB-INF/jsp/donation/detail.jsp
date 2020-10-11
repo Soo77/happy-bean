@@ -1,13 +1,17 @@
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.text.*"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html;">
 </head>
+
 <jsp:include page="../header.jsp"/>
 
     <div class="ftco-blocks-cover-1">
@@ -208,11 +212,27 @@
                 </a>
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
+                  <div class="nanumsquare pb-2">${donation.startDate} ~ ${donation.endDate}까지</div>
+
+                  <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
+                  <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
+                  <fmt:formatDate var="tDate" value="${donation.endDate}" pattern="yyyy-MM-dd"/>
+
+                  <fmt:parseDate value="${sDate}" var="strPlanDate" pattern="yyyy-MM-dd"/>
+                  <fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
+                  <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
+                  <fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
+
                   <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                  <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${strDate - endDate}</span>
                   <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div class="pt-2">Donated</div>
                     <div class="ml-auto" style="font-size:x-large"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
+                  </div>
+
+                  <div class="py-2 d-flex">
+                    <div class="ml-auto nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.targetAmount}"/>원 목표</div>
                   </div>
 
                   <div class="py-4">
@@ -221,23 +241,25 @@
                       <div class="nanumsquare">${donation.orgnName}</div>
                     </div>
                   </div>
+
+                  <form action="/donation/donate" method="post" class="footer-suscribe-form">
+                    <input type='hidden' name='no' id='no' value='${donation.no}'>
+                    <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
+                    <div class="input-group mb-3">
+                      <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="금액을 입력하세요." aria-label="Enter Email" aria-describedby="button-addon2">
+                      <div class="input-group-append">
+                        <%--<button type="button" class="btn btn-primary text-white"  id="button-addon2">기부하기</button>--%>
+                        <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon2">
+                      </div>
+                    </div>
+                  </form>
                 </div>
 
               </div>
 
 
               <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-              <p><form action="/donation/donate" method="post" class="footer-suscribe-form">
-                <input type='hidden' name='no' id='no' value='${donation.no}'>
-                <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
-                    <div class="input-group mb-3">
-                      <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="Enter amount" aria-label="Enter Email" aria-describedby="button-addon2">
-                      <div class="input-group-append">
-                        <%--<button type="button" class="btn btn-primary text-white"  id="button-addon2">기부하기</button>--%>
-                        <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon2">
-                      </div>
-                    </div>
-                  </form></p>
+              <p></p>
             </div>
               마이해피머니: ${loginUser.money}
               ${loginUser.name}
