@@ -13,14 +13,14 @@
     <div class="owl-carousel-wrapper">
 
       <div class="box-92819">
-        <h1 class="text-white mb-3">Join The Movement To end Child Poverty</h1>
+        <h1 class="text-white mb-3">Join The Movement To end the Poverty</h1>
         <p><a href="#" class="btn btn-primary py-3 px-4 rounded-0">Donate Now</a></p>
       </div>
 
       <div class="owl-carousel owl-1 ">
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_1.jpg');"></div>
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_2.jpg');"></div>
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_3.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-4.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-5.jpg');"></div>
         
       </div>
     </div>
@@ -325,18 +325,6 @@
 
     </div>
 
-    <script src="/js/main/jquery-3.3.1.min.js"></script>
-    <script src="/js/main/popper.min.js"></script>
-    <script src="/js/main/bootstrap.min.js"></script>
-    <script src="/js/main/owl.carousel.min.js"></script>
-    <script src="/js/main/jquery.sticky.js"></script>
-    <script src="/js/main/jquery.waypoints.min.js"></script>
-    <script src="/js/main/jquery.animateNumber.min.js"></script>
-    <script src="/js/main/jquery.fancybox.min.js"></script>
-    <script src="/js/main/jquery.easing.1.3.js"></script>
-    <script src="/js/main/aos.js"></script>
-
-    <script src="/js/main/main.js"></script>
   </body>
 
 </html>

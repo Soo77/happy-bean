@@ -14,6 +14,7 @@ public class Member implements Serializable {
     private String photo;
     private String memberTypeCode;
     private Date registeredDate;
+    private int money;
 
     public int getNo() {
         return no;
@@ -77,5 +78,13 @@ public class Member implements Serializable {
 
     public void setMemberTypeCode(String memberTypeCode) {
         this.memberTypeCode = memberTypeCode;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }

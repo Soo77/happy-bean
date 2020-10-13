@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
  <%--favicon--%>
     <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon"
     <link rel="icon" href="/images/bean-icon.ico" type="image/x-icon">
@@ -38,6 +39,15 @@
 }
 </style>
 
+ <style type="text/css">
+   @Font-face {
+     font-family: 'Nanum';
+     src: url("../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
+   }
+ </style>
+
+
+
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
@@ -70,7 +80,7 @@
                 <a href="../auth/signUpForm" class="p-3">Join</a>
               </c:if>
               <c:if test="${not empty loginUser}">
-                <a href="#" class="nanumsquare">${loginUser.name} 님</a>
+                <a href="#" class="nanumsquare">${loginUser.name} 님 </a>
                 <a href="../auth/logout" class="p-3">Logout</a>
               </c:if>
             <%--<a href="../auth/signInForm" class="p-3">Login</a>--%>
@@ -95,7 +105,7 @@
               <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li class="active"><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
-                <li><a href="../donation/list" class="nanumsquare">기부</a></li>
+                <li><a href="../donation/list" class="">기부</a></li>
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
               </ul>

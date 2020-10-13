@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.*"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -11,12 +15,13 @@
       
 
       <div class="box-92819">
-        <h1 class="text-white mb-3">Causes</h1>
-        <p class="lead text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt ab doloremque a quia laboriosam suscipit, iure illum perspiciatis!</p>
+        <h1 class="text-white mb-3">Donation</h1>
+        <p class="lead text-white nanumsquare">일상의 작은 관심이 더 나은 세상을 만듭니다.<br>
+          당신의 가치 있는 응원, 해피빈 기부로 전하세요. </p>
       </div>
 
       
-        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/hero_2.jpg');"></div>
+        <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');"></div>
       
     </div>
     
@@ -36,19 +41,19 @@
           </div>
           <div class="col-md-7">
             <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
+
+              <a href='#' class="cause-link d-block">
                   <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
                     <div class="custom-progress-inner">
-                      <div class="custom-progress bg-danger" style="width: 80%;"></div>
+                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
                     </div>
                   </div>
                 </a>
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">School</span>
+                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">School</span>
                   <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
@@ -68,208 +73,62 @@
         </div>
 
         <div class="row">
-          <div class="col-md-4">
-              <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-danger" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-          </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_2.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">Health</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_3.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-warning" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border ">
-                  <span class="badge-warning py-1 small px-2 rounded mb-3 d-inline-block">Livelihood</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
-
+          <c:forEach items="${donations}" var="donation">
 
           <div class="col-md-4">
               <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
+                <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
+                <a href="detail?no=${donation.no}" class="cause-link d-block">
+                  <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
+
                   <div class="custom-progress-wrap">
-                    <span class="caption">99% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-danger" style="width: 99%;"></div>
-                    </div>
+                    <c:choose>
+                      <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                        <span class="caption">100% complete</span>
+                        <div class="custom-progress-inner">
+                          <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                        <div class="custom-progress-inner">
+                          <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                        </div>
+                      </c:otherwise>
+                    </c:choose>
+
                   </div>
                 </a>
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
+                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                  <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
+                    <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
                   </div>
 
                   <div class="py-4">
                     <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
+                      <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <div class="nanumsquare">${donation.orgnName}</div>
                     </div>
                   </div>
                 </div>
               
               </div>
           </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_2.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">Health</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
-          <div class="col-md-4">
-            
-            <div class="cause shadow-sm">
-              
-                <a href="#" class="cause-link d-block">
-                  <img src="/../../../images/main/img_3.jpg" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-warning" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="px-3 pt-3 border-top-0 border border ">
-                  <span class="badge-warning py-1 small px-2 rounded mb-3 d-inline-block">Livelihood</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
-                    </div>
-                  </div>
-                </div>
-              
-              </div>
-
-          </div>
+          </c:forEach>
 
           <div class="col-12">
             <span class="p-3">1</span>
             <a href="#" class="p-3">2</a>
             <a href="#" class="p-3">3</a>
             <a href="#" class="p-3">4</a>
+
+            <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
+            <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
+            </c:if>
           </div>
 
 
@@ -296,18 +155,23 @@
 
     </div>
 
-    <script src="js/main/jquery-3.3.1.min.js"></script>
-    <script src="js/main/popper.min.js"></script>
-    <script src="js/main/bootstrap.min.js"></script>
-    <script src="js/main/owl.carousel.min.js"></script>
-    <script src="js/main/jquery.sticky.js"></script>
-    <script src="js/main/jquery.waypoints.min.js"></script>
-    <script src="js/main/jquery.animateNumber.min.js"></script>
-    <script src="js/main/jquery.fancybox.min.js"></script>
-    <script src="js/main/jquery.easing.1.3.js"></script>
-    <script src="js/main/aos.js"></script>
 
-    <script src="js/main/main.js"></script>
+
+
+    <script>
+      var percentVal = $('input[name=percentage]').val();
+      parseFloat(percentVal.toFixed(2))
+
+      var resultVal = 0;
+      if(percentVal > 100) {
+        resultVal = 100;
+      } else {
+        resultVal = percentVal;
+      }
+
+
+    </script>
+
 
   </body>
 

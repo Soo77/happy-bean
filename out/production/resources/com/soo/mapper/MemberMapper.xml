@@ -20,7 +20,8 @@
         email,
         profile_photo,
         member_type_cd,
-        rdt
+        rdt,
+        money
     </sql>
 
     <select id="findAll" resultMap="MemberMap">
@@ -30,11 +31,31 @@
     </select>
 
     <insert id="insert" parameterType="Member">
-        insert into member(id,name,password,email,photo,rdt)
-        values(#{id},#{name},password(#{password}),#{email},#{photo},now())
+        insert into member(id,name,password,email,profile_photo,rdt,member_type_cd,money)
+        values(#{id},#{name},password(#{password}),#{email},#{photo},now(),#{memberTypeCode},${money})
     </insert>
 
+    <update id="update" parameterType="Member">
+        update member
+        <set>
+            <if test="id != null">id=#{id},</if>
+            <if test="name != null">name=#{name},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="registeredDate!= null">rdt=#{registeredDate},</if>
+            <if test="memberTypeCode != null">member_type_cd=#{memberTypeCode},</if>
+            <if test="photo!= null">profile_photo=#{photo},</if>
+            <if test="money != null">money=#{money}</if>
 
+        </set>
+        where member_no=#{no}
+    </update>
+
+
+    <select id="findBy" parameterType="int" resultMap="MemberMap">
+        <include refid="basicColumn"/>
+        from member
+        where member_no=#{value}
+    </select>
     <!--<select id="loginCheck" parameterType="String" resultType="int">
       select count(*) from member where id=#{id}
     </select>-->

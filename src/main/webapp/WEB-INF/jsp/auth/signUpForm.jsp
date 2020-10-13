@@ -15,14 +15,6 @@
 </head>
 <jsp:include page="../header.jsp"/>
 
-<style type="text/css">
-    @Font-face {
-        font-family: 'Nanum';
-        src: url("../../../fonts/common/Nanum_Gothic/NanumGothic-Regular.ttf");
-
-    }
-</style>
-
 
 <body>
 
@@ -36,9 +28,17 @@
                       enctype='multipart/form-data' onsubmit='return checkValue()'>
                     <div class="form-title" style="font-family: Nanum; font-size: 30px;">회원가입</div>
                     <div class="auth-form-group">
-                        <input type="text" class="form-input" name="id" id="id" placeholder="아이디"
-                               onkeydown="inputIdChk()" required="" autofocus=""/>
-                        <input type="button" value="중복확인" onclick="openIdChk()">
+                        <div class="input-group mb-3">
+                            <div style="float: left; width: 80%">
+                                <input type="text" class="form-input" name="id" id="id" placeholder="아이디"
+                                       onkeydown="inputIdChk()" required="" autofocus="" aria-describedby="checkID"/>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="form-submit nanumsquare" type="button" id="checkID" onclick="openIdChk()">중복확인</button>
+                            </div>
+                        </div>
+
+                        <%--<input type="button" value="중복확인" onclick="openIdChk()">--%>
                         <input type="hidden" name="idDuplication" value="idUncheck">
                     </div>
                     <div class="auth-form-group">
@@ -66,7 +66,7 @@
                         <label for="agree-term" class="label-agree-term"><span><span></span></span> <a href="#" class="term-service">약관</a> 동의</label>
                     </div>
                     <div class="auth-form-group">
-                        <input type="submit" name="submit" id="submitBtn" class="form-submit" value="가입하기"/>
+                        <input type="submit" name="submit" id="submitBtn" class="form-submit " value="가입하기"/>
 
 
                 </form>

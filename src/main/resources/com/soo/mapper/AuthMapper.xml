@@ -6,6 +6,8 @@
 
     <resultMap type="Member" id="MemberMap">
         <id column="member_no" property="no"/>
+        <result column="member_type_cd" property="memberTypeCode"/>
+        <result column="profile_photo" property="photo"/>
         <result column="rdt" property="registeredDate"/>
     </resultMap>
 
@@ -16,8 +18,10 @@
         name,
         password,
         email,
-        photo,
-        rdt
+        member_type_cd,
+        profile_photo,
+        rdt,
+        money
     </sql>
 
     <select id="duplicateIdCheck" parameterType="String" resultType="boolean">
@@ -29,6 +33,7 @@
         <include refid="basicColumn"/>
         from member
         where id=#{id} and password=password(#{password})
+        or id=#{id} and password=#{password}
     </select>
 
 

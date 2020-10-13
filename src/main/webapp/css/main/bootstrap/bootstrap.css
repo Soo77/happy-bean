@@ -394,7 +394,16 @@ mark,
 
 .img-fluid {
   max-width: 100%;
-  height: auto; }
+  height: auto;
+}
+
+.img-fluid-card {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  width: 360px;
+  height: 266px;
+}
 
 .img-thumbnail {
   padding: 0.25rem;
