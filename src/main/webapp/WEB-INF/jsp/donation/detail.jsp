@@ -35,15 +35,18 @@
     </div>
 
 
-    <div class="site-section">
+
+    <div class="pt-lg-5">
+
       <div class="container">
+        <div class="pb-3">
+          <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
+          <button type="button" class="btn btn-outline-danger nanumsquare" onclick = "location.href = 'delete?no=${donation.no}'">삭제</button>
+
+        </div>
         <div class="row">
           <div class="col-md-7 mr-auto blog-content">
-            <div class="pb-5">
-              <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
-              <button type="button" class="btn btn-outline-danger nanumsquare" onclick = "location.href = 'delete?no=${donation.no}'">삭제</button>
 
-            </div>
 
             <div>
               ${donation.donaContent}
@@ -186,10 +189,10 @@
                 <li><a href="#">Web Development <span>(14)</span></a></li>
               </div>
             </div>--%>
-            <div class="sidebar-box">
+            <div class="sidebar-box-detail">
               <div class="cause shadow-sm">
                 <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
-                <a href="detail?no=${donation.no}" class="cause-link d-block">
+                <a class="cause-link d-block">
                   <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
 
                   <div class="custom-progress-wrap">
@@ -223,9 +226,18 @@
                   <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
                   <fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
 
+                  <c:set value="${strDate - endDate }" var="dayDiff" />
                   <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
-                  <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${strDate - endDate}</span>
-                  <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
+
+                  <c:choose>
+                    <c:when test="${dayDiff < 1 }">
+                      <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${strDate - endDate}</span>
+                    </c:when>
+                    <c:otherwise>
+                      <span class="ml-1 badge-secondary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">종료</span>
+                    </c:otherwise>
+                  </c:choose>
+                  <h3 class="mb-4 nanumsquare">${donation.name}</h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div class="pt-2">Donated</div>
                     <div class="ml-auto" style="font-size:x-large"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>

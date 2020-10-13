@@ -1080,6 +1080,19 @@ h1, h2, h3, h4, h5,
     font-size: 18px;
     margin-bottom: 15px; }
 
+.sidebar-box-detail {
+  margin-bottom: 30px;
+  padding: 10px;
+  font-size: 15px;
+  width: 100%;
+  float: left;
+  background: #fff; }
+.sidebar-box *:last-child {
+  margin-bottom: 0; }
+.sidebar-box h3 {
+  font-size: 18px;
+  margin-bottom: 15px; }
+
 .categories li,
 .sidelink li {
   position: relative;
