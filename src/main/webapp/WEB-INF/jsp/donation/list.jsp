@@ -1,3 +1,4 @@
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -28,7 +29,8 @@
     
     <div class="site-section">
       <div class="container">
-        
+      <c:set var="i" value="${index}"/>
+
         <div class="row mb-5 align-items-st">
           <div class="col-md-5">
             <div class="heading-20219">
@@ -39,11 +41,13 @@
               <p><a href="#" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
             </div>
           </div>
+          <%--큰 카드--%>
+          <%--<c:forEach items="${oneDonation}" var="oneDonation">--%>
           <div class="col-md-7">
             <div class="cause shadow-sm">
 
               <a href='#' class="cause-link d-block">
-                  <img src="/../../../images/main/img_1.jpg" alt="Image" class="img-fluid">
+                  <img src="/../../../upload/donation/thumbnail/${oneDonation.thumbnail}" alt="Image" class="img-fluid">
                   <div class="custom-progress-wrap">
                     <span class="caption">80% complete</span>
                     <div class="custom-progress-inner">
@@ -54,7 +58,7 @@
 
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
                   <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">Alias Odit Ipsam Quas Unde Obcaecati</a></h3>
+                  <h3 class="mb-4"><a href="#">${oneDonation.name}</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
                     <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
@@ -70,70 +74,186 @@
               
               </div>
           </div>
+          <%--</c:forEach>--%>
         </div>
 
-        <div class="row">
-          <c:forEach items="${donations}" var="donation">
 
-          <div class="col-md-4">
-              <div class="cause shadow-sm">
-                <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
-                <a href="detail?no=${donation.no}" class="cause-link d-block">
-                  <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
 
-                  <div class="custom-progress-wrap">
-                    <c:choose>
-                      <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
-                        <span class="caption">100% complete</span>
-                        <div class="custom-progress-inner">
-                          <div class="custom-progress bg-primary" style="width: 100%;"></div>
+
+        <%--탭--%>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">진행중</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">종료</a>
+          </li>
+        </ul>
+        <div class="tab-content mt-5" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <c:forEach items="${donations}" var="donation">
+
+                <%--지저분쓰한 날짜계산--%>
+                <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
+                <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate var="tDate" value="${donation.endDate}" pattern="yyyy-MM-dd"/>
+                <fmt:parseDate value="${sDate}" var="strPlanDate" pattern="yyyy-MM-dd"/>
+                <fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
+                <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
+                <fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
+                <c:set value="${strDate - endDate }" var="dayDiff" />
+
+
+                <c:if test="${dayDiff < 1 }">
+                  <div class="col-md-4">
+                    <div class="cause shadow-sm">
+                      <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
+                      <a href="detail?no=${donation.no}" class="cause-link d-block">
+                        <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
+
+                        <div class="custom-progress-wrap">
+                          <c:choose>
+                            <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                              <span class="caption">100% complete</span>
+                              <div class="custom-progress-inner">
+                                <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                              </div>
+                            </c:when>
+                            <c:otherwise>
+                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                              <div class="custom-progress-inner">
+                                <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                              </div>
+                            </c:otherwise>
+                          </c:choose>
+
                         </div>
-                      </c:when>
-                      <c:otherwise>
-                        <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
-                        <div class="custom-progress-inner">
-                          <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                      </a>
+
+                      <div class="px-3 pt-3 border-top-0 border border shadow-sm">
+                        <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                        <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${strDate - endDate}</span>
+                        <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
+                        <div class="border-top border-light border-bottom py-2 d-flex">
+                          <div>Donated</div>
+                          <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
                         </div>
-                      </c:otherwise>
-                    </c:choose>
 
-                  </div>
-                </a>
+                        <div class="py-4">
+                          <div class="d-flex align-items-center">
+                            <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                            <div class="nanumsquare">${donation.orgnName}</div>
+                          </div>
+                        </div>
+                      </div>
 
-                <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
-                  <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
-                  <div class="border-top border-light border-bottom py-2 d-flex">
-                    <div>Donated</div>
-                    <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
-                  </div>
-
-                  <div class="py-4">
-                    <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="nanumsquare">${donation.orgnName}</div>
                     </div>
                   </div>
-                </div>
-              
+                </c:if>
+                <%--요기--%>
+              </c:forEach>
+
+              <div class="col-12">
+                <span class="p-3">1</span>
+                <a href="#" class="p-3">2</a>
+                <a href="#" class="p-3">3</a>
+                <a href="#" class="p-3">4</a>
+
+                <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
+                  <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
+                </c:if>
               </div>
+
+
+
+            </div>
           </div>
-          </c:forEach>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+              <c:forEach items="${donations}" var="donation">
 
-          <div class="col-12">
-            <span class="p-3">1</span>
-            <a href="#" class="p-3">2</a>
-            <a href="#" class="p-3">3</a>
-            <a href="#" class="p-3">4</a>
+                <%--지저분쓰한 날짜계산--%>
+                <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
+                <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate var="tDate" value="${donation.endDate}" pattern="yyyy-MM-dd"/>
+                <fmt:parseDate value="${sDate}" var="strPlanDate" pattern="yyyy-MM-dd"/>
+                <fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
+                <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
+                <fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
+                <c:set value="${strDate - endDate }" var="dayDiff" />
 
-            <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
-            <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
-            </c:if>
+
+                <c:if test="${dayDiff >= 0 }">
+                  <div class="col-md-4">
+                    <div class="cause shadow-sm">
+                      <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
+                      <a href="detail?no=${donation.no}" class="cause-link d-block">
+                        <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
+
+                        <div class="custom-progress-wrap">
+                          <c:choose>
+                            <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                              <span class="caption">100% complete</span>
+                              <div class="custom-progress-inner">
+                                <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                              </div>
+                            </c:when>
+                            <c:otherwise>
+                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                              <div class="custom-progress-inner">
+                                <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                              </div>
+                            </c:otherwise>
+                          </c:choose>
+
+                        </div>
+                      </a>
+
+                      <div class="px-3 pt-3 border-top-0 border border shadow-sm">
+                        <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                        <span class="ml-1 badge-secondary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">종료</span>
+                        <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
+                        <div class="border-top border-light border-bottom py-2 d-flex">
+                          <div>Donated</div>
+                          <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
+                        </div>
+
+                        <div class="py-4">
+                          <div class="d-flex align-items-center">
+                            <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                            <div class="nanumsquare">${donation.orgnName}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </c:if>
+                <%--요기--%>
+              </c:forEach>
+
+              <div class="col-12">
+                <span class="p-3">1</span>
+                <a href="#" class="p-3">2</a>
+                <a href="#" class="p-3">3</a>
+                <a href="#" class="p-3">4</a>
+
+                <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
+                  <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
+                </c:if>
+              </div>
+
+
+
+            </div>
           </div>
-
-
-
         </div>
+
+
+
+
+
       </div>
     </div>
 
