@@ -189,6 +189,9 @@
                 <li><a href="#">Web Development <span>(14)</span></a></li>
               </div>
             </div>--%>
+
+
+
             <div class="sidebar-box-detail">
               <div class="cause shadow-sm">
                 <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
