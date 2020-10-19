@@ -29,7 +29,6 @@
     
     <div class="site-section">
       <div class="container">
-      <c:set var="i" value="${index}"/>
 
         <div class="row mb-5 align-items-st">
           <div class="col-md-5">
@@ -46,28 +45,49 @@
           <div class="col-md-7">
             <div class="cause shadow-sm">
 
-              <a href='#' class="cause-link d-block">
-                  <img src="/../../../upload/donation/thumbnail/${oneDonation.thumbnail}" alt="Image" class="img-fluid">
-                  <div class="custom-progress-wrap">
-                    <span class="caption">80% complete</span>
-                    <div class="custom-progress-inner">
-                      <div class="custom-progress bg-primary" style="width: 80%;"></div>
-                    </div>
-                  </div>
+              <a href="detail?no=${oneDonation.no}"  class="cause-link d-block">
+                  <img src="/../../../upload/donation/thumbnail/big5.jpg" alt="Image" class="img-fluid">
+                <div class="custom-progress-wrap">
+                  <c:choose>
+                    <c:when test="${(oneDonation.totalAmount div oneDonation.targetAmount * 100) > 100}">
+                      <span class="caption">100% complete</span>
+                      <div class="custom-progress-inner">
+                        <div class="custom-progress bg-primary" style="width: 100%;"></div>
+                      </div>
+                    </c:when>
+                    <c:otherwise>
+                      <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${oneDonation.totalAmount div oneDonation.targetAmount * 100}"/>% complete</span>
+                      <div class="custom-progress-inner">
+                        <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${oneDonation.totalAmount div oneDonation.targetAmount * 100}"/>%;"></div>
+                      </div>
+                    </c:otherwise>
+                  </c:choose>
+
+                </div>
                 </a>
 
+              <%--지저분쓰한 날짜계산--%>
+              <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
+              <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
+              <fmt:formatDate var="tDate" value="${oneDonation.endDate}" pattern="yyyy-MM-dd"/>
+              <fmt:parseDate value="${sDate}" var="strPlanDate" pattern="yyyy-MM-dd"/>
+              <fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
+              <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
+              <fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
+              <c:set value="${strDate - endDate }" var="dayDiffOfoneDonation" />
                 <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block">School</span>
-                  <h3 class="mb-4"><a href="#">${oneDonation.name}</a></h3>
+                  <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${oneDonation.detailCode.detailCodeName}</span>
+                  <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${dayDiffOfoneDonation}</span>
+                  <h3 class="mb-4 nanumsquare"><a href="detail?no=${oneDonation.no}">${oneDonation.name}</a></h3>
                   <div class="border-top border-light border-bottom py-2 d-flex">
                     <div>Donated</div>
-                    <div class="ml-auto"><strong class="text-primary">$32,919</strong></div>
+                    <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${oneDonation.totalAmount}"/>원</strong></div>
                   </div>
 
                   <div class="py-4">
                     <div class="d-flex align-items-center">
-                      <img src="/../../../images/main/person_1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                      <div class="">James Smith</div>
+                      <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
+                      <div class="nanumsquare">${oneDonation.orgnName}</div>
                     </div>
                   </div>
                 </div>
@@ -134,7 +154,7 @@
                       <div class="px-3 pt-3 border-top-0 border border shadow-sm">
                         <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
                         <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${strDate - endDate}</span>
-                        <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
+                        <h3 class="mb-4 nanumsquare"><a href="detail?no=${donation.no}">${donation.name}</a></h3>
                         <div class="border-top border-light border-bottom py-2 d-flex">
                           <div>Donated</div>
                           <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>

@@ -257,6 +257,7 @@
                     </div>
                   </div>
 
+                  <c:if test="${dayDiff < 1 }">
                   <form action="/donation/donate" method="post" class="footer-suscribe-form">
                     <input type='hidden' name='no' id='no' value='${donation.no}'>
                     <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
@@ -268,6 +269,7 @@
                       </div>
                     </div>
                   </form>
+                  </c:if>
                 </div>
 
               </div>
