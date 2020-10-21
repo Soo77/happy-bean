@@ -37,7 +37,7 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore officiis nemo, mollitia vero consequuntur quos alias id, ratione quia iusto.</p>
               <p>Blanditiis asperiores facere deleniti non fugit. Itaque facere nam soluta, incidunt molestias unde iure, optio, ex dolores sint voluptatum. Repellat.</p>
               <p>Obcaecati voluptates velit animi quos error, necessitatibus magnam possimus rem recusandae delectus placeat odio mollitia quis. Officiis possimus facere laborum.</p>
-              <p><a href="#" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
+              <p><a href="detail?no=${oneDonation.no}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
             </div>
           </div>
           <%--큰 카드--%>
