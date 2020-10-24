@@ -3,6 +3,7 @@ package com.soo.service.impl;
 import com.soo.dao.DonationDao;
 import com.soo.dao.MemberDao;
 import com.soo.domain.Donation;
+import com.soo.domain.DonationHistory;
 import com.soo.domain.Member;
 import com.soo.service.DonationService;
 import com.soo.service.MemberService;
@@ -48,4 +49,11 @@ public class DefaultDonationService implements DonationService {
             throw new Exception("해당 데이터가 없습니다.");
         }
     }
+
+    @Override
+    public void insertDonationHistory(DonationHistory donationHistory) throws Exception {
+        donationDao.insertDonationHistory(donationHistory);
+    }
+
+
 }

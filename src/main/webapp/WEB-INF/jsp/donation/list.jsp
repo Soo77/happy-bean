@@ -32,11 +32,11 @@
 
         <div class="row mb-5 align-items-st">
           <div class="col-md-5">
-            <div class="heading-20219">
-              <h2 class="title text-cursive mb-4">Featured Cause</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore officiis nemo, mollitia vero consequuntur quos alias id, ratione quia iusto.</p>
-              <p>Blanditiis asperiores facere deleniti non fugit. Itaque facere nam soluta, incidunt molestias unde iure, optio, ex dolores sint voluptatum. Repellat.</p>
-              <p>Obcaecati voluptates velit animi quos error, necessitatibus magnam possimus rem recusandae delectus placeat odio mollitia quis. Officiis possimus facere laborum.</p>
+            <div class="heading-20219 nanumsquare">
+              <h2 class="title text-cursive mb-4">Featured Donation</h2>
+              <p>일상의 작은 관심이 더 나은 세상을 만듭니다. 당신의 가치 있는 응원 해피빈 기부로 전하세요.</p>
+              <p>국적과 인종, 이념, 종교, 성별 등과 상관 없이 도움을 필요로 하는 곳이 있다면 어디든지 달려가 도움의 손길을 전하는 '차별 없는 구호' 를 지향합니다. 이러한 정신에 따라 2차 대전의 패전국들과 중동, 중국, 극동의 한국까지 모두 기부를 통해  도움을 받을 수 있습니다. </p>
+              <p>모든 이들에게 풍성한 삶을. 따뜻하고 아름다운 세상, 당신의 나눔으로 시작됩니다.</p>
               <p><a href="detail?no=${oneDonation.no}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
             </div>
           </div>
