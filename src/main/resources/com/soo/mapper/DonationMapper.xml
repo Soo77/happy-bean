@@ -27,6 +27,14 @@
         <result column="DTL_CD_NM" property="detailCodeName"/>
     </resultMap>
 
+    <resultMap type="DonationHistory" id="DonationHistoryMap">
+        <id column="mem_dona_no" property="historyNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="dona_no" property="donaNo"/>
+        <result column="amount" property="donateAmount"/>
+        <result column="ddt" property="donateDate"/>
+    </resultMap>
+
     <sql id="basicColumn">
         select
         do.dona_no,
@@ -98,14 +106,13 @@
             <if test="thumbnail != null">dona_thumbnail=#{thumbnail}</if>
 
         </set>
-<!--       dona_name=#{name},
-        dona_orgn_name=#{orgnName},
-        dona_text=#{donaContent},
-        dona_target_amount=#{targetAmount},
-        dona_sdt=#{startDate},
-        dona_edt=#{endDate}*/ -->
         where dona_no=#{no}
     </update>
+
+    <insert id="insertDonationHistory" parameterType="DonationHistory">
+        insert into dona_history(member_no,dona_no,amount,ddt)
+        values(#{memberNo},#{donaNo},#{donateAmount},now())
+    </insert>
 
 
 

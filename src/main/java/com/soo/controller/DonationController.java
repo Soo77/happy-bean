@@ -1,6 +1,7 @@
 package com.soo.controller;
 
 import com.soo.domain.Donation;
+import com.soo.domain.DonationHistory;
 import com.soo.domain.Member;
 import com.soo.service.AuthService;
 import com.soo.service.DonationService;
@@ -45,7 +46,7 @@ public class DonationController {
         System.out.println("3:"+uploadDir);
         model.addAttribute("donations", donations);
 
-
+        // list에 있는 큰 카드에 진행중인 모금함 1개 띄우기
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
         Calendar calendar = Calendar.getInstance();
         Date date = new Date(calendar.getTimeInMillis());
@@ -143,7 +144,7 @@ public class DonationController {
     }
 
     @PostMapping("donate")
-    public String donate(@ModelAttribute("loginUser") Member member, Model model, int no, int memberNo, int money) throws Exception {
+    public String donate(@ModelAttribute("loginUser") Member member, Model model, int no, int memberNo, int money, DonationHistory donationHistory) throws Exception {
         Donation donation = donationService.get(no);
         member = memberService.get(memberNo);
         donation.setTotalAmount(donation.getTotalAmount()+money);
@@ -160,8 +161,13 @@ public class DonationController {
         System.out.println("입력된 머니:" + money);
 
 
+        donationHistory.setMemberNo(member.getNo());
+        donationHistory.setDonaNo(donation.getNo());
+        donationHistory.setDonateAmount(money);
+        donationService.insertDonationHistory(donationHistory);
+
+
         return "redirect:detail?no="+no;
-        //return "redirect:list";
     }
 
 
