@@ -1,0 +1,37 @@
+201025
+
+오늘 할일/한일
+- 로그인안했으면 기부하기 눌렀을때 로그인해야한다고 뜨게하기. 
+- 로그인 안했으면 입력칸에 금액을 입력했어도 폼태그 넘어가지 않게 하기.
+- 로그인 후에는 넘어가게하기.
+
+알게 된 것
+- onclick 과 onsubmit 차이?
+onclick은 클릭이 일어난 시점이고 onsubmit은 폼전송이 일어나는 시점
+
+onclick과 onsubmit은 모두 자바스크립트를 호출하기 위해 사용되는 이벤트핸들러 입니다.
+
+onclick은 form에서 직접 자바스크립트를 호출하는 역할을 하는것이고,
+원하는 태그에 넣어서 사용자가 그 태그를 마우스로 클릭했을때 발생하는 이벤트입니다. 폼하고는 무관하게도 작동이 가능합니다
+
+onsubmit은 form이 submit 될때 발생되는 이벤트이구요
+form안에 있는것을  validate 한 후에 return이 true, false 일 경우에 호출 당하는 역할을 하는 핸들러입니다.
+
+- input submit,button
+폼 전송 기능을 하는 <input type="submit"> 과 <button> 은 기능적으로 동일하다.
+
+- 이놈의 태그 맨날 헷갈림.
+뭐했냐면 sign up 태그 보고 참고했는데
+일단 onsubmit='return 함수명()'했고 (첨엔 이걸 input submit에 달아섴ㅋㅋㅋㅋ 안됐엇음.. 
+onclick 이거였으면 여기에 달았어야하는 게 맞는듯.)
+버튼은 input="submit"으로했고
+함수에는 세션정보="null"이면 로그인하라는 알럿창띄우고 return false 라고 씀. 
+
+버튼에 onclick으로 하고 함수에서.. 수동으로 submit 하는것도 해봐야겠음.
+되나안되나..
+ type="submit"
+아.. type=button일때는 안되고 type="submit"일때만 required=""가 돼서
+이방법은 패쓰 ㅠㅠㅠㅠ
+
+위의 방법으로 해야할듯
+
