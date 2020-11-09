@@ -12,9 +12,7 @@ public class DonationComment implements Serializable {
     private String content;
     private Date createDate;
     private int parentCommentNo;
-    private int depth;
-    private int orderNo;
-    private String deleted;
+    private String isDeleted;
 
     public int getCommentNo() {
         return commentNo;
@@ -64,28 +62,12 @@ public class DonationComment implements Serializable {
         this.parentCommentNo = parentCommentNo;
     }
 
-    public int getDepth() {
-        return depth;
+    public String getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
-    }
-
-    public int getOrderNo() {
-        return orderNo;
-    }
-
-    public void setOrderNo(int orderNo) {
-        this.orderNo = orderNo;
-    }
-
-    public String getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(String deleted) {
-        this.deleted = deleted;
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     @Override
@@ -97,9 +79,7 @@ public class DonationComment implements Serializable {
                 ", content='" + content + '\'' +
                 ", createDate=" + createDate +
                 ", parentCommentNo=" + parentCommentNo +
-                ", depth=" + depth +
-                ", orderNo=" + orderNo +
-                ", deleted='" + deleted + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 }

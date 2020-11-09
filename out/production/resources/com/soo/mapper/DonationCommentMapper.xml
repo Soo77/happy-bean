@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soo.dao.DonationCommentDao">
+
+    <resultMap type="DonationComment" id="DonationCommentMap">
+        <id column="cmt_no" property="commentNo"/>
+        <result column="dona_no" property="donationNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="cmt_conts" property="content"/>
+        <result column="parent_cmt_no" property="parentCommentNo"/>
+        <result column="depth" property="depth"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+    <sql id="basicColumn">
+        select
+        cmt_no,
+        dona_no,
+        member_no,
+        cmt_conts,
+        cdt,
+        parent_cmt_no,
+        is_deleted
+    </sql>
+
+
+
+    <select id="findAll" parameterType="int" resultMap="DonationCommentMap">
+        select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
+        from dona_comment c
+        inner join member m on c.member_no=m.member_no
+        where dona_no = #{donationNo}
+        order by cdt desc
+    </select>
+
+
+
+    <insert id="insert" parameterType="DonationComment"
+            useGeneratedKeys="true" keyColumn="cmt_no" keyProperty="commentNo">
+        insert into dona_comment(dona_no,member_no,cmt_conts,cdt,parent_cmt_no,is_deleted)
+        values(#{donationNo},#{memberNo},#{content},now(),#{parentCommentNo},#{deleted})
+    </insert>
+
+    <select id="findBy" parameterType="int" resultMap="DonationCommentMap">
+        <include refid="basicColumn"/>
+        from dona_comment
+        where cmt_no=#{value}
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete from dona_comment
+        where cmt_no=#{value}
+    </delete>
+
+    <update id="safeDelete" parameterType="DonationComment">
+        update dona_comment
+        set is_deleted=#{isDeleted}
+        where cmt_no=#{no}
+    </update>
+
+    <update id="update" parameterType="DonationComment">
+        update dona_comment
+        <set>
+            <if test="content != null">cmt_conts=#{content}</if>
+        </set>
+        where cmt_no=#{no}
+    </update>
+
+    <delete id="deleteAll" parameterType="int">
+        delete from dona_comment where dona_no=#{donationNo}
+    </delete>
+
+
+
+
+</mapper>

@@ -1,0 +1,131 @@
+201031
+
+오늘 할일/한일
+- 댓글 대댓글 어떻게하지3...^^ 아직도 못했음... 쩝
+- 대강 list cmd에 출력해봣다!!
+
+
+
+알게 된 것
+- @ResponseBody
+스프링에서 비동기 처리를 하는 경우 @RequestBody 와 @ReponseBody 를 사용.
+보통 웹에서 화면 전환(refresh, F5)이 없이 이루어지는 동작들은 대부분 
+비동기 통신으로 이루어짐.
+
+비동기 통신을 하기위해서 클라이언트가 서버로 요청 메시지의 본문에 데이터를 
+담아서 보내야하며, 서버도 클라이언트로 응답을 보내기 위해서는 응답 메시지의 
+본문에 데이터를 담아서 보내야함.
+
+여기서 중요한 포인트가 바로 본문(Body)입니다. 
+위에서 첫 번째로 강조한 포인트 요청과 응답, 그리고 두 번째로 강조한 포인트인 
+본문을 연결하여 단어를 만들면요청본문(ReqeustBody), 
+응답 본문(ResponseBody)라는 단어가 만들어짐.
+
+여러가지가 있겠지만 대표적으로 사용되는 것은 바로 
+JSON(Javascript Object Notation)이다.
+
+
+
+
+
+
+아...................................... 제이슨 해야되는거니?...???????????
+..
+...
+...................................................................
+
+
+
+
+
+
+메소드에 @ResponseBody 로 어노테이션이 되어 있다면 메소드에서
+리턴되는 값은 View 를 통해서 출력되지 않고 HTTP Response Body 에
+직접 쓰여지게 됩니다. 이때 쓰여지기 전에 리턴되는 데이터 타입에 따라 
+MessageConverter 에서 변환이 이뤄진 후 쓰여지게 됩니다.
+
+MessageConverter 의 종류
+
+- StringHttpMessageConverter
+- FormHttpMessageConverter
+- ByteArrayMessageConverter
+- MarshallingHttpMessageConverter
+- MappingJacksonHttpMessageConverter
+Jackson's ObjectMappter 를 사용하여 request, response 를
+JSON 으로 변환할때 사용되는 MessageConverter 이다.
+applicaton/json 을 지원한다.
+- SourceHttpMessageConverter
+- BufferedImagedHttpMessageConverter
+
+...... 이게 뭐시당가? ㅠ^ㅠ
+
+
+엄과외 참고해봤더니 @RequestParam을 파라미터로 썼던데 그게 머지?
+
+- useGeneratedKeys 대박초면
+MyBatis insert 후 PK(auto_increment)값 바로 가져오기
+구글링해보니 인서트하자마자 바로 키 가져올때? 쓰는 기능같다..
+
+- @PathVariable 어노테이션? 
+엄과외참고해보니 댓글 삭제할때 이걸로 파라미터를 받길래 .. 머지?
+찾아보니 URL 경로에 변수를 넣어줄때 쓰는거라고 한다.!!!
+
+@RequestMapping("comment/delete/{commentNo}")
+    @ResponseBody
+    private void commentDelete(@PathVariable int commentNo) throws Exception{
+        donationCommentService.delete(commentNo);
+    }
+
+이런거라고 치면
+@RequestMapping의 URL 정의 부분과 Method 내의 Parameter 부분에 정의를 하여 사용이 가능합니다.
+읭? 다시 한번더 설명을! :)
+@RequestMapping 어노테이션 값으로 {템플릿변수} 를 사용합니다.
+@PathVariable 어노테이션을 이용해서 {템플릿 변수} 와 동일한 이름을 갖는 파라미터를 추가하면 됩니다.
+RequestMapping 어노테이션에 변수를 포함하고 있구요.
+이들 변수는 @PathVariable 어노테이션이 적용된 동일한 이름을 갖는 파라미터에 매핑됩니다.
+
+
+- 삭제된댓글
+/* 건별로 대댓글 검색 (검색키 부모댓글ID) */
+SELECT BBS_ID
+       ,NULL COMMENTLEVEL -- 뎁스표현 불가능
+       ,COMMENT_ID 
+       ,PARENT_COMMENT_ID 
+       ,CASE WHEN DELETE_AT ='Y' THEN '***삭제된 댓글입니다***' ELSE CONTENT END CONTENT
+       ,WRITER
+       ,DELETE_AT
+       ,CREATE_DATE
+       ,UPDATE_DATE
+       ,DELETE_DATE  
+       
+FROM EXER_BBS_COMMENT
+WHERE BBS_ID = 1 --게시판_ID 검색절
+AND PARENT_COMMENT_ID= 2014780334 
+      --AND DELETE_AT ='N' 
+이걸로 삭제된 댓글 표현하는듯.
+
+- list 뽑을 때 쿼리 이렇게 해봤다.
+select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
+        from dona_comment c
+        inner join member m on c.member_no=m.member_no
+        where dona_no = 12
+        order by if(parent_cmt_no=0, cmt_no, parent_cmt_no), cmt_no;
+
+이렇게 하니까 그 네이버 블로그에 댓글처럼된다.
+포스트 댓글은 아니고.. 포스트 댓글은 어케하는지 모르겟ㅇ ㅠ
+(포스트댓글은 최근댓글이 젤 위로 올라가고 대댓글도 있음)
+(블로그댓글은 페이징 처리 되고 맨마지막을 보여줌 거기가 젤 최신댓글)
+
+오 포스트 댓글도 한거같다.
+ 모냐면select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
+        from dona_comment c
+        inner join member m on c.member_no=m.member_no
+        where dona_no = 3
+        order by if(parent_cmt_no=0, cmt_no, parent_cmt_no) desc, cdt;
+
+orderby if 문 뒤에 desc를 붙여주었더니 되는데?!!
+
+흠 
+둘중에 원하는거 쓰면될듯.
+
+

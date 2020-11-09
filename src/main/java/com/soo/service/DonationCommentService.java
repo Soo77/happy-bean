@@ -8,11 +8,12 @@ import com.soo.domain.DonationHistory;
 import java.util.List;
 
 public interface DonationCommentService {
-    List<DonationComment> list() throws Exception;
+    List<DonationComment> list(int boardNo) throws Exception;
     void insert(DonationComment donationComment) throws Exception;
     DonationComment get(int no) throws Exception;
     void update(DonationComment donationComment) throws Exception;
     void delete(int no) throws Exception;
+    void safeDelete(int no) throws Exception;
 
 }
 
