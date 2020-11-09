@@ -1,0 +1,10 @@
+201030
+
+오늘 할일/한일
+- 댓글 대댓글 어떻게하지
+
+알게 된 것
+- order siblings by (db)
+order by 로 sort할 경우 모든 데이터를 가지고 정렬을 하지만
+order siblings by 각 계층별로 정렬을 한다.
+아직 무슨말인지.. 그냥 order by랑 뭐ㄱ ㅏ다른거지.

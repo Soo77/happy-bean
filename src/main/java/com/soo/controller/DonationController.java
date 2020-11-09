@@ -1,9 +1,10 @@
 package com.soo.controller;
 
 import com.soo.domain.Donation;
+import com.soo.domain.DonationComment;
 import com.soo.domain.DonationHistory;
 import com.soo.domain.Member;
-import com.soo.service.AuthService;
+import com.soo.service.DonationCommentService;
 import com.soo.service.DonationService;
 import com.soo.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.color.ICC_Profile;
 import java.io.File;
-import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -30,6 +27,7 @@ import java.util.*;
 public class DonationController {
     @Resource private DonationService donationService;
     @Resource private MemberService memberService;
+    @Resource private DonationCommentService donationCommentService;
 
     String uploadDir;
 
@@ -168,6 +166,53 @@ public class DonationController {
 
 
         return "redirect:detail?no="+no;
+    }
+
+    @GetMapping("comment/list")
+    @ResponseBody
+    private List<DonationComment> commentList(int boardNo) throws Exception{
+        return donationCommentService.list(boardNo);
+    }
+
+    @PostMapping("comment/add")
+    @ResponseBody
+    public void commentAdd(
+            HttpSession session,
+            @RequestParam int no,
+            @RequestParam String commentContents) throws Exception {
+        Member member = (Member) session.getAttribute("loginUser");
+        int memberNo = member.getNo();
+        DonationComment comment = new DonationComment();
+        comment.setDonationNo(no);
+        comment.setContent(commentContents);
+        comment.setMemberNo(memberNo);
+        comment.setParentCommentNo(0);
+
+
+        donationCommentService.insert(comment);
+    }
+
+    @RequestMapping("comment/update")
+    @ResponseBody
+    private void commentUpdate(@RequestParam int commentNo, @RequestParam String commentContents) throws Exception{
+
+        DonationComment comment = new DonationComment();
+        comment.setCommentNo(commentNo);
+        comment.setContent(commentContents);
+
+        donationCommentService.update(comment);
+    }
+
+    @RequestMapping("comment/delete/{commentNo}")
+    @ResponseBody
+    private void commentDelete(@PathVariable int commentNo) throws Exception{
+        donationCommentService.delete(commentNo);
+    }
+
+    @RequestMapping("comment/safeDelete/{commentNo}")
+    @ResponseBody
+    private void commentSafeDelete(@PathVariable int commentNo) throws Exception{
+        donationCommentService.safeDelete(commentNo);
     }
 
 

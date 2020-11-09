@@ -11,6 +11,8 @@ public class DonationComment implements Serializable {
     private int memberNo;
     private String content;
     private Date createDate;
+    private int parentCommentNo;
+    private String isDeleted;
 
     public int getCommentNo() {
         return commentNo;
@@ -52,6 +54,22 @@ public class DonationComment implements Serializable {
         this.createDate = createDate;
     }
 
+    public int getParentCommentNo() {
+        return parentCommentNo;
+    }
+
+    public void setParentCommentNo(int parentCommentNo) {
+        this.parentCommentNo = parentCommentNo;
+    }
+
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     @Override
     public String toString() {
         return "DonationComment{" +
@@ -60,6 +78,8 @@ public class DonationComment implements Serializable {
                 ", memberNo=" + memberNo +
                 ", content='" + content + '\'' +
                 ", createDate=" + createDate +
+                ", parentCommentNo=" + parentCommentNo +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 }

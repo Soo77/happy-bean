@@ -1,5 +1,6 @@
 package com.soo.service.impl;
 
+import com.soo.dao.DonationCommentDao;
 import com.soo.dao.DonationDao;
 import com.soo.dao.MemberDao;
 import com.soo.domain.Donation;
@@ -17,6 +18,8 @@ public class DefaultDonationService implements DonationService {
 
     @Resource
     private DonationDao donationDao;
+    @Resource
+    private DonationCommentDao donationCommentDao;
 
 
     @Override
@@ -48,12 +51,16 @@ public class DefaultDonationService implements DonationService {
         if(donationDao.delete(no) == 0) {
             throw new Exception("해당 데이터가 없습니다.");
         }
+        donationCommentDao.deleteAll(no);
+        donationDao.delete(no);
     }
 
     @Override
     public void insertDonationHistory(DonationHistory donationHistory) throws Exception {
         donationDao.insertDonationHistory(donationHistory);
     }
+
+
 
 
 }

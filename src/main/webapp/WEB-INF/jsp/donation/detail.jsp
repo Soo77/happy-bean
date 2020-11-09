@@ -59,7 +59,7 @@
 
         <div class="pt-5">
           <h3 class="mb-5">6 Comments</h3>
-          <ul class="comment-list">
+          <%--<ul class="comment-list">
             <li class="comment">
               <div class="vcard bio">
                 <img src="/../../../images/main/person_2.jpg" alt="Free Website Template by Free-Template.co">
@@ -138,13 +138,26 @@
                 <p><a href="#" class="reply">Reply</a></p>
               </div>
             </li>
-          </ul>
+          </ul>--%>
+          <div id="replyList">
+            <c:forEach var="replylist" items="${replylist}" varStatus="status">
+              <div id="replyItem<c:out value="${replylist.reno}"/>"
+                   style="border: 1px solid gray; width: 600px; padding: 5px; margin-top: 5px; margin-left: <c:out value="${20*replylist.redepth}"/>px; display: inline-block">
+                <c:out value="${replylist.rewriter}"/> <c:out value="${replylist.redate}"/>
+                <a href="#" onclick="fn_replyDelete('<c:out value="${replylist.reno}"/>')">삭제</a>
+                <a href="#" onclick="fn_replyUpdate('<c:out value="${replylist.reno}"/>')">수정</a>
+                <a href="#" onclick="fn_replyReply('<c:out value="${replylist.reno}"/>')">댓글</a>
+                <br/>
+                <div id="reply<c:out value="${replylist.reno}"/>"><c:out value="${replylist.rememo}"/></div>
+              </div><br/>
+            </c:forEach>
+          </div>
           <!-- END comment-list -->
 
           <div class="comment-form-wrap pt-5">
             <h3 class="mb-5">Leave a comment</h3>
             <form action="#" class="">
-              <div class="form-group">
+              <%--<div class="form-group">
                 <label for="name">Name *</label>
                 <input type="text" class="form-control" id="name">
               </div>
@@ -155,11 +168,11 @@
               <div class="form-group">
                 <label for="website">Website</label>
                 <input type="url" class="form-control" id="website">
-              </div>
+              </div>--%>
 
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="cmtMessage" id="message" cols="30" rows="10" class="form-control"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
@@ -333,6 +346,57 @@
       return false;
     }
   }
+
+
+  function fn_formSubmit(){
+    /*if ( $.trim($("#rewriter1").val()) == "") {
+      alert("작성자를 입력해주세요.");
+      $("#rewriter1").focus();
+      return;
+    }*/
+    if ($.trim($("#message").val()) == "") {
+      alert("글 내용을 입력해주세요.");
+      $("#message").focus();
+      return;
+    }
+    $.ajax({
+      url: "board7ReplySaveAjax",
+      type:"post",
+      data: {"cmtMessage": $("#message").val()},
+      success: function(result){
+        if (result!=="") {
+          var div = $("<div>");
+          div.attr("id", "replyItem" + result);
+          div.appendTo($("#replyList"));
+          div.css({border: "1px solid gray", width: "600px", "padding": "5px", "margin-top": "5px", "margin-left": "0px", display:"inline-block"});
+          div.text($("#rewriter1").val() + " 방금" );
+
+          $("<a>",{
+            text: "삭제",
+            href: "#",
+            click: function (){fn_replyDelete(result)}
+          }).appendTo(div);
+
+          $("<a>").attr("href", "#").text("수정").click(function (){fn_replyUpdate(result)}).appendTo(div);
+
+          var href = $("<a>");
+          href.attr("href", "#");
+          href.text("댓글");
+          href.click(function (){fn_replyReply(result)});
+          href.appendTo(div);
+          var reply=$("<div>").appendTo(div);
+          reply.attr("id", "reply" + result);
+          reply.html($("#rememo1").val());
+          $("#rewriter1").val("");
+          $("#rememo1").val("");
+          alert("저장되었습니다.");
+        } else{
+          alert("서버에 오류가 있어서 저장되지 않았습니다.");
+        }
+      }
+    })
+  }
+
 </script>
 
 
