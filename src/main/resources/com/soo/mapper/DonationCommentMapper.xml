@@ -13,6 +13,14 @@
         <result column="depth" property="depth"/>
         <result column="order_no" property="orderNo"/>
         <result column="is_deleted" property="isDeleted"/>
+        <collection resultMap="MemberMap" property="member" />
+    </resultMap>
+
+    <resultMap type="Member" id="MemberMap">
+        <id column="member_no" property="no"/>
+        <result column="member_type_cd" property="memberTypeCode"/>
+        <result column="profile_photo" property="photo"/>
+        <result column="rdt" property="registeredDate"/>
     </resultMap>
 
     <sql id="basicColumn">

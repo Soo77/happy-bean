@@ -1,5 +1,7 @@
 package com.soo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -13,7 +15,9 @@ public class Donation implements Serializable {
     private String donaContent;
     private int targetAmount;
     private int totalAmount;
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
     private Date startDate;
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
     private Date endDate;
     private String thumbnail;
 

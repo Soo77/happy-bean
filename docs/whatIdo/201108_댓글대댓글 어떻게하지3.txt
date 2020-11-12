@@ -129,3 +129,20 @@ orderby if 문 뒤에 desc를 붙여주었더니 되는데?!!
 둘중에 원하는거 쓰면될듯.
 
 
+select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
+        from dona_comment c
+        inner join member m on c.member_no=m.member_no
+        where dona_no = 12
+        order by cdt desc;
+
+select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
+        from dona_comment c
+        inner join member m on c.member_no=m.member_no
+        where dona_no = 3
+        order by if(parent_cmt_no=0, cmt_no, parent_cmt_no), cdt;
+
+select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
+        from dona_comment c
+        inner join member m on c.member_no=m.member_no
+        where dona_no = 3
+        order by if(parent_cmt_no=0, cmt_no, parent_cmt_no) desc, cdt;

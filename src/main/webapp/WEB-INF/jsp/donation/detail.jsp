@@ -47,7 +47,7 @@
     <div class="row">
       <div class="col-md-7 mr-auto blog-content">
 
-
+        ${donation.no}번호
         <div>
           ${donation.donaContent}
         </div>
@@ -56,10 +56,39 @@
           <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
         </div>
 
-
         <div class="pt-5">
+          <%--<div class="showCommentList"></div>--%>
           <h3 class="mb-5">6 Comments</h3>
-          <%--<ul class="comment-list">
+         <ul class="comment-list">
+          <c:forEach items="${donationComments}" var="donationComment">
+           <li class="comment">
+             <div class="vcard bio">
+               <img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">
+             </div>
+             <div class="comment-body">
+               <h3>${donationComment.member.name}</h3>
+               <div class="meta">${donationComment.createDate}</div>
+               <p>${donationComment.content}</p>
+               <p><a href="#" class="reply">Reply</a></p>
+             </div>
+           </li>
+          </c:forEach>
+<%--
+<div id="replyList">
+            <c:forEach var="replylist" items="${replylist}" varStatus="status">
+              <div id="replyItem<c:out value="${replylist.reno}"/>"
+                   style="border: 1px solid gray; width: 600px; padding: 5px; margin-top: 5px; margin-left: <c:out value="${20*replylist.redepth}"/>px; display: inline-block">
+                <c:out value="${replylist.rewriter}"/> <c:out value="${replylist.redate}"/>
+                <a href="#" onclick="fn_replyDelete('<c:out value="${replylist.reno}"/>')">삭제</a>
+                <a href="#" onclick="fn_replyUpdate('<c:out value="${replylist.reno}"/>')">수정</a>
+                <a href="#" onclick="fn_replyReply('<c:out value="${replylist.reno}"/>')">댓글</a>
+                <br/>
+                <div id="reply<c:out value="${replylist.reno}"/>"><c:out value="${replylist.rememo}"/></div>
+              </div><br/>
+            </c:forEach>
+          </div>
+
+
             <li class="comment">
               <div class="vcard bio">
                 <img src="/../../../images/main/person_2.jpg" alt="Free Website Template by Free-Template.co">
@@ -137,9 +166,9 @@
                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
                 <p><a href="#" class="reply">Reply</a></p>
               </div>
-            </li>
-          </ul>--%>
-          <div id="replyList">
+            </li>--%>
+          </ul>
+          <%--<div id="replyList">
             <c:forEach var="replylist" items="${replylist}" varStatus="status">
               <div id="replyItem<c:out value="${replylist.reno}"/>"
                    style="border: 1px solid gray; width: 600px; padding: 5px; margin-top: 5px; margin-left: <c:out value="${20*replylist.redepth}"/>px; display: inline-block">
@@ -151,7 +180,7 @@
                 <div id="reply<c:out value="${replylist.reno}"/>"><c:out value="${replylist.rememo}"/></div>
               </div><br/>
             </c:forEach>
-          </div>
+          </div>--%>
           <!-- END comment-list -->
 
           <div class="comment-form-wrap pt-5">
@@ -329,6 +358,8 @@
 
 
 <script>
+
+
   /*var id = <%=(String)session.getAttribute("loginUser")%>;
       function loginFirst(){
         if(id == null) {
@@ -348,54 +379,68 @@
   }
 
 
-  function fn_formSubmit(){
-    /*if ( $.trim($("#rewriter1").val()) == "") {
-      alert("작성자를 입력해주세요.");
-      $("#rewriter1").focus();
-      return;
-    }*/
-    if ($.trim($("#message").val()) == "") {
-      alert("글 내용을 입력해주세요.");
-      $("#message").focus();
-      return;
-    }
+  /* 댓글 목록 */
+  function showCommentList() {
     $.ajax({
-      url: "board7ReplySaveAjax",
-      type:"post",
-      data: {"cmtMessage": $("#message").val()},
-      success: function(result){
-        if (result!=="") {
-          var div = $("<div>");
-          div.attr("id", "replyItem" + result);
-          div.appendTo($("#replyList"));
-          div.css({border: "1px solid gray", width: "600px", "padding": "5px", "margin-top": "5px", "margin-left": "0px", display:"inline-block"});
-          div.text($("#rewriter1").val() + " 방금" );
-
-          $("<a>",{
-            text: "삭제",
-            href: "#",
-            click: function (){fn_replyDelete(result)}
-          }).appendTo(div);
-
-          $("<a>").attr("href", "#").text("수정").click(function (){fn_replyUpdate(result)}).appendTo(div);
-
-          var href = $("<a>");
-          href.attr("href", "#");
-          href.text("댓글");
-          href.click(function (){fn_replyReply(result)});
-          href.appendTo(div);
-          var reply=$("<div>").appendTo(div);
-          reply.attr("id", "reply" + result);
-          reply.html($("#rememo1").val());
-          $("#rewriter1").val("");
-          $("#rememo1").val("");
-          alert("저장되었습니다.");
-        } else{
-          alert("서버에 오류가 있어서 저장되지 않았습니다.");
-        }
+      url : 'comment/list',
+      type : 'get',
+      data : {
+        'no' : ${donation.no}
+      },
+      success : function(data) {
+        var a = '';
+        $.each(
+                data,
+                function(key, value) {
+                  a += '<h3 class="mb-5">6 Comments</h3>';
+                  a += '<ul class="comment-list">';
+                  a += '<li class="comment">';
+                  a += '<div class="vcard bio">';
+                  /*if (value.member.photo == null) {
+                    a += '<img src="/upload/join/default.png"';
+                    a += ' alt="" class="img-raised rounded-circle img-fluid" id="comment-img">';
+                  } else {
+                    a += '<img src="/upload/join/' + value.profilePhoto+'"';
+                    a += ' class="img-raised rounded-circle img-fluid" id="comment-img">';
+                  }*/
+                  a += '<img src="/../../../images/main/person_2.jpg" alt="Free Website Template by Free-Template.co">';
+                  a += '</div>';
+                  a += '<div class="comment-body">'
+                  a += '<h3>Jacob Smith</h3>'
+                  a += '<div class="meta">January 9, 2018 at 2:21pm</div>'
+                  a += '<p>' + value.content + '</p>\n'
+                  a += '<p><a href="#" class="reply">Reply</a></p></div>'
+                  a += '</div>'
+                  a += '</li>'
+                  /*a += '<div class="commentInfo'+value.commentNo+'" style="display: inline-block; margin-right: 10px; font-weight: bold;">'
+                          + value.memberName + '</div>'
+                  a += '<div class="createdDate'+value.commentNo+'" style="display: inline-block; font-size: 80%">' + value.createdDate + '</div>';
+                  a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
+                          + value.commentContents + '</div>'
+                  if (value.memberNo == ${loginUser.memberNo}){
+                    a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '">'
+                    a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+                            + value.commentNo
+                            + ',\''
+                            + value.commentContents
+                            + '\');"> 수정 </button>'
+                    a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
+                            + value.commentNo
+                            + ');"> 삭제 </button>'
+                    a += '</div>'
+                  }
+                  a += '</div>'
+                  a += '</div>'
+                  a += '</div>'*/
+                });
+        $(".showCommentList").html(a);
       }
-    })
+    });
   }
+  /*showCommentList();*/
+  /*$(document).ready(function() {
+    showCommentList();
+  });*/
 
 </script>
 

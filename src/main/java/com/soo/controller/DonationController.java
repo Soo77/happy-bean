@@ -117,7 +117,9 @@ public class DonationController {
     @GetMapping("detail")
     public void detail(Model model, int no) throws Exception {
         Donation donation = donationService.get(no);
+        List<DonationComment> donationComments = donationCommentService.list(no);
         model.addAttribute("donation", donation);
+        model.addAttribute("donationComments", donationComments);
     }
 
     @GetMapping("detail_form")
@@ -170,8 +172,9 @@ public class DonationController {
 
     @GetMapping("comment/list")
     @ResponseBody
-    private List<DonationComment> commentList(int boardNo) throws Exception{
-        return donationCommentService.list(boardNo);
+    private List<DonationComment> commentList(int no) throws Exception{
+        System.out.println("되는거니마는거니~");
+        return donationCommentService.list(no);
     }
 
     @PostMapping("comment/add")
