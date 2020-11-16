@@ -1,5 +1,7 @@
 package com.soo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -10,9 +12,12 @@ public class DonationComment implements Serializable {
     private int donationNo;
     private int memberNo;
     private String content;
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     private Date createDate;
     private int parentCommentNo;
     private String isDeleted;
+
+    private Member member;
 
     public int getCommentNo() {
         return commentNo;
@@ -70,6 +75,14 @@ public class DonationComment implements Serializable {
         this.isDeleted = isDeleted;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     @Override
     public String toString() {
         return "DonationComment{" +
@@ -80,6 +93,7 @@ public class DonationComment implements Serializable {
                 ", createDate=" + createDate +
                 ", parentCommentNo=" + parentCommentNo +
                 ", isDeleted='" + isDeleted + '\'' +
+                ", member=" + member +
                 '}';
     }
 }

@@ -10,9 +10,17 @@
         <result column="member_no" property="memberNo"/>
         <result column="cmt_conts" property="content"/>
         <result column="parent_cmt_no" property="parentCommentNo"/>
-        <result column="depth" property="depth"/>
-        <result column="order_no" property="orderNo"/>
+        <result column="cdt" property="createDate"/>
         <result column="is_deleted" property="isDeleted"/>
+        <collection resultMap="MemberMap" property="member" />
+    </resultMap>
+
+    <resultMap type="Member" id="MemberMap">
+        <id column="member_no" property="no"/>
+        <result column="name" property="name"/>
+        <result column="member_type_cd" property="memberTypeCode"/>
+        <result column="profile_photo" property="photo"/>
+        <result column="rdt" property="registeredDate"/>
     </resultMap>
 
     <sql id="basicColumn">

@@ -39,9 +39,12 @@ public class DonationController {
     /* 기부 리스트 */
     @GetMapping("list")
     public void list(Model model, HttpServletRequest req) throws Exception {
+        System.out.println("말이안나와.");
         System.out.println("hey~");
         List<Donation> donations = donationService.list();
         System.out.println("3:"+uploadDir);
+        //System.out.println("여기보세요~" + donations);
+        System.out.println("위에건안나와.");
         model.addAttribute("donations", donations);
 
         // list에 있는 큰 카드에 진행중인 모금함 1개 띄우기
@@ -61,8 +64,8 @@ public class DonationController {
             Date FirstDate = sdf.parse(today);
             Date SecondDate = sdf.parse(endDate);
 
-            System.out.println("오늘: " + FirstDate);
-            System.out.println("마감날: " + SecondDate);
+            System.out.println("1오늘: " + FirstDate);
+            System.out.println("2마감날: " + SecondDate);
             // Date로 변환된 두 날짜를 계산한 뒤 그 리턴값으로 long type 변수를 초기화 하고 있다.
             // 연산결과 -950400000. long type 으로 return 된다.
             long calDate = FirstDate.getTime() - SecondDate.getTime();
@@ -116,8 +119,15 @@ public class DonationController {
 
     @GetMapping("detail")
     public void detail(Model model, int no) throws Exception {
+        System.out.println("what the!!");
+        System.out.println("이건나오나?");
         Donation donation = donationService.get(no);
+        List<DonationComment> donationComments = donationCommentService.list(no);
+        System.out.println("왜아무말도~~~안나오니~~~");
+        System.out.println(donationComments + "이것이다.");
+        System.out.println("응??");
         model.addAttribute("donation", donation);
+        model.addAttribute("donationComments", donationComments);
     }
 
     @GetMapping("detail_form")
@@ -170,8 +180,16 @@ public class DonationController {
 
     @GetMapping("comment/list")
     @ResponseBody
-    private List<DonationComment> commentList(int boardNo) throws Exception{
-        return donationCommentService.list(boardNo);
+    private List<DonationComment> commentList(int no) throws Exception{
+        ArrayList<DonationComment> arrayList = (ArrayList<DonationComment>)donationCommentService.list(no);
+        System.out.println("외않되?" + arrayList);
+
+        List<DonationComment> list = donationCommentService.list(no);
+        System.out.println("list는?" + list);
+        System.out.println("되는거니마는거니~");
+
+
+        return arrayList;
     }
 
     @PostMapping("comment/add")

@@ -33,7 +33,7 @@
         from dona_comment c
         inner join member m on c.member_no=m.member_no
         where dona_no = #{donationNo}
-        order by cdt desc
+        order by if(parent_cmt_no=0, cmt_no, parent_cmt_no), cmt_no
     </select>
 
 
