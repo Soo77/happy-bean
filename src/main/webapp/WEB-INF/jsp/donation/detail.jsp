@@ -60,8 +60,9 @@
           <%--<div class="showCommentList"></div>--%>
           <h3 class="mb-5">6 Comments</h3>
          <ul class="comment-list">
-          <c:forEach items="${donationComments}" var="donationComment">
-           <li class="comment">
+           <div class="showCommentList"></div>
+          <%--<c:forEach items="${donationComments}" var="donationComment">--%>
+           <%--<li class="comment">
              <div class="vcard bio">
                <img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">
              </div>
@@ -71,8 +72,8 @@
                <p>${donationComment.content}</p>
                <p><a href="#" class="reply">Reply</a></p>
              </div>
-           </li>
-          </c:forEach>
+           </li>--%>
+          <%--</c:forEach>--%>
 <%--
 <div id="replyList">
             <c:forEach var="replylist" items="${replylist}" varStatus="status">
@@ -379,68 +380,38 @@
   }
 
 
+  var param = { 'no' : ${donation.no} };
   /* 댓글 목록 */
   function showCommentList() {
     $.ajax({
       url : 'comment/list',
       type : 'get',
-      data : {
-        'no' : ${donation.no}
-      },
+      data : param,
       success : function(data) {
         var a = '';
         $.each(
                 data,
                 function(key, value) {
-                  a += '<h3 class="mb-5">6 Comments</h3>';
-                  a += '<ul class="comment-list">';
                   a += '<li class="comment">';
                   a += '<div class="vcard bio">';
-                  /*if (value.member.photo == null) {
-                    a += '<img src="/upload/join/default.png"';
-                    a += ' alt="" class="img-raised rounded-circle img-fluid" id="comment-img">';
-                  } else {
-                    a += '<img src="/upload/join/' + value.profilePhoto+'"';
-                    a += ' class="img-raised rounded-circle img-fluid" id="comment-img">';
-                  }*/
-                  a += '<img src="/../../../images/main/person_2.jpg" alt="Free Website Template by Free-Template.co">';
+                  a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
                   a += '</div>';
                   a += '<div class="comment-body">'
-                  a += '<h3>Jacob Smith</h3>'
-                  a += '<div class="meta">January 9, 2018 at 2:21pm</div>'
+                  a += '<h3>' + value.member.name + '</h3>'
+                  a += '<div class="meta">'+ value.createDate + '</div>'
                   a += '<p>' + value.content + '</p>\n'
                   a += '<p><a href="#" class="reply">Reply</a></p></div>'
                   a += '</div>'
                   a += '</li>'
-                  /*a += '<div class="commentInfo'+value.commentNo+'" style="display: inline-block; margin-right: 10px; font-weight: bold;">'
-                          + value.memberName + '</div>'
-                  a += '<div class="createdDate'+value.commentNo+'" style="display: inline-block; font-size: 80%">' + value.createdDate + '</div>';
-                  a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
-                          + value.commentContents + '</div>'
-                  if (value.memberNo == ${loginUser.memberNo}){
-                    a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '">'
-                    a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
-                            + value.commentNo
-                            + ',\''
-                            + value.commentContents
-                            + '\');"> 수정 </button>'
-                    a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
-                            + value.commentNo
-                            + ');"> 삭제 </button>'
-                    a += '</div>'
-                  }
-                  a += '</div>'
-                  a += '</div>'
-                  a += '</div>'*/
                 });
         $(".showCommentList").html(a);
       }
     });
   }
   /*showCommentList();*/
-  /*$(document).ready(function() {
+  $(document).ready(function() {
     showCommentList();
-  });*/
+  });
 
 </script>
 
