@@ -393,15 +393,23 @@
                 data,
                 function(key, value) {
                   a += '<li class="comment">';
+                  if (value.parentCommentNo != 0) {
+                    a += '<ul class="children">';
+                    a += '<li class="comment">';
+                  }
                   a += '<div class="vcard bio">';
                   a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
                   a += '</div>';
                   a += '<div class="comment-body">'
-                  a += '<h3>' + value.member.name + '</h3>'
+                  a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
                   a += '<div class="meta">'+ value.createDate + '</div>'
-                  a += '<p>' + value.content + '</p>\n'
+                  a += '<p class="nanumsquare">' + value.content + '</p>\n'
                   a += '<p><a href="#" class="reply">Reply</a></p></div>'
                   a += '</div>'
+                  if (value.parentCommentNo != 0) {
+                    a += '</li>';
+                    a += '</ul>';
+                  }
                   a += '</li>'
                 });
         $(".showCommentList").html(a);
