@@ -108,6 +108,11 @@
           <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">종료</a>
           </li>
+          <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
+            <li class="nav-item ml-auto">
+              <button type="button" class="btn btn-outline-success" onclick = "location.href = 'form'" style="float: right;">모금함 등록하기</button>
+            </li>
+          </c:if>
         </ul>
         <div class="tab-content mt-5" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -179,10 +184,6 @@
                 <a href="#" class="p-3">2</a>
                 <a href="#" class="p-3">3</a>
                 <a href="#" class="p-3">4</a>
-
-                <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
-                  <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
-                </c:if>
               </div>
 
 

@@ -39,15 +39,10 @@
 <div class="pt-lg-5">
 
   <div class="container">
-    <div class="pb-3">
-      <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
-      <button type="button" class="btn btn-outline-danger nanumsquare" onclick = "location.href = 'delete?no=${donation.no}'">삭제</button>
 
-    </div>
     <div class="row">
       <div class="col-md-7 mr-auto blog-content">
 
-        ${donation.no}번호
         <div>
           ${donation.donaContent}
         </div>
@@ -202,7 +197,7 @@
 
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea name="cmtMessage" id="message" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="cmtMessage" id="message" cols="30" rows="5" class="form-control" onclick='return loginFirst()'></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
@@ -236,6 +231,11 @@
 
 
         <div class="sidebar-box-detail">
+          <div class="pb-3">
+            <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
+            <button type="button" class="btn btn-outline-danger nanumsquare" onclick = "location.href = 'delete?no=${donation.no}'">삭제</button>
+
+          </div>
           <div class="cause shadow-sm">
             <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
             <a class="cause-link d-block">
@@ -344,37 +344,17 @@
 
 </div>
 
-<script src="js/main/jquery-3.3.1.min.js"></script>
-<script src="js/main/popper.min.js"></script>
-<script src="js/main/bootstrap.min.js"></script>
-<script src="js/main/owl.carousel.min.js"></script>
-<script src="js/main/jquery.sticky.js"></script>
-<script src="js/main/jquery.waypoints.min.js"></script>
-<script src="js/main/jquery.animateNumber.min.js"></script>
-<script src="js/main/jquery.fancybox.min.js"></script>
-<script src="js/main/jquery.easing.1.3.js"></script>
-<script src="js/main/aos.js"></script>
-
-<script src="js/main/main.js"></script>
-
 
 <script>
 
 
-  /*var id = <%=(String)session.getAttribute("loginUser")%>;
-      function loginFirst(){
-        if(id == null) {
-          alert('로그인을 해주세요.');
-          console.log('로긴안됨.' + id);
-        } else {
-          console.log('로긴됨.' + id);
-        }
-      }*/
+
   function loginFirst(){
     var dForm = document.donateForm;
     var session = '<%=(String)session.getAttribute("loginUser")%>';
     if(session=="null") {
       alert('로그인을 해주세요.');
+      location.href = '../auth/signInForm';
       return false;
     }
   }

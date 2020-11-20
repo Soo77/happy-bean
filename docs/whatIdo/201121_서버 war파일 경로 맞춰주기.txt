@@ -1,0 +1,25 @@
+201121
+
+오늘 할일/한일
+- 그 서버 exploded 
+ See server log for details. Artifact Gradle : project : project.war (exploded): com.intellij.javaee.oss.admin.jmx.JmxAdminException: com.intellij.
+이 버그 고친것.
+
+
+알게 된 것
+- 이상한 버그 하나가 짱나게했다.
+서버가 잘 되다가 어느날부터 안됐는데
+exploded를 선택하고 싶은데 그게 안됐다 .
+그걸 선택하면 오류가 나고
+exploded 아닌걸 선택하면 서버가 켜지긴하는데 서버 시작할때 두가지선택밖에안됨..(resources 이런거안되고)
+
+그래서 왜그러나 찾아보니
+File-Project Structure-Artifacts-Gralde : blahblah.war(exploded) 클릭
+Output directory: 옆에 나와있는 경로랑 진짜 내 war파일이 있는 경로랑 달랐다.
+그래서 맞춰주니 잘 된다.
+
+하지만 아직도 서버 시작할때 Update classes and resources 체크하고 ok 누르면
+같은 에러 뜸...
+Cannot package file 이거..
+근데 또 되긴함... 에러창이 뜨긴하는데 업데이트가 되긴함...
+의문..
