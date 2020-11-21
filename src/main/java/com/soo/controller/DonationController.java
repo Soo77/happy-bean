@@ -126,8 +126,11 @@ public class DonationController {
         System.out.println("왜아무말도~~~안나오니~~~");
         System.out.println(donationComments + "이것이다.");
         System.out.println("응??");
+        int count = donationCommentService.countCmt(no);
         model.addAttribute("donation", donation);
         model.addAttribute("donationComments", donationComments);
+        model.addAttribute("countCmt", count);
+
     }
 
     @GetMapping("detail_form")

@@ -53,7 +53,7 @@
 
         <div class="pt-5">
           <%--<div class="showCommentList"></div>--%>
-          <h3 class="mb-5">6 Comments</h3>
+          <h3 class="mb-5">${countCmt} Comments</h3>
          <ul class="comment-list">
            <div class="showCommentList"></div>
           <%--<c:forEach items="${donationComments}" var="donationComment">--%>

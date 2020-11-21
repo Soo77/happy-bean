@@ -81,6 +81,11 @@
         delete from dona_comment where dona_no=#{donationNo}
     </delete>
 
+    <select id="countCmt" parameterType="int" resultType="int">
+        select count(*)
+        from dona_comment
+        where dona_no = #{donationNo}
+    </select>
 
 
 

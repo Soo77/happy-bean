@@ -56,5 +56,10 @@ public class DefaultDonationCommentService implements DonationCommentService {
         donationCommentDao.safeDelete(no);
     }
 
+    @Override
+    public int countCmt(int no) throws Exception {
+        return donationCommentDao.countCmt(no);
+    }
+
 
 }

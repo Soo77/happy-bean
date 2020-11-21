@@ -15,5 +15,6 @@ public interface DonationCommentService {
     void delete(int no) throws Exception;
     void safeDelete(int no) throws Exception;
 
+    int countCmt(int no) throws Exception;
 }
 

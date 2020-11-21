@@ -16,4 +16,6 @@ DonationCommentDao {
     int delete(int no) throws Exception;
     int safeDelete(int no) throws Exception;
     int deleteAll(int boardNo) throws Exception;
+
+    int countCmt(int no) throws Exception;
 }
