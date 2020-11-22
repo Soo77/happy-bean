@@ -77,7 +77,6 @@ public class AuthController {
     @PostMapping("login")
     public String login(HttpServletResponse response, HttpSession session, String id, String password)
             throws Exception {
-        System.out.println("Im in.");
 
         HashMap<String,Object> params = new HashMap<>();
         params.put("id", id);
@@ -85,7 +84,6 @@ public class AuthController {
 
         //Member member = authService.findByIdPw(params);
         Member member = authService.findByIdPw(params);
-        System.out.println("im here");
         if (member == null) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();

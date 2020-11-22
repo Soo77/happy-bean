@@ -301,7 +301,7 @@
 
     <script>
       var percentVal = $('input[name=percentage]').val();
-      parseFloat(percentVal.toFixed(2))
+      //parseFloat(percentVal.toFixed(2));
 
       var resultVal = 0;
       if(percentVal > 100) {

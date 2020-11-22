@@ -118,17 +118,12 @@ public class DonationController {
     }
 
     @GetMapping("detail")
-    public void detail(Model model, int no) throws Exception {
-        System.out.println("what the!!");
-        System.out.println("이건나오나?");
+    public void detail(HttpSession session, Model model, int no) throws Exception {
         Donation donation = donationService.get(no);
         List<DonationComment> donationComments = donationCommentService.list(no);
-        System.out.println("왜아무말도~~~안나오니~~~");
-        System.out.println(donationComments + "이것이다.");
-        System.out.println("응??");
+
         int count = donationCommentService.countCmt(no);
         model.addAttribute("donation", donation);
-        model.addAttribute("donationComments", donationComments);
         model.addAttribute("countCmt", count);
 
     }

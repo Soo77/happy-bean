@@ -1,6 +1,6 @@
-<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.sql.Timestamp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.text.*"%>
 
@@ -197,7 +197,7 @@
 
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea name="cmtMessage" id="message" cols="30" rows="5" class="form-control" onclick='return loginFirst()'></textarea>
+                <textarea name="cmtMessage" id="message" cols="30" rows="5" class="form-control" onclick='loginFirst()'></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
@@ -340,26 +340,25 @@
   </div>
 </div>
 
-<jsp:include page="../footer.jsp" />
 
 </div>
-
+<jsp:include page="../footer.jsp" />
+</body>
+</html>
 
 <script>
-
-
-
-  function loginFirst(){
-    var dForm = document.donateForm;
+  function loginFirst() {
     var session = '<%=(String)session.getAttribute("loginUser")%>';
-    if(session=="null") {
+    if (session == "null") {
       alert('로그인을 해주세요.');
       location.href = '../auth/signInForm';
       return false;
     }
-  }
+  };
+</script>
 
 
+<script>
   var param = { 'no' : ${donation.no} };
   /* 댓글 목록 */
   function showCommentList() {
@@ -395,15 +394,17 @@
         $(".showCommentList").html(a);
       }
     });
-  }
+  };
   /*showCommentList();*/
   $(document).ready(function() {
     showCommentList();
   });
 
+
+
+
 </script>
 
 
-</body>
 
-</html>
+
