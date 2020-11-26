@@ -342,24 +342,15 @@
 
 
 </div>
+
+
 <jsp:include page="../footer.jsp" />
-</body>
-</html>
 
-<script>
-  function loginFirst() {
-    var session = '<%=(String)session.getAttribute("loginUser")%>';
-    if (session == "null") {
-      alert('로그인을 해주세요.');
-      location.href = '../auth/signInForm';
-      return false;
-    }
-  };
-</script>
+
 
 
 <script>
-  var param = { 'no' : ${donation.no} };
+  let param = { 'no' : ${donation.no} };
   /* 댓글 목록 */
   function showCommentList() {
     $.ajax({
@@ -367,12 +358,12 @@
       type : 'get',
       data : param,
       success : function(data) {
-        var a = '';
+        let a = '';
         $.each(
                 data,
                 function(key, value) {
                   a += '<li class="comment">';
-                  if (value.parentCommentNo != 0) {
+                  if (value.parentCommentNo !== 0) {
                     a += '<ul class="children">';
                     a += '<li class="comment">';
                   }
@@ -385,7 +376,7 @@
                   a += '<p class="nanumsquare">' + value.content + '</p>\n'
                   a += '<p><a href="#" class="reply">Reply</a></p></div>'
                   a += '</div>'
-                  if (value.parentCommentNo != 0) {
+                  if (value.parentCommentNo !== 0) {
                     a += '</li>';
                     a += '</ul>';
                   }
@@ -404,6 +395,24 @@
 
 
 </script>
+
+<script>
+  function loginFirst() {
+    let session = '<%=(String)session.getAttribute("loginUser")%>';
+    if (session == "null") {
+      alert('로그인을 해주세요.');
+      location.href = '../auth/signInForm';
+      return false;
+    }
+  };
+</script>
+
+
+
+</body>
+</html>
+
+
 
 
 
