@@ -31,8 +31,8 @@
 
               <div class="comment-form-wrap">
                 <h3 class="form-title" style="font-family: Nanum; font-size: 30px;">기부 모금함 등록하기</h3>
-                <form action="update" class="pt-5" method="POST" id="signup-form"
-                      enctype='multipart/form-data'>
+                <form name="updateForm" action="update" class="pt-5" method="POST" id="signup-form"
+                      enctype='multipart/form-data' onsubmit='return alertUpdate()'>
                   <input type='hidden' name='no' id='no' value='${donation.no}'>
                   <div class="form-group">
                     <label for="name">모금함 제목</label>
@@ -73,11 +73,11 @@
                     <label for="edt">사업종료일</label>
                     <input max="9999-12-31" name="endDate" id="edt" type="date" class="form-control" placeholder="Regular" value="${donation.endDate}">
                   </div>
-                  <%--<div class="form-group pt-3">
+                  <div class="form-group pt-3">
                     <label for="file">썸네일 사진</label>
                     <input type="file" name="file" class="form-control-file" id="file" aria-describedby="inputGroupFileAddon01" value="${donation.thumbnail}">
-                  </div>--%>
-                  <%-- form 입력란 끝 --%>
+                  </div>
+                  <%-- form 입력란 끝 targetAmount --%>
 
                   <div class="form-group pt-3">
                     <input type="submit" value="수정하기" class="btn btn-primary btn-md text-white">
@@ -154,6 +154,17 @@
 
 </script>
 
-  </body>
+<script>
+  function alertUpdate() {
+    if (confirm("정말 등록하시겠습니까??") == true){    //확인
+      document.getElementId('updateForm').submit();
+    }else{   //취소
+      return false;
+    }
+  }
+</script>
+
+
+</body>
 
 </html>

@@ -30,15 +30,15 @@
 
               <div class="comment-form-wrap">
                 <h3 class="form-title" style="font-family: Nanum; font-size: 30px;">기부 모금함 등록하기</h3>
-                <form action="add" class="pt-5" method="POST" id="signup-form"
-                      enctype='multipart/form-data'>
+                <form action="add" name="addForm" class="pt-5" method="POST" id="signup-form"
+                      enctype='multipart/form-data' onsubmit='return checkValue()'>
                   <div class="form-group">
                     <label for="name">모금함 제목</label>
-                    <input type="text" name="name" class="form-control" id="name">
+                    <input type="text" name="name" class="form-control" id="name" required="">
                   </div>
                   <div class="form-group pt-3">
                     <label for="orgnName">모금단체명</label>
-                    <input type="text" name="orgnName" class="form-control" id="orgnName">
+                    <input type="text" name="orgnName" class="form-control" id="orgnName" required="">
                   </div>
                   <div class="form-group pt-3">
                     <label for="classSelect">모금분야 선택</label>
@@ -46,7 +46,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="classSelect">구분</label>
                       </div>
-                      <select class="custom-select form-control" name="classifyCode" id="classSelect">
+                      <select class="custom-select form-control" name="classifyCode" id="classSelect" required="">
                         <option selected>선택하기...</option>
                         <option value="D02001">아동·청소년</option>
                         <option value="D02002">어르신</option>
@@ -57,28 +57,28 @@
                   </div>
                   <div class="form-group pt-3">
                     <label for="donacontents">모금함 소개글</label>
-                    <textarea name="donaContent" id="donacontents" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="donaContent" id="donacontents" cols="30" rows="10" class="form-control" required=""></textarea>
                   </div>
                   <div class="form-group pt-3">
                     <label for="targetAmount">목표 금액</label>
-                    <input type="text" name="targetAmount" class="form-control" id="targetAmount">
+                    <input type="text" name="targetAmount" class="form-control" id="targetAmount" required="">
                   </div>
                   <div class="form-group pt-3">
                     <label for="sdt">사업시작일</label>
-                    <input max="9999-12-31" name="startDate" id="sdt" type="date" class="form-control" placeholder="Regular">
+                    <input max="9999-12-31" name="startDate" id="sdt" type="date" class="form-control" placeholder="Regular" required="">
                   </div>
                   <div class="form-group pt-3">
                     <label for="edt">사업종료일</label>
-                    <input max="9999-12-31" name="endDate" id="edt" type="date" class="form-control" placeholder="Regular">
+                    <input max="9999-12-31" name="endDate" id="edt" type="date" class="form-control" placeholder="Regular" required="">
                   </div>
                   <div class="form-group pt-3">
                     <label for="file">썸네일 사진</label>
-                    <input type="file" name="file" class="form-control-file" id="file" aria-describedby="inputGroupFileAddon01">
+                    <input type="file" name="file" class="form-control-file" id="file" aria-describedby="inputGroupFileAddon01" required="">
                   </div>
                   <%-- form 입력란 끝 --%>
 
                   <div class="form-group pt-3">
-                    <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
+                    <input type="submit" value="모금함 등록하기" class="btn btn-primary btn-md text-white">
                   </div>
 
                 </form>
@@ -148,6 +148,25 @@
     return get_url_and_refresh_link();
   });
   $('#datepicker .input-date').datepicker('setDate', 'today');
+
+</script>
+
+<script>
+  /* 모금함 등록 전 입력란 확인 */
+  function checkValue() {
+    var form = document.addForm;
+
+
+    if (isNaN(form.targetAmount.value)) {
+      alert("금액은 숫자만 사용할 수 있습니다.");
+      return false;
+    }
+    if (form.classifyCode.value == '선택하기...') {
+      alert("모금분야를 선택해주세요.");
+      return false;
+    }
+
+  }
 
 </script>
 

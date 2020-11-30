@@ -114,6 +114,7 @@ public class DonationController {
 
         String filename = UUID.randomUUID().toString()+".jpg";
         file.transferTo(new File(uploadDir + "/" + filename));
+        System.out.println("uploadDir**********" + uploadDir);
         return filename;
     }
 
@@ -135,9 +136,9 @@ public class DonationController {
     }
 
     @PostMapping("update")
-    public String update(Donation donation) throws Exception {
-        System.out.println("들어와용");
-        System.out.println("짠:"+donation);
+    public String update(Donation donation, MultipartFile file) throws Exception {
+        System.out.println("짠@@@@@@@@@@@@@@@:"+file);
+        donation.setThumbnail(writeFile(file));
         donationService.update(donation);
         System.out.println("업데이트했어용.");
         return "redirect:list";

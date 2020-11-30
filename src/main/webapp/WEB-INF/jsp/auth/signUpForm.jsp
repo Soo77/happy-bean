@@ -88,55 +88,11 @@
 
 <!-- 회원가입시 특수문자 및 글자수 확인 -->
 <script>
-    /*  $("#submitBtn").click(function(){
-          submitBtn();
-      });*/
-    /*
-      function submitBtn(){
-    
-          var valid = true;
-          var id = document.getElementById("id").value;
-          var pw = document.getElementById("password").value;
-          var repw = document.getElementById("re_password").value;
-          if(Number(id)){
-              alert("아이디는 숫자만 사용할 수 없습니다.");
-              valid = false;
-          }
-    /!*      if(!/^[a-zA-Z]/.test(id)){
-              alert("아이디는 영문으로 시작해야 합니다.");
-              valid = false;
-          }*!/
-    
-          var idRegExp = /^[A-Za-z]{1}[a-zA-z0-9]{3,12}$/; //아이디 유효성 검사
-          if (!idRegExp.test(id)) {
-              alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
-              valid = false;
-          }
-          var pwRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
-          if (!pwRegExp.test(pw)) {
-              alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
-              valid = false;
-          }
-    
-          if(pw !== repw) {
-              alert("두 비밀번호가 같지 않습니다.");
-              valid = false;
-          }
-    
-          if (valid) {
-          console.log("valid는 true~");
-             return true;
-          } else {
-          event.preventDefault();
-             return false;
-          }
-      }*/
-
     /* 회원가입 전 입력란 확인 */
     function checkValue() {
         var form = document.userInfo;
 
-        if (Number(id)) {
+        if (Number(form.id.value)) {
             alert("아이디는 숫자만 사용할 수 없습니다.");
             return false;
         }

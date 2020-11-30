@@ -1,0 +1,15 @@
+201126
+
+오늘 할일/한일
+- net::ERR_INCOMPLETE_CHUNKED_ENCODING 200
+에러 뭣때문인지 죽어도 알아야겟음 
+
+
+알게 된 것
+- let session = '<%=(String)session.getAttribute("loginUser")%>';
+요 줄때문에 그런 에러가 났었다.
+이것만없으면 아주 잘~돌아간다.
+왜지 ㅜㅜ
+코드가.. 스크립트코드가 아니라서
+그런가?
+..

@@ -34,7 +34,7 @@
   </div>
 </div>
 
-
+<c:set value="${loginUser}" var="loginsession" />
 
 <div class="pt-lg-5">
 
@@ -43,6 +43,7 @@
     <div class="row">
       <div class="col-md-7 mr-auto blog-content">
 
+  <input type="hidden" class="form-control" name="loginsession" value="${loginsession}">
         <div>
           ${donation.donaContent}
         </div>
@@ -52,7 +53,6 @@
         </div>
 
         <div class="pt-5">
-          <%--<div class="showCommentList"></div>--%>
           <h3 class="mb-5">${countCmt} Comments</h3>
          <ul class="comment-list">
            <div class="showCommentList"></div>
@@ -197,7 +197,7 @@
 
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea name="cmtMessage" id="message" cols="30" rows="5" class="form-control" onclick='loginFirst()'></textarea>
+                <textarea name="cmtMessage" id="message" cols="30" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
@@ -232,8 +232,8 @@
 
         <div class="sidebar-box-detail">
           <div class="pb-3">
-            <button type="button" class="btn btn-outline-success nanumsquare" onclick = "location.href = 'detail_form?no=${donation.no}'">수정</button>
-            <button type="button" class="btn btn-outline-danger nanumsquare" onclick = "location.href = 'delete?no=${donation.no}'">삭제</button>
+            <button type="button" class="btn btn-outline-success nanumsquare" onclick = 'alertModify()'>수정</button>
+            <button type="button" class="btn btn-outline-danger nanumsquare" onclick = 'alertDelete()'>삭제</button>
 
           </div>
           <div class="cause shadow-sm">
@@ -386,17 +386,13 @@
       }
     });
   };
-  /*showCommentList();*/
-  $(document).ready(function() {
-    showCommentList();
-  });
-
+  showCommentList();
 
 
 
 </script>
 
-<script>
+<%--<script>
   function loginFirst() {
     let session = '<%=(String)session.getAttribute("loginUser")%>';
     if (session == "null") {
@@ -404,14 +400,44 @@
       location.href = '../auth/signInForm';
       return false;
     }
-  };
+  }
+</script>--%>
+
+
+<script>
+  function loginFirstbeforeCmt() {
+    let session = $('input[name=loginsession]').val();
+    console.log(session);
+    if (session == "") {
+      alert('로그인을 해주세요.');
+      location.href = '../auth/signInForm';
+      return false;
+    }
+  }
+</script>
+
+<script>
+  function alertDelete() {
+    if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+      location.href = 'delete?no=${donation.no}';
+    }else{   //취소
+      return false;
+    }
+  }
+
+  function alertModify() {
+    if (confirm("정말 수정하시겠습니까??") == true){    //확인
+      location.href = 'detail_form?no=${donation.no}';
+    }else{   //취소
+      return false;
+    }
+  }
+
+
 </script>
 
 
-
-</body>
 </html>
-
 
 
 

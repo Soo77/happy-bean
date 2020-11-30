@@ -6,7 +6,7 @@
 
 
  <%--favicon--%>
-    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon"
+    <link rel="shortcut icon" href="/images/bean-icon.ico" type="image/x-icon">
     <link rel="icon" href="/images/bean-icon.ico" type="image/x-icon">
 
  <%--로고(햅삐빈) 웹폰트--%>
