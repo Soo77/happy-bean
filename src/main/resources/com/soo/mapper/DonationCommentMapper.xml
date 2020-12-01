@@ -49,7 +49,7 @@
     <insert id="insert" parameterType="DonationComment"
             useGeneratedKeys="true" keyColumn="cmt_no" keyProperty="commentNo">
         insert into dona_comment(dona_no,member_no,cmt_conts,cdt,parent_cmt_no,is_deleted)
-        values(#{donationNo},#{memberNo},#{content},now(),#{parentCommentNo},#{deleted})
+        values(#{donationNo},#{memberNo},#{content},now(),#{parentCommentNo},#{isDeleted})
     </insert>
 
     <select id="findBy" parameterType="int" resultMap="DonationCommentMap">

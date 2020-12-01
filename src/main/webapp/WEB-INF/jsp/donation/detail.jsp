@@ -181,26 +181,18 @@
 
           <div class="comment-form-wrap pt-5">
             <h3 class="mb-5">Leave a comment</h3>
-            <form action="#" class="">
-              <%--<div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" class="form-control" id="name">
-              </div>
+            <form name="commentInsertForm">
+              <input type="hidden" name="donaNo" value="${donation.no}" />
               <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" class="form-control" id="email">
+                <label for="commentContents">Message</label>
+                <textarea name="commentContents" id="commentContents" cols="30" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
               </div>
-              <div class="form-group">
-                <label for="website">Website</label>
-                <input type="url" class="form-control" id="website">
-              </div>--%>
+              <div class="form-group" id="commentAdd">
+                <%--<input type="submit" name="commentInsertBtn" value="Post Comment" class="btn btn-primary btn-md text-white">
+              --%>
 
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="cmtMessage" id="message" cols="30" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
+                  <button type="button" name="commentInsertBtn"
+                          class="btn btn-primary btn-md text-white">등록</button>
               </div>
 
             </form>
@@ -351,6 +343,22 @@
 
 <script>
   let param = { 'no' : ${donation.no} };
+  var donaNo = '${donation.no}';
+
+
+
+  // 댓글 등록 버튼 클릭시
+  $('[name=commentInsertBtn]').click(function() {
+    var commentContents = $("#commentContents").val().replace(/(\s*)/g, "");
+
+    if (commentContents.length == 0) {
+      alert("댓글을 입력하세요.");
+    } else {
+      var insertData = $('[name=commentInsertForm]').serialize();
+      commentInsert(insertData);
+    }
+  });
+
   /* 댓글 목록 */
   function showCommentList() {
     $.ajax({
@@ -386,8 +394,28 @@
       }
     });
   };
-  showCommentList();
 
+  //댓글 등록
+  function commentInsert(insertData) {
+    $.ajax({
+      url : 'comment/add',
+      type : 'post',
+      data : insertData,
+      success : function(data) {
+        if (data == 1) {
+          showCommentList();
+          $('[name=commentContents]').val('');
+          /*$('#counter').html('0/300');*/
+        }
+      }
+    });
+  }
+
+
+
+  $(document).ready(function() {
+    showCommentList();
+  });
 
 
 </script>

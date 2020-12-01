@@ -163,6 +163,7 @@
     }
     if (form.classifyCode.value == '선택하기...') {
       alert("모금분야를 선택해주세요.");
+      document.getElementById('classSelect').focus();
       return false;
     }
 

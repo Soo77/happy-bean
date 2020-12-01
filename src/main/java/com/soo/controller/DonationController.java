@@ -195,15 +195,16 @@ public class DonationController {
     @ResponseBody
     public void commentAdd(
             HttpSession session,
-            @RequestParam int no,
+            @RequestParam int donaNo,
             @RequestParam String commentContents) throws Exception {
         Member member = (Member) session.getAttribute("loginUser");
         int memberNo = member.getNo();
         DonationComment comment = new DonationComment();
-        comment.setDonationNo(no);
+        comment.setDonationNo(donaNo);
         comment.setContent(commentContents);
         comment.setMemberNo(memberNo);
         comment.setParentCommentNo(0);
+        comment.setIsDeleted("N");
 
 
         donationCommentService.insert(comment);
