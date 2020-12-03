@@ -341,84 +341,6 @@
 
 
 
-<script>
-  let param = { 'no' : ${donation.no} };
-  var donaNo = '${donation.no}';
-
-
-
-  // 댓글 등록 버튼 클릭시
-  $('[name=commentInsertBtn]').click(function() {
-    var commentContents = $("#commentContents").val().replace(/(\s*)/g, "");
-
-    if (commentContents.length == 0) {
-      alert("댓글을 입력하세요.");
-    } else {
-      var insertData = $('[name=commentInsertForm]').serialize();
-      commentInsert(insertData);
-    }
-  });
-
-  /* 댓글 목록 */
-  function showCommentList() {
-    $.ajax({
-      url : 'comment/list',
-      type : 'get',
-      data : param,
-      success : function(data) {
-        let a = '';
-        $.each(
-                data,
-                function(key, value) {
-                  a += '<li class="comment">';
-                  if (value.parentCommentNo !== 0) {
-                    a += '<ul class="children">';
-                    a += '<li class="comment">';
-                  }
-                  a += '<div class="vcard bio">';
-                  a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
-                  a += '</div>';
-                  a += '<div class="comment-body">'
-                  a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
-                  a += '<div class="meta">'+ value.createDate + '</div>'
-                  a += '<p class="nanumsquare">' + value.content + '</p>\n'
-                  a += '<p><a href="#" class="reply">Reply</a></p></div>'
-                  a += '</div>'
-                  if (value.parentCommentNo !== 0) {
-                    a += '</li>';
-                    a += '</ul>';
-                  }
-                  a += '</li>'
-                });
-        $(".showCommentList").html(a);
-      }
-    });
-  };
-
-  //댓글 등록
-  function commentInsert(insertData) {
-    $.ajax({
-      url : 'comment/add',
-      type : 'post',
-      data : insertData,
-      success : function(data) {
-        if (data == 1) {
-          showCommentList();
-          $('[name=commentContents]').val('');
-          /*$('#counter').html('0/300');*/
-        }
-      }
-    });
-  }
-
-
-
-  $(document).ready(function() {
-    showCommentList();
-  });
-
-
-</script>
 
 <%--<script>
   function loginFirst() {
@@ -464,6 +386,88 @@
 
 </script>
 
+<script>
+  let param = { 'no' : ${donation.no} };
+  var donaNo = '${donation.no}';
+
+
+
+  // 댓글 등록 버튼 클릭시
+  $('[name=commentInsertBtn]').click(function() {
+    //문자열 내의 모든 공백 제거
+    var commentContents = $("#commentContents").val().replace(/(\s*)/g, "");
+
+    if (commentContents.length == 0) {
+      alert("댓글을 입력하세요.");
+    } else {
+      var insertData = $('[name=commentInsertForm]').serialize();
+      console.log("insertdAta:"+insertData)
+      commentInsert(insertData);
+    }
+  });
+
+  /* 댓글 목록 */
+  function showCommentList() {
+    $.ajax({
+      url : 'comment/list',
+      type : 'get',
+      data : param,
+      success : function(data) {
+        console.log("show data:"+data)
+        let a = '';
+        $.each(
+                data,
+                function(key, value) {
+                  a += '<li class="comment">';
+                  if (value.parentCommentNo !== 0) {
+                    a += '<ul class="children">';
+                    a += '<li class="comment">';
+                  }
+                  a += '<div class="vcard bio">';
+                  a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
+                  a += '</div>';
+                  a += '<div class="comment-body">'
+                  a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
+                  a += '<div class="meta">'+ value.createDate + '</div>'
+                  a += '<p class="nanumsquare">' + value.content + '</p>\n'
+                  a += '<p><a href="#" class="reply">Reply</a></p></div>'
+                  a += '</div>'
+                  if (value.parentCommentNo !== 0) {
+                    a += '</li>';
+                    a += '</ul>';
+                  }
+                  a += '</li>'
+                });
+        $(".showCommentList").html(a);
+      }
+    });
+  };
+
+  //댓글 등록
+  function commentInsert(insertData) {
+    $.ajax({
+      url : 'comment/add',
+      type : 'post',
+      data : insertData,
+      success : function(data) {
+        console.log("data:"+data);
+        console.log("insertData:"+insertData);
+        if (data == "") {
+          showCommentList();
+          $('[name=commentContents]').val('');
+        }
+      }
+    });
+  }
+
+
+
+  $(document).ready(function() {
+    showCommentList();
+  });
+
+
+</script>
 
 </html>
 
