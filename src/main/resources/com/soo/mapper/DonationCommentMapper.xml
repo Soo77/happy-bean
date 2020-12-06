@@ -71,10 +71,8 @@
 
     <update id="update" parameterType="DonationComment">
         update dona_comment
-        <set>
-            <if test="content != null">cmt_conts=#{content}</if>
-        </set>
-        where cmt_no=#{no}
+        set cmt_conts=#{content}
+        where cmt_no=#{commentNo}
     </update>
 
     <delete id="deleteAll" parameterType="int">

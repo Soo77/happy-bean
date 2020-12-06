@@ -35,7 +35,7 @@
 </div>
 
 <c:set value="${loginUser}" var="loginsession" />
-
+<input value="${donation.no}"/>
 <div class="pt-lg-5">
 
   <div class="container">
@@ -52,131 +52,13 @@
           <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
         </div>
 
+
         <div class="pt-5">
-          <h3 class="mb-5">${countCmt} Comments</h3>
-         <ul class="comment-list">
+          <%--<h3 class="mb-5">${countCmt} Comments</h3>
+         <ul class="comment-list">--%>
+            <input type="hidden" name="countCmt" value="${countCmt}" />
            <div class="showCommentList"></div>
-          <%--<c:forEach items="${donationComments}" var="donationComment">--%>
-           <%--<li class="comment">
-             <div class="vcard bio">
-               <img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">
-             </div>
-             <div class="comment-body">
-               <h3>${donationComment.member.name}</h3>
-               <div class="meta">${donationComment.createDate}</div>
-               <p>${donationComment.content}</p>
-               <p><a href="#" class="reply">Reply</a></p>
-             </div>
-           </li>--%>
-          <%--</c:forEach>--%>
-<%--
-<div id="replyList">
-            <c:forEach var="replylist" items="${replylist}" varStatus="status">
-              <div id="replyItem<c:out value="${replylist.reno}"/>"
-                   style="border: 1px solid gray; width: 600px; padding: 5px; margin-top: 5px; margin-left: <c:out value="${20*replylist.redepth}"/>px; display: inline-block">
-                <c:out value="${replylist.rewriter}"/> <c:out value="${replylist.redate}"/>
-                <a href="#" onclick="fn_replyDelete('<c:out value="${replylist.reno}"/>')">삭제</a>
-                <a href="#" onclick="fn_replyUpdate('<c:out value="${replylist.reno}"/>')">수정</a>
-                <a href="#" onclick="fn_replyReply('<c:out value="${replylist.reno}"/>')">댓글</a>
-                <br/>
-                <div id="reply<c:out value="${replylist.reno}"/>"><c:out value="${replylist.rememo}"/></div>
-              </div><br/>
-            </c:forEach>
-          </div>
-
-
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="/../../../images/main/person_2.jpg" alt="Free Website Template by Free-Template.co">
-              </div>
-              <div class="comment-body">
-                <h3>Jacob Smith</h3>
-                <div class="meta">January 9, 2018 at 2:21pm</div>
-                <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-                <p><a href="#" class="reply">Reply</a></p>
-              </div>
-            </li>
-
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="/../../../images/main/person_3.jpg" alt="Free Website Template by Free-Template.co">
-              </div>
-              <div class="comment-body">
-                <h3>Chris Meyer</h3>
-                <div class="meta">January 9, 2018 at 2:21pm</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                <p><a href="#" class="reply">Reply</a></p>
-              </div>
-
-              <ul class="children">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="/../../../images/main/person_5.jpg" alt="Free Website Template by Free-Template.co">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Chintan Patel</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="/../../../images/main/person_1.jpg" alt="Free Website Template by Free-Template.co">
-                      </div>
-                      <div class="comment-body">
-                        <h3>Jean Doe</h3>
-                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="/../../../images/main/person_4.jpg" alt="Free Website Template by Free-Template.co">
-                          </div>
-                          <div class="comment-body">
-                            <h3>Ben Afflick</h3>
-                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="/../../../images/main/person_1.jpg" alt="Free Website Template by Free-Template.co">
-              </div>
-              <div class="comment-body">
-                <h3>Jean Doe</h3>
-                <div class="meta">January 9, 2018 at 2:21pm</div>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                <p><a href="#" class="reply">Reply</a></p>
-              </div>
-            </li>--%>
-          </ul>
-          <%--<div id="replyList">
-            <c:forEach var="replylist" items="${replylist}" varStatus="status">
-              <div id="replyItem<c:out value="${replylist.reno}"/>"
-                   style="border: 1px solid gray; width: 600px; padding: 5px; margin-top: 5px; margin-left: <c:out value="${20*replylist.redepth}"/>px; display: inline-block">
-                <c:out value="${replylist.rewriter}"/> <c:out value="${replylist.redate}"/>
-                <a href="#" onclick="fn_replyDelete('<c:out value="${replylist.reno}"/>')">삭제</a>
-                <a href="#" onclick="fn_replyUpdate('<c:out value="${replylist.reno}"/>')">수정</a>
-                <a href="#" onclick="fn_replyReply('<c:out value="${replylist.reno}"/>')">댓글</a>
-                <br/>
-                <div id="reply<c:out value="${replylist.reno}"/>"><c:out value="${replylist.rememo}"/></div>
-              </div><br/>
-            </c:forEach>
-          </div>--%>
+         <%--</ul>--%>
           <!-- END comment-list -->
 
           <div class="comment-form-wrap pt-5">
@@ -201,28 +83,8 @@
 
       </div>
       <div class="col-md-4 sidebar">
-        <%--<div class="sidebar-box">
-          <form action="#" class="search-form">
-            <div class="form-group">
-              <span class="icon fa fa-search"></span>
-              <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
-            </div>
-          </form>
-        </div>
-        <div class="sidebar-box">
-          <div class="categories">
-            <h3>Categories</h3>
-            <li><a href="#">Creatives <span>(12)</span></a></li>
-            <li><a href="#">News <span>(22)</span></a></li>
-            <li><a href="#">Design <span>(37)</span></a></li>
-            <li><a href="#">HTML <span>(42)</span></a></li>
-            <li><a href="#">Web Development <span>(14)</span></a></li>
-          </div>
-        </div>--%>
 
-
-
-        <div class="sidebar-box-detail">
+          <div class="sidebar-box-detail">
           <div class="pb-3">
             <button type="button" class="btn btn-outline-success nanumsquare" onclick = 'alertModify()'>수정</button>
             <button type="button" class="btn btn-outline-danger nanumsquare" onclick = 'alertDelete()'>삭제</button>
@@ -387,10 +249,8 @@
 </script>
 
 <script>
-  let param = { 'no' : ${donation.no} };
   var donaNo = '${donation.no}';
-
-
+  var countCmt = $('input[name=countCmt]').val();
 
   // 댓글 등록 버튼 클릭시
   $('[name=commentInsertBtn]').click(function() {
@@ -408,36 +268,59 @@
 
   /* 댓글 목록 */
   function showCommentList() {
+
     $.ajax({
       url : 'comment/list',
       type : 'get',
-      data : param,
+      data : { 'no' : ${donation.no},
+                'cnt' : $('input[name=countCmt]').val()},
       success : function(data) {
         console.log("show data:"+data)
         let a = '';
+        a += '<h3 class="mb-5">'+ countCmt + ' Comments</h3>'
+        a += '<ul class="comment-list">'
         $.each(
                 data,
                 function(key, value) {
+
                   a += '<li class="comment">';
                   if (value.parentCommentNo !== 0) {
-                    a += '<ul class="children">';
+                    a += '<ul  class="children">';
                     a += '<li class="comment">';
                   }
                   a += '<div class="vcard bio">';
                   a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
                   a += '</div>';
-                  a += '<div class="comment-body">'
+                  a += '<div    class="comment-body">'
                   a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
+                  a += '<h3 class="nanumsquare">' + value.commentNo + '</h3>'
                   a += '<div class="meta">'+ value.createDate + '</div>'
-                  a += '<p class="nanumsquare">' + value.content + '</p>\n'
-                  a += '<p><a href="#" class="reply">Reply</a></p></div>'
+                  /*a += '<p class="nanumsquare">' + value.content*/
+                  a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
+                          + value.content + '</div>'
+                  a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '">'
+                  a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+                          + value.commentNo
+                          + ',\''
+                          + value.content
+                          + '\');"> 수정 </button>'
+                  a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
+                          + value.commentNo
+                          + ');"> 삭제 </button>'
                   a += '</div>'
+                  a += '</p>'
+                  a += '<p><input type="button" class="btn btn-light reply" value="Reply"></p>'
+
+                  a += '</div>'
+                  a += '</div>'
+
                   if (value.parentCommentNo !== 0) {
                     a += '</li>';
                     a += '</ul>';
                   }
                   a += '</li>'
                 });
+        a += '</ul>'
         $(".showCommentList").html(a);
       }
     });
@@ -450,8 +333,7 @@
       type : 'post',
       data : insertData,
       success : function(data) {
-        console.log("data:"+data);
-        console.log("insertData:"+insertData);
+        console.log(data);
         if (data == "") {
           showCommentList();
           $('[name=commentContents]').val('');
@@ -460,12 +342,90 @@
     });
   }
 
+  //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
+  function commentUpdate(commentNo, commentContents) {
+      document.querySelector('#commentUpdateAndDelete'+commentNo).style.display = 'none';
+      var a = '';
+      a += '<div class="row">';
+      a += '<div class="col">';
+      a += '<textarea class="form-control pl-2 commentUpdate" name="commentContents_'+commentNo+'" rows="3" maxlength="300">' + commentContents + '</textarea>';
+      a += '</div></div>';
+      a += '<div class="row">';
+      a += '<div class="col complete"> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="commentUpdateProc('
+          + commentNo + ');">수정완료</button>';
+      a += '</div></div>';
+      $('.commentContents' + commentNo).html(a);
+  }
+
+  //댓글 수정
+  function commentUpdateProc(commentNo) {
+      var updateContent = $('[name=commentContents_' + commentNo + ']')
+          .val().replace(/(\s*)/g, "");
+
+      console.log("updateContent:"+updateContent);
+
+      if (updateContent.length == 0) {
+          alert("댓글을 입력하세요.");
+      } else {
+        console.log(commentNo);
+          $.ajax({
+              url : 'comment/update',
+              type : 'post',
+              data : {
+                  'commentContents' : $('[name=commentContents_' + commentNo + ']').val(),
+                  'commentNo' : commentNo
+              },
+              success : function(data) {
+                  console.log("update:" + data);
+                  if (data == "")
+                      showCommentList(donaNo);
+              }
+          });
+      }
+  }
+  //댓글 삭제
+  function commentDelete(commentNo) {
+    if(confirm("삭제하시겠습니까?")) {
+      $.ajax({
+        url : 'comment/delete/' + commentNo,
+        type : 'post',
+        success : function(data) {
+          console.log("delete:" + data);
+          if (data == "")
+            showCommentList(donaNo);
+        }
+      });
+    }
+
+  }
+
 
 
   $(document).ready(function() {
     showCommentList();
   });
 
+
+</script>
+
+
+<script>
+/*    let html = '';
+    html +=	'<form name="reCommentInsertForm">'
+    html +=  '<div class="form-group">'
+    html +=  '<label for="commentContents">Message</label>'
+    html +=  '<textarea name="commentContents" id="commentContents" cols="30" rows="5" class="form-control" onclick="loginFirstbeforeCmt()">'
+    html +=  '</textarea>'
+    html +=  '</div>'
+    html += '<div class="form-group" id="commentAdd">'
+    html += '<button type="button" name="commentInsertBtn" class="btn btn-primary btn-md text-white">등록</button>'
+    html += '</div>'
+    html += '</form>'
+
+    let recommentAddBtn = document.getElementsByClassName('reply')[0];
+    recommentAddBtn.addEventListener('click', () => {
+        $('#replyAdd').append(html);
+    });*/
 
 </script>
 

@@ -20,6 +20,7 @@ public class Donation implements Serializable {
     @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
     private Date endDate;
     private String thumbnail;
+    private int countCmt;
 
     private DetailCode detailCode;
 
@@ -112,6 +113,14 @@ public class Donation implements Serializable {
         this.detailCode = detailCode;
     }
 
+    public int getCountCmt() {
+        return countCmt;
+    }
+
+    public void setCountCmt(int countCmt) {
+        this.countCmt = countCmt;
+    }
+
     @Override
     public String toString() {
         return "Donation{" +
@@ -125,6 +134,7 @@ public class Donation implements Serializable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", thumbnail='" + thumbnail + '\'' +
+                ", countCmt=" + countCmt +
                 ", detailCode=" + detailCode +
                 '}';
     }

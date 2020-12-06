@@ -60,7 +60,15 @@ public class DefaultDonationService implements DonationService {
         donationDao.insertDonationHistory(donationHistory);
     }
 
+    @Override
+    public void addCmtCount(int plus) throws Exception {
+        donationDao.addCmtCount(plus);
+    }
 
+    @Override
+    public void minusCmtCount(int minus) throws Exception {
+        donationDao.minusCmtCount(minus);
+    }
 
 
 }

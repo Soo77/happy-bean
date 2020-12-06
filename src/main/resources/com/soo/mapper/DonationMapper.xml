@@ -114,6 +114,19 @@
         values(#{memberNo},#{donaNo},#{donateAmount},now())
     </insert>
 
+    <update id="addCmtCount" parameterType="Donation">
+        update donation
+        set dona_countCmt
+        where dona_no=#{no}
+    </update>
+
+    <update id="minusCmtCount" parameterType="Donation">
+        update donation
+        set dona_countCmt
+        where dona_no=#{no}
+    </update>
+
+
 
 
 

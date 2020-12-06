@@ -103,6 +103,7 @@ public class DonationController {
     public String add(Donation donation, MultipartFile file) throws Exception {
         donation.setThumbnail(writeFile(file));
         donation.setTotalAmount(0);
+        donation.setCountCmt(0);
         donationService.insert(donation);
         return "redirect:list";
     }
@@ -179,13 +180,10 @@ public class DonationController {
 
     @GetMapping("comment/list")
     @ResponseBody
-    private List<DonationComment> commentList(int no) throws Exception{
+    private List<DonationComment> commentList(int no,
+                                              @RequestParam int cnt) throws Exception{
         ArrayList<DonationComment> arrayList = (ArrayList<DonationComment>)donationCommentService.list(no);
-        System.out.println("외않되?" + arrayList);
-
         List<DonationComment> list = donationCommentService.list(no);
-        System.out.println("list는?" + list);
-        System.out.println("되는거니마는거니~");
 
 
         return arrayList;
@@ -207,6 +205,7 @@ public class DonationController {
         comment.setIsDeleted("N");
 
 
+        donationService.addCmtCount(1);
         donationCommentService.insert(comment);
     }
 
@@ -224,6 +223,7 @@ public class DonationController {
     @RequestMapping("comment/delete/{commentNo}")
     @ResponseBody
     private void commentDelete(@PathVariable int commentNo) throws Exception{
+        donationService.minusCmtCount(-1);
         donationCommentService.delete(commentNo);
     }
 
