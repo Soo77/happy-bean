@@ -198,14 +198,22 @@ public class DonationController {
         Member member = (Member) session.getAttribute("loginUser");
         int memberNo = member.getNo();
         DonationComment comment = new DonationComment();
+        Donation donation = donationService.get(donaNo);
         comment.setDonationNo(donaNo);
         comment.setContent(commentContents);
         comment.setMemberNo(memberNo);
         comment.setParentCommentNo(0);
         comment.setIsDeleted("N");
 
+        int count = donationCommentService.countCmt(donaNo);
+        System.out.println("진짜 댓글수!!!!!:"+count);
+        System.out.println("댓글수야~!!!!!:"+donation.getCountCmt());
 
-        donationService.addCmtCount(1);
+
+        donation.setCountCmt(count+1);
+
+
+        donationService.update(donation);
         donationCommentService.insert(comment);
     }
 
@@ -222,8 +230,15 @@ public class DonationController {
 
     @RequestMapping("comment/delete/{commentNo}")
     @ResponseBody
-    private void commentDelete(@PathVariable int commentNo) throws Exception{
-        donationService.minusCmtCount(-1);
+    private void commentDelete(int no, @PathVariable int commentNo) throws Exception{
+        Donation donation = donationService.get(no);
+        int count = donationCommentService.countCmt(no);
+        System.out.println("진짜 댓글수!!!!!:"+count);
+        System.out.println("댓글수야~!!!!!:"+donation.getCountCmt());
+        donation.setCountCmt(count-1);
+
+
+        donationService.update(donation);
         donationCommentService.delete(commentNo);
     }
 

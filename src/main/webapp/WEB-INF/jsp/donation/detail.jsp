@@ -56,7 +56,7 @@
         <div class="pt-5">
           <%--<h3 class="mb-5">${countCmt} Comments</h3>
          <ul class="comment-list">--%>
-            <input type="hidden" name="countCmt" value="${countCmt}" />
+            <input name='countCmt' id='countCmt' value='${donation.countCmt}'>
            <div class="showCommentList"></div>
          <%--</ul>--%>
           <!-- END comment-list -->
@@ -157,6 +157,7 @@
               <c:if test="${dayDiff < 1 }">
                 <form action="/donation/donate" name="donateForm" method="post" class="footer-suscribe-form"  onsubmit='return loginFirst()'>
                   <input type='hidden' name='no' id='no' value='${donation.no}'>
+
                   <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
                   <div class="input-group mb-3">
                     <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="금액을 입력하세요." aria-label="Enter Email" aria-describedby="button-addon2 " required="" autofocus="">
@@ -250,7 +251,8 @@
 
 <script>
   var donaNo = '${donation.no}';
-  var countCmt = $('input[name=countCmt]').val();
+  var countCmt = '${donation.countCmt}';
+  console.log(countCmt);
 
   // 댓글 등록 버튼 클릭시
   $('[name=commentInsertBtn]').click(function() {
@@ -273,7 +275,8 @@
       url : 'comment/list',
       type : 'get',
       data : { 'no' : ${donation.no},
-                'cnt' : $('input[name=countCmt]').val()},
+                'cnt' : ${donation.countCmt}
+      },
       success : function(data) {
         console.log("show data:"+data)
         let a = '';
@@ -385,10 +388,14 @@
   }
   //댓글 삭제
   function commentDelete(commentNo) {
+    console.log("뽑아보자:"+donaNo);
     if(confirm("삭제하시겠습니까?")) {
       $.ajax({
         url : 'comment/delete/' + commentNo,
         type : 'post',
+        data : {
+          'no' : donaNo
+        },
         success : function(data) {
           console.log("delete:" + data);
           if (data == "")

@@ -17,6 +17,4 @@ DonationDao {
     int delete(int no) throws Exception;
     int insertDonationHistory(DonationHistory donationHistory) throws Exception;
 
-    void addCmtCount(int plus) throws Exception;
-    void minusCmtCount(int minus) throws Exception;
 }

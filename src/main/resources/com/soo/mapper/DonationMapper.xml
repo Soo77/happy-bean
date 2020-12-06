@@ -18,6 +18,7 @@
         <result column="dona_target_number" property="targetNumber"/>
         <result column="dona_effect" property="effect"/>
         <result column="dona_thumbnail" property="thumbnail"/>
+        <result column="dona_countCmt" property="countCmt"/>
         <collection resultMap="DetailCodeMap" property="detailCode" />
     </resultMap>
 
@@ -33,6 +34,7 @@
         <result column="dona_no" property="donaNo"/>
         <result column="amount" property="donateAmount"/>
         <result column="ddt" property="donateDate"/>
+
     </resultMap>
 
     <sql id="basicColumn">
@@ -46,7 +48,8 @@
         do.dona_total_amount,
         do.dona_sdt,
         do.dona_edt,
-        do.dona_thumbnail
+        do.dona_thumbnail,
+        do.dona_countCmt
     </sql>
 
     <sql id="detailCodeColumn">
@@ -103,7 +106,8 @@
             <if test="totalAmount > 0">dona_total_amount=#{totalAmount},</if>
             <if test="startDate != null">dona_sdt=#{startDate},</if>
             <if test="endDate != null">dona_edt=#{endDate},</if>
-            <if test="thumbnail != null">dona_thumbnail=#{thumbnail}</if>
+            <if test="thumbnail != null">dona_thumbnail=#{thumbnail},</if>
+            <if test="countCmt != null">dona_countCmt=#{countCmt}</if>
 
         </set>
         where dona_no=#{no}
@@ -114,17 +118,7 @@
         values(#{memberNo},#{donaNo},#{donateAmount},now())
     </insert>
 
-    <update id="addCmtCount" parameterType="Donation">
-        update donation
-        set dona_countCmt
-        where dona_no=#{no}
-    </update>
 
-    <update id="minusCmtCount" parameterType="Donation">
-        update donation
-        set dona_countCmt
-        where dona_no=#{no}
-    </update>
 
 
 

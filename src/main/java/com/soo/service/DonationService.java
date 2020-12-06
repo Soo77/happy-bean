@@ -17,7 +17,6 @@ public interface DonationService {
     void delete(int no) throws Exception;
     void insertDonationHistory(DonationHistory donationHistory) throws Exception;
     
-    void addCmtCount(int plus) throws Exception;
-    void minusCmtCount(int minus) throws Exception;
+
 }
 
