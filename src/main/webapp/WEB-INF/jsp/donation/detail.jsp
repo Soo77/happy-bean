@@ -56,7 +56,6 @@
         <div class="pt-5">
           <%--<h3 class="mb-5">${countCmt} Comments</h3>
          <ul class="comment-list">--%>
-            <input name='countCmt' id='countCmt' value='${donation.countCmt}'>
            <div class="showCommentList"></div>
          <%--</ul>--%>
           <!-- END comment-list -->
@@ -279,13 +278,14 @@
       },
       success : function(data) {
         console.log("show data:"+data)
+        var count = Object.keys(data).length;
+        console.log("개수"+count);
         let a = '';
-        a += '<h3 class="mb-5">'+ countCmt + ' Comments</h3>'
+        a += '<h3 class="mb-5">'+ count + ' Comments</h3>'
         a += '<ul class="comment-list">'
         $.each(
                 data,
                 function(key, value) {
-
                   a += '<li class="comment">';
                   if (value.parentCommentNo !== 0) {
                     a += '<ul  class="children">';
@@ -296,27 +296,23 @@
                   a += '</div>';
                   a += '<div    class="comment-body">'
                   a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
-                  a += '<h3 class="nanumsquare">' + value.commentNo + '</h3>'
-                  a += '<div class="meta">'+ value.createDate + '</div>'
-                  /*a += '<p class="nanumsquare">' + value.content*/
+                    a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '" style="float:right";>'
+                    a += '<button class="btn btn-outline-info btn-round btn-sm" id="commentReply" type="button"> 답글 </button>'
+                    a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+                        + value.commentNo
+                        + ',\''
+                        + value.content
+                        + '\');"> 수정 </button>'
+                    a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
+                        + value.commentNo
+                        + ');"> 삭제 </button>'
+                    a += '</div>'
+
                   a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
                           + value.content + '</div>'
-                  a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '">'
-                  a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
-                          + value.commentNo
-                          + ',\''
-                          + value.content
-                          + '\');"> 수정 </button>'
-                  a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
-                          + value.commentNo
-                          + ');"> 삭제 </button>'
-                  a += '</div>'
-                  a += '</p>'
-                  a += '<p><input type="button" class="btn btn-light reply" value="Reply"></p>'
-
+                    a += '<div class="meta">'+ value.createDate + '</div>'
                   a += '</div>'
                   a += '</div>'
-
                   if (value.parentCommentNo !== 0) {
                     a += '</li>';
                     a += '</ul>';
@@ -351,7 +347,7 @@
       var a = '';
       a += '<div class="row">';
       a += '<div class="col">';
-      a += '<textarea class="form-control pl-2 commentUpdate" name="commentContents_'+commentNo+'" rows="3" maxlength="300">' + commentContents + '</textarea>';
+      a += '<textarea class="form-control pl-2 commentUpdate" name="commentContents_'+commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;">' + commentContents + '</textarea>';
       a += '</div></div>';
       a += '<div class="row">';
       a += '<div class="col complete"> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="commentUpdateProc('
