@@ -206,16 +206,37 @@ public class DonationController {
         comment.setIsDeleted("N");
 
         int count = donationCommentService.countCmt(donaNo);
-        System.out.println("진짜 댓글수!!!!!:"+count);
-        System.out.println("댓글수야~!!!!!:"+donation.getCountCmt());
-
 
         donation.setCountCmt(count+1);
-
-
         donationService.update(donation);
         donationCommentService.insert(comment);
     }
+
+    @PostMapping("comment/replyAdd")
+    @ResponseBody
+    public void commentReplyAdd(
+            HttpSession session,
+            @RequestParam int donaNo,
+            @RequestParam String commentContents,
+            int parentNo) throws Exception {
+        Member member = (Member) session.getAttribute("loginUser");
+        int memberNo = member.getNo();
+        DonationComment comment = new DonationComment();
+        Donation donation = donationService.get(donaNo);
+        comment.setDonationNo(donaNo);
+        comment.setContent(commentContents);
+        comment.setMemberNo(memberNo);
+        comment.setParentCommentNo(parentNo);
+        comment.setIsDeleted("N");
+
+        int count = donationCommentService.countCmt(donaNo);
+
+        donation.setCountCmt(count+1);
+        donationService.update(donation);
+        donationCommentService.insert(comment);
+    }
+
+
 
     @RequestMapping("comment/update")
     @ResponseBody
@@ -233,8 +254,6 @@ public class DonationController {
     private void commentDelete(int no, @PathVariable int commentNo) throws Exception{
         Donation donation = donationService.get(no);
         int count = donationCommentService.countCmt(no);
-        System.out.println("진짜 댓글수!!!!!:"+count);
-        System.out.println("댓글수야~!!!!!:"+donation.getCountCmt());
         donation.setCountCmt(count-1);
 
 

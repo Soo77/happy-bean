@@ -14,6 +14,12 @@
 
 <jsp:include page="../header.jsp"/>
 
+<button type="button" onclick="$('.css_test').toggle()">여러번 눌러보세용</button>
+
+<div class="css_test">
+  jQuery 공작소 toggle
+</div>
+
 <div class="ftco-blocks-cover-1">
   <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');">
     <div class="container">
@@ -66,7 +72,7 @@
               <input type="hidden" name="donaNo" value="${donation.no}" />
               <div class="form-group">
                 <label for="commentContents">Message</label>
-                <textarea name="commentContents" id="commentContents" cols="30" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
+                <textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
               </div>
               <div class="form-group" id="commentAdd">
                 <%--<input type="submit" name="commentInsertBtn" value="Post Comment" class="btn btn-primary btn-md text-white">
@@ -221,9 +227,10 @@
     let session = $('input[name=loginsession]').val();
     console.log(session);
     if (session == "") {
-      alert('로그인을 해주세요.');
-      location.href = '../auth/signInForm';
-      return false;
+      if (confirm('로그인을 해주세요.')) {
+          location.href = '../auth/signInForm';
+          return false;
+      }
     }
   }
 </script>
@@ -262,7 +269,6 @@
       alert("댓글을 입력하세요.");
     } else {
       var insertData = $('[name=commentInsertForm]').serialize();
-      console.log("insertdAta:"+insertData)
       commentInsert(insertData);
     }
   });
@@ -287,17 +293,23 @@
                 data,
                 function(key, value) {
                   a += '<li class="comment">';
-                  if (value.parentCommentNo !== 0) {
+                    if (value.parentCommentNo !== 0) {
                     a += '<ul  class="children">';
-                    a += '<li class="comment">';
+                      a += '<li class="comment">';
                   }
                   a += '<div class="vcard bio">';
                   a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
                   a += '</div>';
-                  a += '<div    class="comment-body">'
+                  a += '<div    class="comment-body" id="eachComment">'
                   a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
+                    a += '<div class="meta">'+ value.createDate + '</div>'
+
                     a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '" style="float:right";>'
-                    a += '<button class="btn btn-outline-info btn-round btn-sm" id="commentReply" type="button"> 답글 </button>'
+                  if (value.parentCommentNo == 0) {
+                    a += '<button class="btn btn-outline-info btn-round btn-sm" type="button" onclick="'
+                      + $('.replyArea').toggle()
+                      + '"> 답글 </button>'
+                  }
                     a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
                         + value.commentNo
                         + ',\''
@@ -307,17 +319,28 @@
                         + value.commentNo
                         + ');"> 삭제 </button>'
                     a += '</div>'
+                    a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;font-size: larger;">&emsp;&emsp;&emsp;&emsp;'
+                        + value.content + '</div>'
 
-                  a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
-                          + value.content + '</div>'
-                    a += '<div class="meta">'+ value.createDate + '</div>'
+
+
                   a += '</div>'
                   a += '</div>'
                   if (value.parentCommentNo !== 0) {
                     a += '</li>';
                     a += '</ul>';
                   }
+                  a += '<button type="button" onclick="'
+                     + $(".css_test").toggle()
+                     + '">여러번 눌러보세용 네?</button>'
+                  a += '<div class="css_test" name="hi">'
+                  a += '<textarea rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>'
+                  a += '</div>'
+                  /*a += '<div class="replyArea">'
+                  a += '<textarea class="replyCommentContents'+value.commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>';
+                  a += '</div>'*/
                   a += '</li>'
+
                 });
         a += '</ul>'
         $(".showCommentList").html(a);
@@ -349,7 +372,7 @@
       a += '<div class="col">';
       a += '<textarea class="form-control pl-2 commentUpdate" name="commentContents_'+commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;">' + commentContents + '</textarea>';
       a += '</div></div>';
-      a += '<div class="row">';
+      a += '<div class="row  float-right">';
       a += '<div class="col complete"> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="commentUpdateProc('
           + commentNo + ');">수정완료</button>';
       a += '</div></div>';
@@ -402,6 +425,16 @@
 
   }
 
+/*  //답글 등록창 열리게
+  function openReplyArea() {
+      var a = '';
+      a += '<textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick="loginFirstbeforeCmt()"></textarea>';
+      a += '<div class="row float-right">';
+      a += '<div class="col complete"> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="">답글등록</button>';
+      a += '</div></div>';
+      $("#replyAppend").html(a);
+  }*/
+
 
 
   $(document).ready(function() {
@@ -411,26 +444,6 @@
 
 </script>
 
-
-<script>
-/*    let html = '';
-    html +=	'<form name="reCommentInsertForm">'
-    html +=  '<div class="form-group">'
-    html +=  '<label for="commentContents">Message</label>'
-    html +=  '<textarea name="commentContents" id="commentContents" cols="30" rows="5" class="form-control" onclick="loginFirstbeforeCmt()">'
-    html +=  '</textarea>'
-    html +=  '</div>'
-    html += '<div class="form-group" id="commentAdd">'
-    html += '<button type="button" name="commentInsertBtn" class="btn btn-primary btn-md text-white">등록</button>'
-    html += '</div>'
-    html += '</form>'
-
-    let recommentAddBtn = document.getElementsByClassName('reply')[0];
-    recommentAddBtn.addEventListener('click', () => {
-        $('#replyAdd').append(html);
-    });*/
-
-</script>
 
 </html>
 
