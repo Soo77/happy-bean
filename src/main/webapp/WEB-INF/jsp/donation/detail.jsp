@@ -330,11 +330,9 @@
                     a += '</li>';
                     a += '</ul>';
                   }
-                  a += '<button type="button" onclick="'
-                     + $(".css_test").toggle()
-                     + '">여러번 눌러보세용 네?</button>'
-                  a += '<div class="css_test" name="hi">'
-                  a += '<textarea rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>'
+                  a += '<button type="button" onclick=$(".css_test' + value.commentNo +'").toggle(300);>여러번 눌러보세용 네?</button>'
+                  a += '<div class="css_test' + value.commentNo+ '" name="hi" style="display: none">'
+                  a += '<textarea class="form-control pl-2" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>'
                   a += '</div>'
                   /*a += '<div class="replyArea">'
                   a += '<textarea class="replyCommentContents'+value.commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>';
