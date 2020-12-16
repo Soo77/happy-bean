@@ -214,17 +214,18 @@ public class DonationController {
 
     @PostMapping("comment/replyAdd")
     @ResponseBody
-    public void commentReplyAdd(
+    public void replyAdd(
             HttpSession session,
-            @RequestParam int donaNo,
-            @RequestParam String commentContents,
+            int donaNo,
+            String recommentContents,
             int parentNo) throws Exception {
+        System.out.println("donaNo:" + donaNo + ", recommentContents:" + recommentContents + ", parentNo:" + parentNo);
         Member member = (Member) session.getAttribute("loginUser");
         int memberNo = member.getNo();
         DonationComment comment = new DonationComment();
         Donation donation = donationService.get(donaNo);
         comment.setDonationNo(donaNo);
-        comment.setContent(commentContents);
+        comment.setContent(recommentContents);
         comment.setMemberNo(memberNo);
         comment.setParentCommentNo(parentNo);
         comment.setIsDeleted("N");

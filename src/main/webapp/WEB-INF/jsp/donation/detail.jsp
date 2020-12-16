@@ -168,7 +168,7 @@
                     <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="금액을 입력하세요." aria-label="Enter Email" aria-describedby="button-addon2 " required="" autofocus="">
                     <div class="input-group-append">
                         <%--<button type="button" class="btn btn-primary text-white"  id="button-addon2">기부하기</button>--%>
-                      <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon2" />
+                      <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon22" />
                     </div>
                   </div>
                 </form>
@@ -225,7 +225,6 @@
 <script>
   function loginFirstbeforeCmt() {
     let session = $('input[name=loginsession]').val();
-    console.log(session);
     if (session == "") {
       if (confirm('로그인을 해주세요.')) {
           location.href = '../auth/signInForm';
@@ -258,7 +257,6 @@
 <script>
   var donaNo = '${donation.no}';
   var countCmt = '${donation.countCmt}';
-  console.log(countCmt);
 
   // 댓글 등록 버튼 클릭시
   $('[name=commentInsertBtn]').click(function() {
@@ -273,6 +271,20 @@
     }
   });
 
+  /*// 대댓글 등록 버튼 클릭시
+  $('[name=replyAddBtn]').click(function() {
+    //문자열 내의 모든 공백 제거
+    var recommentContents = $('[name=recommentContents_' + commentNo + ']')
+            .val().replace(/(\s*)/g, "");
+
+    if (recommentContents.length == 0) {
+      alert("댓글을 입력하세요.");
+    } else {
+      var replyInsertData = $('[name=recommentContents_' + commentNo + ']').serialize();
+      recommentAddProc(commentNo, replyInsertData);
+    }
+  });*/
+
   /* 댓글 목록 */
   function showCommentList() {
 
@@ -283,9 +295,8 @@
                 'cnt' : ${donation.countCmt}
       },
       success : function(data) {
-        console.log("show data:"+data)
         var count = Object.keys(data).length;
-        console.log("개수"+count);
+
         let a = '';
         a += '<h3 class="mb-5">'+ count + ' Comments</h3>'
         a += '<ul class="comment-list">'
@@ -298,18 +309,20 @@
                       a += '<li class="comment">';
                   }
                   a += '<div class="vcard bio">';
-                  a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
+                  if (value.parentCommentNo !== 0) {
+                    a += 'ㄴ&ensp;<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
+                  } else {
+                    a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
+                  }
                   a += '</div>';
                   a += '<div    class="comment-body" id="eachComment">'
                   a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
                     a += '<div class="meta">'+ value.createDate + '</div>'
 
                     a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '" style="float:right";>'
-                  if (value.parentCommentNo == 0) {
-                    a += '<button class="btn btn-outline-info btn-round btn-sm" type="button" onclick="'
-                      + $('.replyArea').toggle()
-                      + '"> 답글 </button>'
-                  }
+                    if (value.parentCommentNo == 0) {
+                      a += '<button class="btn btn-outline-info btn-round btn-sm" type="button" onclick=$(".css_test' + value.commentNo +'").toggle(300);> 답글 </button>'
+                    }
                     a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
                         + value.commentNo
                         + ',\''
@@ -318,10 +331,10 @@
                     a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
                         + value.commentNo
                         + ');"> 삭제 </button>'
+
                     a += '</div>'
                     a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;font-size: larger;">&emsp;&emsp;&emsp;&emsp;'
                         + value.content + '</div>'
-
 
 
                   a += '</div>'
@@ -330,10 +343,18 @@
                     a += '</li>';
                     a += '</ul>';
                   }
-                  a += '<button type="button" onclick=$(".css_test' + value.commentNo +'").toggle(300);>여러번 눌러보세용 네?</button>'
+                  a += '<form name="recommentInsertForm">'
+                  a += '　'
+                  a += '<input type="hidden" name="donaNo" value=\'${donation.no}\' />'
                   a += '<div class="css_test' + value.commentNo+ '" name="hi" style="display: none">'
-                  a += '<textarea class="form-control pl-2" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>'
+                  a += '<textarea class="form-control" name="recommentContents_' + value.commentNo + '" rows="3" maxlength="300" onclick="loginFirstbeforeCmt()"></textarea>'
+                  a += '<div class="row  float-right">';
+                  a += '<div class="col complete pt-1"> <button type="button" name="replyAddBtn" class="btn btn-outline-success btn-round btn-sm" onclick="recommentAddProc('
+                          + value.commentNo
+                          + ');">등록</button>';
+                  a += '</div></div>'
                   a += '</div>'
+                  a += '</form>'
                   /*a += '<div class="replyArea">'
                   a += '<textarea class="replyCommentContents'+value.commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>';
                   a += '</div>'*/
@@ -362,6 +383,36 @@
     });
   }
 
+  //대댓글 등록
+  function recommentAddProc(commentNo) {
+    var recommentContents = $('[name=recommentContents_' + commentNo + ']')
+            .val().replace(/(\s*)/g, "");
+    console.log("@@@@@Contents:"+recommentContents);
+
+    if (recommentContents.length == 0) {
+      alert("댓글을 입력하세요.");
+    } else {
+      console.log(commentNo);
+
+      $.ajax({
+        url : 'comment/replyAdd',
+        type : 'post',
+        data : {
+          'parentNo' : commentNo,
+          'donaNo' : ${donation.no},
+          'recommentContents' : $('[name=recommentContents_' + commentNo + ']').val()
+        },
+        success : function(data) {
+          console.log("re:"+data);
+          if (data == "") {
+            showCommentList();
+            $('[name=recommentContents_' + commentNo + ']').val('');
+          }
+        }
+      });
+    }
+  }
+
   //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
   function commentUpdate(commentNo, commentContents) {
       document.querySelector('#commentUpdateAndDelete'+commentNo).style.display = 'none';
@@ -376,6 +427,8 @@
       a += '</div></div>';
       $('.commentContents' + commentNo).html(a);
   }
+
+
 
   //댓글 수정
   function commentUpdateProc(commentNo) {
@@ -438,6 +491,7 @@
   $(document).ready(function() {
     showCommentList();
   });
+
 
 
 </script>
