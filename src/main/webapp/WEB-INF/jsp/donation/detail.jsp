@@ -14,12 +14,6 @@
 
 <jsp:include page="../header.jsp"/>
 
-<button type="button" onclick="$('.css_test').toggle()">여러번 눌러보세용</button>
-
-<div class="css_test">
-  jQuery 공작소 toggle
-</div>
-
 <div class="ftco-blocks-cover-1">
   <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');">
     <div class="container">
@@ -41,7 +35,6 @@
 </div>
 
 <c:set value="${loginUser}" var="loginsession" />
-<input value="${donation.no}"/>
 <div class="pt-lg-5">
 
   <div class="container">
@@ -77,9 +70,9 @@
               <div class="form-group" id="commentAdd">
                 <%--<input type="submit" name="commentInsertBtn" value="Post Comment" class="btn btn-primary btn-md text-white">
               --%>
-
-                  <button type="button" name="commentInsertBtn"
-                          class="btn btn-primary btn-md text-white">등록</button>
+                <div class="float-right">
+                  <button type="button" name="commentInsertBtn" class="btn btn-primary btn-md text-white" style="width: 100%;">등록</button>
+                </div>
               </div>
 
             </form>

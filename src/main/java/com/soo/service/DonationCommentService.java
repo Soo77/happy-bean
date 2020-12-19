@@ -13,6 +13,7 @@ public interface DonationCommentService {
     DonationComment get(int no) throws Exception;
     void update(DonationComment donationComment) throws Exception;
     void delete(int no) throws Exception;
+    void deleteMeAndChild(int no) throws Exception;
     void safeDelete(int no) throws Exception;
 
     int countCmt(int no) throws Exception;

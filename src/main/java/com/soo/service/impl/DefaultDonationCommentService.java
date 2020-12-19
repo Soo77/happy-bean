@@ -48,7 +48,13 @@ public class DefaultDonationCommentService implements DonationCommentService {
         if(donationCommentDao.delete(no) == 0) {
             throw new Exception("해당 데이터가 없습니다.");
         }
+    }
 
+    @Override
+    public void deleteMeAndChild(int no) throws Exception {
+        if(donationCommentDao.deleteMeAndChild(no) == 0) {
+            throw new Exception("해당 데이터가 없습니다.");
+        }
     }
 
     @Override

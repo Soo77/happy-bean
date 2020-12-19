@@ -34,7 +34,6 @@
         <result column="dona_no" property="donaNo"/>
         <result column="amount" property="donateAmount"/>
         <result column="ddt" property="donateDate"/>
-
     </resultMap>
 
     <sql id="basicColumn">
@@ -90,7 +89,7 @@
         and do.dona_no=#{value}
     </select>
 
-    <delete id="delete" parameterType="int">
+    <delete id="deleteMeAndChild" parameterType="int">
         delete from donation
         where dona_no=#{value}
     </delete>

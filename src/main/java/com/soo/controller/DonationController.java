@@ -1,5 +1,6 @@
 package com.soo.controller;
 
+import com.soo.dao.DonationCommentDao;
 import com.soo.domain.Donation;
 import com.soo.domain.DonationComment;
 import com.soo.domain.DonationHistory;
@@ -28,6 +29,7 @@ public class DonationController {
     @Resource private DonationService donationService;
     @Resource private MemberService memberService;
     @Resource private DonationCommentService donationCommentService;
+    @Resource private DonationCommentDao donationCommentDao;
 
     String uploadDir;
 
@@ -255,11 +257,18 @@ public class DonationController {
     private void commentDelete(int no, @PathVariable int commentNo) throws Exception{
         Donation donation = donationService.get(no);
         int count = donationCommentService.countCmt(no);
-        donation.setCountCmt(count-1);
 
-
-        donationService.update(donation);
-        donationCommentService.delete(commentNo);
+        int childCount = donationCommentDao.countChild(commentNo);
+        System.out.println("@@@@@@@@@@@@@@@@@@@" + childCount);
+        if (childCount != 0) {
+            donation.setCountCmt(count-(childCount+1));
+            donationService.update(donation);
+            donationCommentService.deleteMeAndChild(commentNo);
+        } else {
+            donation.setCountCmt(count-1);
+            donationService.update(donation);
+            donationCommentService.delete(commentNo);
+        }
     }
 
     @RequestMapping("comment/safeDelete/{commentNo}")

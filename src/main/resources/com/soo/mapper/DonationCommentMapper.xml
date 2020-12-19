@@ -63,6 +63,16 @@
         where cmt_no=#{value}
     </delete>
 
+    <delete id="deleteMeAndChild" parameterType="int">
+        delete from dona_comment
+        where cmt_no=#{value} or parent_cmt_no=#{value}
+    </delete>
+
+    <select id="countChild" parameterType="int" resultType="int">
+        select count(*) from dona_comment
+        where parent_cmt_no=#{value};
+    </select>
+
     <update id="safeDelete" parameterType="DonationComment">
         update dona_comment
         set is_deleted=#{isDeleted}
