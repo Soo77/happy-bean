@@ -118,7 +118,25 @@
     </insert>
 
 
+    <select id="ongoingList" resultMap="DonationMap">
+        <include refid="basicColumn"/>,
+        <include refid="detailCodeColumn"/>
+        from donation do
+        join detail_code d
+        on do.dona_classify_cd = d.DTL_CD
+        and date(now()) <![CDATA[ <= ]]> date(do.dona_edt)
+        order by dona_no desc;
+    </select>
 
+    <select id="finishedList" resultMap="DonationMap">
+        <include refid="basicColumn"/>,
+        <include refid="detailCodeColumn"/>
+        from donation do
+        join detail_code d
+        on do.dona_classify_cd = d.DTL_CD
+        and date(now()) <![CDATA[ > ]]> date(do.dona_edt)
+        order by dona_no desc;
+    </select>
 
 
 

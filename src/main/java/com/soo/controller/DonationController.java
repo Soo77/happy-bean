@@ -1,10 +1,7 @@
 package com.soo.controller;
 
 import com.soo.dao.DonationCommentDao;
-import com.soo.domain.Donation;
-import com.soo.domain.DonationComment;
-import com.soo.domain.DonationHistory;
-import com.soo.domain.Member;
+import com.soo.domain.*;
 import com.soo.service.DonationCommentService;
 import com.soo.service.DonationService;
 import com.soo.service.MemberService;
@@ -40,14 +37,31 @@ public class DonationController {
 
     /* 기부 리스트 */
     @GetMapping("list")
-    public void list(Model model, HttpServletRequest req) throws Exception {
-        System.out.println("말이안나와.");
-        System.out.println("hey~");
+    public void list(Model model, HttpServletRequest req,
+                     @RequestParam(defaultValue = "6") int pageSize,
+                     @RequestParam(defaultValue = "1") int curPage) throws Exception {
         List<Donation> donations = donationService.list();
-        System.out.println("3:"+uploadDir);
-        //System.out.println("여기보세요~" + donations);
-        System.out.println("위에건안나와.");
+        int listCnt = donations.size();
+
+        List<Donation> ongoingList = donationService.ongoingList();
+        int ongoingListSize = ongoingList.size();
+
+        List<Donation> finishedList = donationService.finishedList();
+        int finishedListSize = finishedList.size();
+
+
+        Pagination ongoingPagination = new Pagination(ongoingListSize, curPage, pageSize);
+        model.addAttribute("ongoingListCnt", ongoingListSize);
+        model.addAttribute("ongoingPagination", ongoingPagination);
+
+        Pagination finishedPagination = new Pagination(finishedListSize, curPage, pageSize);
+        model.addAttribute("finishedListCnt", finishedListSize);
+        model.addAttribute("finishedPagination", finishedPagination);
+
+
+
         model.addAttribute("donations", donations);
+        model.addAttribute("pageSize", pageSize);
 
         // list에 있는 큰 카드에 진행중인 모금함 1개 띄우기
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);

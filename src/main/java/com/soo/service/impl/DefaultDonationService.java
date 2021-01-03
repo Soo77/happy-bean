@@ -60,7 +60,15 @@ public class DefaultDonationService implements DonationService {
         donationDao.insertDonationHistory(donationHistory);
     }
 
+    @Override
+    public List<Donation> ongoingList() throws Exception {
+        return donationDao.ongoingList();
+    }
 
+    @Override
+    public List<Donation> finishedList() throws Exception {
+        return donationDao.finishedList();
+    }
 
 
 }

@@ -16,7 +16,8 @@ public interface DonationService {
     void update(Donation donation) throws Exception;
     void delete(int no) throws Exception;
     void insertDonationHistory(DonationHistory donationHistory) throws Exception;
-    
 
+    List<Donation> ongoingList() throws Exception;
+    List<Donation> finishedList() throws Exception;
 }
 

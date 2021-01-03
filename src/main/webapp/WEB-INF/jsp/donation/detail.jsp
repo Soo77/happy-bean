@@ -22,13 +22,6 @@
           <span class="d-block mb-3 text-white" data-aos="fade-up">카테고리>${donation.detailCode.detailCodeName} <span class="mx-2 text-primary">&bullet;</span> ${donation.name}</span>
           <h1 class="mb-4 text-cursive h1" data-aos="fade-up" data-aos-delay="100">Thank you for supporting our lifesaving work.</h1>
         </div>
-        <%--<div class="box-92819">
-          <h1 class="text-white mb-3">Donation</h1>
-          <p class="lead text-white nanumsquare">카테고리>${donation.detailCode.detailCodeName} · 모금단체 ${donation.orgnName}<br>
-            ${donation.name} </p>
-          &lt;%&ndash;<span class="d-block mb-3  nanumsquare" data-aos="fade-up">카테고리>${donation.detailCode.detailCodeName}<span class="mx-2 text-white nanumsquare">&bullet;</span>모금단체 ${donation.orgnName}</span>
-          <h1 class="mb-4 nanumsquare h1" data-aos="fade-up" data-aos-delay="100">${donation.name}</h1>&ndash;%&gt;
-        </div>--%>
       </div>
     </div>
   </div>
@@ -153,14 +146,13 @@
               </div>
 
               <c:if test="${dayDiff < 1 }">
-                <form action="/donation/donate" name="donateForm" method="post" class="footer-suscribe-form"  onsubmit='return loginFirst()'>
+                <form action="/donation/donate" name="donateForm" method="post" class="footer-suscribe-form"  onsubmit='return loginFirstbeforeCmt()'>
                   <input type='hidden' name='no' id='no' value='${donation.no}'>
 
                   <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
                   <div class="input-group mb-3">
                     <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="금액을 입력하세요." aria-label="Enter Email" aria-describedby="button-addon2 " required="" autofocus="">
                     <div class="input-group-append">
-                        <%--<button type="button" class="btn btn-primary text-white"  id="button-addon2">기부하기</button>--%>
                       <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon22" />
                     </div>
                   </div>
@@ -222,6 +214,8 @@
       if (confirm('로그인을 해주세요.')) {
           location.href = '../auth/signInForm';
           return false;
+      } else {
+        return false;
       }
     }
   }

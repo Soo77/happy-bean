@@ -100,7 +100,7 @@
 
 
 
-        <%--탭--%>
+        <%--탭(진행중,종료) 두가지 만들기--%>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">진행중</a>
@@ -115,9 +115,12 @@
           </c:if>
         </ul>
         <div class="tab-content mt-5" id="myTabContent">
+          <!--진행중 탭-->
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-              <c:forEach items="${donations}" var="donation">
+              <c:forEach items="${donations}" var="donation"
+                         begin="${ongoingPagination.pageSize * (ongoingPagination.curPage - 1)}"
+                         end="${ongoingPagination.pageSize * ongoingPagination.curPage - 1}">
 
                 <%--지저분쓰한 날짜계산--%>
                 <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
@@ -179,17 +182,41 @@
                 <%--요기--%>
               </c:forEach>
 
-              <div class="col-12">
-                <span class="p-3">1</span>
-                <a href="#" class="p-3">2</a>
-                <a href="#" class="p-3">3</a>
-                <a href="#" class="p-3">4</a>
+              <div>
+                <c:if test="${ongoingPagination.curRange ne 1 }">
+                  <a href="#" onClick="fn_paging(1)">[처음]</a>
+                </c:if>
+                <c:if test="${ongoingPagination.curPage ne 1}">
+                  <a href="#" onClick="fn_paging('${ongoingPagination.prevPage }')">[이전]</a>
+                </c:if>
+                <c:forEach var="pageNum" begin="${ongoingPagination.startPage }" end="${ongoingPagination.endPage }">
+                  <c:choose>
+                    <c:when test="${pageNum eq  ongoingPagination.curPage}">
+                      <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a>
+                    </c:otherwise>
+                  </c:choose>
+                </c:forEach>
+                <c:if test="${ongoingPagination.curPage ne ongoingPagination.pageCnt && ongoingPagination.pageCnt > 0}">
+                  <a href="#" onClick="fn_paging('${ongoingPagination.nextPage }')">[다음]</a>
+                </c:if>
+                <c:if test="${ongoingPagination.curRange ne ongoingPagination.rangeCnt && ongoingPagination.rangeCnt > 0}">
+                  <a href="#" onClick="fn_paging('${ongoingPagination.pageCnt }')">[끝]</a>
+                </c:if>
               </div>
+
+              <div>
+                총 게시글 수 : ${ongoingPagination.listCnt } /    총 페이지 수 : ${ongoingPagination.pageCnt } / 현재 페이지 : ${ongoingPagination.curPage } / 현재 블럭 : ${ongoingPagination.curRange } / 총 블럭 수 : ${ongoingPagination.rangeCnt }
+              </div>
+
 
 
 
             </div>
           </div>
+          <!--종료 탭-->
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="row">
               <c:forEach items="${donations}" var="donation">
@@ -234,7 +261,7 @@
                       <div class="px-3 pt-3 border-top-0 border border shadow-sm">
                         <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
                         <span class="ml-1 badge-secondary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">종료</span>
-                        <h3 class="mb-4 nanumsquare"><a href="#">${donation.name}</a></h3>
+                        <h3 class="mb-4 nanumsquare"><a href="detail?no=${donation.no}">${donation.name}</a></h3>
                         <div class="border-top border-light border-bottom py-2 d-flex">
                           <div>Donated</div>
                           <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
@@ -259,10 +286,6 @@
                 <a href="#" class="p-3">2</a>
                 <a href="#" class="p-3">3</a>
                 <a href="#" class="p-3">4</a>
-
-                <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
-                  <button type="button" class="btn btn-outline-success" style="float:right;" onclick = "location.href = 'form'">모금함 등록하기</button>
-                </c:if>
               </div>
 
 
@@ -311,6 +334,12 @@
       }
 
 
+    </script>
+
+    <script>
+      function fn_paging(curPage) {
+        location.href = "/donation/list?curPage=" + curPage;
+      }
     </script>
 
 
