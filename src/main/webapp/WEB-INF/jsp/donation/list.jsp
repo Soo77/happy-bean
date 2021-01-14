@@ -187,7 +187,7 @@
                   <a href="#" onClick="ongoing_fn_paging(1);">[처음]</a>
                 </c:if>
                 <c:if test="${ongoingPagination.curPage ne 1}">
-                  <a href="#;return false;" onClick="ongoing_fn_paging('${ongoingPagination.prevPage }')">[이전]</a>
+                  <a href="#" onClick="ongoing_fn_paging('${ongoingPagination.prevPage }')">[이전]</a>
                 </c:if>
                 <c:forEach var="pageNum" begin="${ongoingPagination.startPage }" end="${ongoingPagination.endPage }">
                   <c:choose>
@@ -281,13 +281,13 @@
                 <%--요기--%>
               </c:forEach>
 
-              <div class="col-12">
+              <%--<div class="col-12">
                 <div class="finishedPage" id="finishedPage">
                   <c:if test="${finishedPagination.curRange ne 1 }">
                     <a href="#" onClick="finished_fn_paging(1);">[처음]</a>
                   </c:if>
                   <c:if test="${finishedPagination.curPage ne 1}">
-                    <a href="#;return false;" onClick="finished_fn_paging('${finishedPagination.prevPage }')">[이전]</a>
+                    <a href="#" onClick="finished_fn_paging('${finishedPagination.prevPage }')">[이전]</a>
                   </c:if>
                   <c:forEach var="pageNum" begin="${finishedPagination.startPage }" end="${finishedPagination.endPage }">
                     <c:choose>
@@ -310,7 +310,7 @@
                 <div>
                   총 게시글 수 : ${finishedPagination.listCnt } /    총 페이지 수 : ${finishedPagination.pageCnt } / 현재 페이지 : ${finishedPagination.curPage } / 현재 블럭 : ${finishedPagination.curRange } / 총 블럭 수 : ${finishedPagination.rangeCnt }
                 </div>
-              </div>
+              </div>--%>
 
 
 
@@ -368,36 +368,9 @@
 
       }
 
-      $(document).ready(function () {
-        console.log("hahaha");
-        // Handler for .ready() called.
-        $('html, body').animate({
-          scrollTop: $('#myTab').offset().top
-        }, 'slow');
-      });
-
-
-
     </script>
 
-    <script type="text/javascript">
-      function finished_fn_paging(finishedCurPage) {
-        location.href = "/donation/list?finishedCurPage=" + finishedCurPage;
 
-
-      }
-
-      $(document).ready(function () {
-        console.log("hahaha");
-        // Handler for .ready() called.
-        $('html, body').animate({
-          scrollTop: $('#profile').offset().top
-        }, 'slow');
-      });
-
-
-
-    </script>
 
 
 
