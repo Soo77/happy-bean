@@ -182,28 +182,28 @@
                 <%--요기--%>
               </c:forEach>
 
-              <div>
+              <div class="ongoingPage" id="ongoingPage">
                 <c:if test="${ongoingPagination.curRange ne 1 }">
-                  <a href="#" onClick="fn_paging(1)">[처음]</a>
+                  <a href="#" onClick="ongoing_fn_paging(1);">[처음]</a>
                 </c:if>
                 <c:if test="${ongoingPagination.curPage ne 1}">
-                  <a href="#" onClick="fn_paging('${ongoingPagination.prevPage }')">[이전]</a>
+                  <a href="#;return false;" onClick="ongoing_fn_paging('${ongoingPagination.prevPage }')">[이전]</a>
                 </c:if>
                 <c:forEach var="pageNum" begin="${ongoingPagination.startPage }" end="${ongoingPagination.endPage }">
                   <c:choose>
                     <c:when test="${pageNum eq  ongoingPagination.curPage}">
-                      <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span>
+                      <span style="font-weight: bold;"><a href="#" onClick="ongoing_fn_paging('${pageNum }')">${pageNum }</a></span>
                     </c:when>
                     <c:otherwise>
-                      <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a>
+                      <a href="#" onClick="ongoing_fn_paging('${pageNum }')">${pageNum }</a>
                     </c:otherwise>
                   </c:choose>
                 </c:forEach>
                 <c:if test="${ongoingPagination.curPage ne ongoingPagination.pageCnt && ongoingPagination.pageCnt > 0}">
-                  <a href="#" onClick="fn_paging('${ongoingPagination.nextPage }')">[다음]</a>
+                  <a href="#" onClick="ongoing_fn_paging('${ongoingPagination.nextPage }')">[다음]</a>
                 </c:if>
                 <c:if test="${ongoingPagination.curRange ne ongoingPagination.rangeCnt && ongoingPagination.rangeCnt > 0}">
-                  <a href="#" onClick="fn_paging('${ongoingPagination.pageCnt }')">[끝]</a>
+                  <a href="#" onClick="ongoing_fn_paging('${ongoingPagination.pageCnt }')">[끝]</a>
                 </c:if>
               </div>
 
@@ -216,7 +216,7 @@
 
             </div>
           </div>
-          <!--종료 탭-->
+          <!--종료 탭 -->
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="row">
               <c:forEach items="${donations}" var="donation">
@@ -282,10 +282,34 @@
               </c:forEach>
 
               <div class="col-12">
-                <span class="p-3">1</span>
-                <a href="#" class="p-3">2</a>
-                <a href="#" class="p-3">3</a>
-                <a href="#" class="p-3">4</a>
+                <div class="finishedPage" id="finishedPage">
+                  <c:if test="${finishedPagination.curRange ne 1 }">
+                    <a href="#" onClick="finished_fn_paging(1);">[처음]</a>
+                  </c:if>
+                  <c:if test="${finishedPagination.curPage ne 1}">
+                    <a href="#;return false;" onClick="finished_fn_paging('${finishedPagination.prevPage }')">[이전]</a>
+                  </c:if>
+                  <c:forEach var="pageNum" begin="${finishedPagination.startPage }" end="${finishedPagination.endPage }">
+                    <c:choose>
+                      <c:when test="${pageNum eq  finishedPagination.curPage}">
+                        <span style="font-weight: bold;"><a href="#" onClick="finished_fn_paging('${pageNum }')">${pageNum }</a></span>
+                      </c:when>
+                      <c:otherwise>
+                        <a href="#" onClick="finished_fn_paging('${pageNum }')">${pageNum }</a>
+                      </c:otherwise>
+                    </c:choose>
+                  </c:forEach>
+                  <c:if test="${finishedPagination.curPage ne finishedPagination.pageCnt && finishedPagination.pageCnt > 0}">
+                    <a href="#" onClick="finished_fn_paging('${finishedPagination.nextPage }')">[다음]</a>
+                  </c:if>
+                  <c:if test="${finishedPagination.curRange ne finishedPagination.rangeCnt && finishedPagination.rangeCnt > 0}">
+                    <a href="#" onClick="finished_fn_paging('${finishedPagination.pageCnt }')">[끝]</a>
+                  </c:if>
+                </div>
+
+                <div>
+                  총 게시글 수 : ${finishedPagination.listCnt } /    총 페이지 수 : ${finishedPagination.pageCnt } / 현재 페이지 : ${finishedPagination.curPage } / 현재 블럭 : ${finishedPagination.curRange } / 총 블럭 수 : ${finishedPagination.rangeCnt }
+                </div>
               </div>
 
 
@@ -336,11 +360,45 @@
 
     </script>
 
-    <script>
-      function fn_paging(curPage) {
-        location.href = "/donation/list?curPage=" + curPage;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function ongoing_fn_paging(ongoingCurPage) {
+        location.href = "/donation/list?ongoingCurPage=" + ongoingCurPage;
+
+
       }
+
+      $(document).ready(function () {
+        console.log("hahaha");
+        // Handler for .ready() called.
+        $('html, body').animate({
+          scrollTop: $('#myTab').offset().top
+        }, 'slow');
+      });
+
+
+
     </script>
+
+    <script type="text/javascript">
+      function finished_fn_paging(finishedCurPage) {
+        location.href = "/donation/list?finishedCurPage=" + finishedCurPage;
+
+
+      }
+
+      $(document).ready(function () {
+        console.log("hahaha");
+        // Handler for .ready() called.
+        $('html, body').animate({
+          scrollTop: $('#profile').offset().top
+        }, 'slow');
+      });
+
+
+
+    </script>
+
 
 
   </body>
