@@ -181,7 +181,7 @@
                 </c:if>
                 <%--요기--%>
               </c:forEach>
-  
+
               <div class="ongoingPage" id="ongoingPage">
                 <c:if test="${ongoingPagination.curRange ne 1 }">
                   <a href="#" onClick="ongoing_fn_paging(1);">[처음]</a>
@@ -362,8 +362,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-      function ongoing_fn_paging(ongoingCurPage) {
-        location.href = "/donation/list?ongoingCurPage=" + ongoingCurPage;
+      function ongoing_fn_paging(curPage) {
+        location.href = "/donation/list?curPage=" + curPage;
 
 
       }
