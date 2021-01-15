@@ -181,8 +181,8 @@
                 </c:if>
                 <%--요기--%>
               </c:forEach>
-
-              <div class="ongoingPage" id="ongoingPage"> 
+  
+              <div class="ongoingPage" id="ongoingPage">
                 <c:if test="${ongoingPagination.curRange ne 1 }">
                   <a href="#" onClick="ongoing_fn_paging(1);">[처음]</a>
                 </c:if>
