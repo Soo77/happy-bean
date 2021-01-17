@@ -13,7 +13,7 @@
 
     <div class="owl-carousel-wrapper">
 
-      
+
 
       <div class="box-92819">
         <h1 class="text-white mb-3">Donation</h1>
@@ -21,12 +21,12 @@
           당신의 가치 있는 응원, 해피빈 기부로 전하세요. </p>
       </div>
 
-      
+
         <div class="ftco-cover-1 overlay" style="background-image: url('/../../../images/main/branding_headline_background-1.jpg');"></div>
-      
+
     </div>
-    
-    
+
+
     <div class="site-section">
       <div class="container">
 
@@ -91,7 +91,7 @@
                     </div>
                   </div>
                 </div>
-              
+
               </div>
           </div>
           <%--</c:forEach>--%>
@@ -103,10 +103,10 @@
         <%--탭(진행중,종료) 두가지 만들기--%>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">진행중</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" >진행중</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">종료</a>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">종료</a>
           </li>
           <c:if test="${loginUser.memberTypeCode eq 'M01001'}">
             <li class="nav-item ml-auto">
@@ -182,6 +182,7 @@
                 <%--요기--%>
               </c:forEach>
 
+             <div class="col-12">
               <div class="ongoingPage" id="ongoingPage">
                 <c:if test="${ongoingPagination.curRange ne 1 }">
                   <a href="#" onClick="ongoing_fn_paging(1);">[처음]</a>
@@ -209,7 +210,10 @@
 
               <div>
                 총 게시글 수 : ${ongoingPagination.listCnt } /    총 페이지 수 : ${ongoingPagination.pageCnt } / 현재 페이지 : ${ongoingPagination.curPage } / 현재 블럭 : ${ongoingPagination.curRange } / 총 블럭 수 : ${ongoingPagination.rangeCnt }
+                / 지금 안나오는애:  ${ongoingPagination.pageSize * (ongoingPagination.curPage - 1)} 얘랑 ${ongoingPagination.pageSize * ongoingPagination.curPage - 1} 얘
               </div>
+
+             </div>
 
 
 
@@ -281,7 +285,7 @@
                 <%--요기--%>
               </c:forEach>
 
-              <%--<div class="col-12">
+              <div class="col-12">
                 <div class="finishedPage" id="finishedPage">
                   <c:if test="${finishedPagination.curRange ne 1 }">
                     <a href="#" onClick="finished_fn_paging(1);">[처음]</a>
@@ -309,8 +313,9 @@
 
                 <div>
                   총 게시글 수 : ${finishedPagination.listCnt } /    총 페이지 수 : ${finishedPagination.pageCnt } / 현재 페이지 : ${finishedPagination.curPage } / 현재 블럭 : ${finishedPagination.curRange } / 총 블럭 수 : ${finishedPagination.rangeCnt }
+                  / 지금 안나오는애:  ${finishedPagination.pageSize * (finishedPagination.curPage - 1)} 얘랑 ${finishedPagination.pageSize * finishedPagination.curPage - 1} 얘
                 </div>
-              </div>--%>
+              </div>
 
 
 
@@ -325,17 +330,17 @@
       </div>
     </div>
 
-    
+
 
 
     <div class="site-section">
       <div class="container">
-        
+
             <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
               <div class=""><h2 class="text-cursive">Helping the Homeless, Hungry, and Hurtings Children</h2></div>
               <div class="ml-auto"><a href="#" class="btn btn-primary">Donate Now</a></div>
             </div>
-        
+
       </div>
     </div>
 
@@ -362,10 +367,15 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-      function ongoing_fn_paging(curPage) {
-        location.href = "/donation/list?curPage=" + curPage;
+      function ongoing_fn_paging(curPage1) {
+        location.href = "/donation/list?curPage1=" + curPage1;
+      }
 
+    </script>
 
+    <script type="text/javascript">
+      function finished_fn_paging(curPage2) {
+        location.href = "/donation/list?curPage2=" + curPage2;
       }
 
     </script>

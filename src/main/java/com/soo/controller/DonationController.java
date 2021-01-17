@@ -38,8 +38,10 @@ public class DonationController {
     /* 기부 리스트 */
     @GetMapping("list")
     public void list(Model model, HttpServletRequest req,
-                     @RequestParam(defaultValue = "6") int pageSize,
-                     @RequestParam(defaultValue = "1") int curPage) throws Exception {
+                     @RequestParam(defaultValue = "6") int pageSize1,
+                     @RequestParam(defaultValue = "1") int curPage1,
+                     @RequestParam(defaultValue = "3") int pageSize2,
+                     @RequestParam(defaultValue = "1") int curPage2) throws Exception {
         List<Donation> donations = donationService.list();
         int listCnt = donations.size();
 
@@ -50,18 +52,19 @@ public class DonationController {
         int finishedListSize = finishedList.size();
 
 
-        Pagination ongoingPagination = new Pagination(ongoingListSize, curPage, pageSize);
+        Pagination ongoingPagination = new Pagination(ongoingListSize, curPage1, pageSize1);
         model.addAttribute("ongoingListCnt", ongoingListSize);
         model.addAttribute("ongoingPagination", ongoingPagination);
 
-        Pagination finishedPagination = new Pagination(finishedListSize, curPage, pageSize);
+        Pagination finishedPagination = new Pagination(finishedListSize, curPage2, pageSize2);
         model.addAttribute("finishedListCnt", finishedListSize);
         model.addAttribute("finishedPagination", finishedPagination);
 
 
 
         model.addAttribute("donations", donations);
-        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("pageSize1", pageSize1);
+        model.addAttribute("pageSize2", pageSize2);
 
         // list에 있는 큰 카드에 진행중인 모금함 1개 띄우기
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
@@ -108,6 +111,77 @@ public class DonationController {
 
 
     }
+
+    /*finished_list*/
+    @GetMapping("finished_list")
+    public void finishedList(Model model, HttpServletRequest req,
+                     @RequestParam(defaultValue = "3") int pageSize,
+                     @RequestParam(defaultValue = "1") int curPage) throws Exception {
+        List<Donation> donations = donationService.list();
+        int listCnt = donations.size();
+
+        List<Donation> finishedList = donationService.finishedList();
+        int finishedListSize = finishedList.size();
+
+        Pagination finishedPagination = new Pagination(finishedListSize, curPage, pageSize);
+        model.addAttribute("finishedListCnt", finishedListSize);
+        model.addAttribute("finishedPagination", finishedPagination);
+
+
+
+        model.addAttribute("donations", donations);
+        model.addAttribute("finishedList", finishedList);
+        model.addAttribute("pageSize", pageSize);
+
+        // list에 있는 큰 카드에 진행중인 모금함 1개 띄우기
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(calendar.getTimeInMillis());
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        String today = sdf.format(date);
+
+        List<Integer> donationIndex = new ArrayList<Integer>();
+
+        for(int i=0; i<donations.size(); i++) {
+            Date endDate1 = donations.get(i).getEndDate();
+            String endDate = sdf.format(endDate1);
+
+
+            Date FirstDate = sdf.parse(today);
+            Date SecondDate = sdf.parse(endDate);
+
+            System.out.println("1오늘: " + FirstDate);
+            System.out.println("2마감날: " + SecondDate);
+            // Date로 변환된 두 날짜를 계산한 뒤 그 리턴값으로 long type 변수를 초기화 하고 있다.
+            // 연산결과 -950400000. long type 으로 return 된다.
+            long calDate = FirstDate.getTime() - SecondDate.getTime();
+
+            // Date.getTime() 은 해당날짜를 기준으로1970년 00:00:00 부터 몇 초가 흘렀는지를 반환해준다.
+            // 이제 24*60*60*1000(각 시간값에 따른 차이점) 을 나눠주면 일수가 나온다.
+            long calDateDays = calDate / ( 24*60*60*1000);
+
+            // 두 날짜의 차이
+
+            System.out.println("두날짜차이"+ i + "번째:" + calDateDays);
+            if(calDateDays < 0) {
+                donationIndex.add(i);
+            }
+
+        }
+        System.out.println(donationIndex);
+        int index = donationIndex.get(0);
+        Donation oneDonation = donations.get(index);
+        model.addAttribute("oneDonation", oneDonation);
+        System.out.println(oneDonation);
+
+
+    }
+
+
+
+
+
+
 
     /* 기부 추가 입력폼 */
     @GetMapping("form")
