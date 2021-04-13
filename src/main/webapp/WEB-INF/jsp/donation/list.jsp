@@ -4,11 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.text.*"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
+
 </head>
+
   <jsp:include page="../header.jsp"/>
 
     <div class="owl-carousel-wrapper">
@@ -118,14 +121,13 @@
           <!--진행중 탭-->
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-              <c:forEach items="${donations}" var="donation"
-                         begin="${ongoingPagination.pageSize * (ongoingPagination.curPage - 1)}"
-                         end="${ongoingPagination.pageSize * ongoingPagination.curPage - 1}">
+
+              <c:forEach items="${ongoingList}" var="ongoingList">
 
                 <%--지저분쓰한 날짜계산--%>
                 <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
                 <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
-                <fmt:formatDate var="tDate" value="${donation.endDate}" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate var="tDate" value="${ongoingList.endDate}" pattern="yyyy-MM-dd"/>
                 <fmt:parseDate value="${sDate}" var="strPlanDate" pattern="yyyy-MM-dd"/>
                 <fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
                 <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
@@ -133,25 +135,25 @@
                 <c:set value="${strDate - endDate }" var="dayDiff" />
 
 
-                <c:if test="${dayDiff < 1 }">
+                <%--<c:if test="${dayDiff < 1 }">--%>
                   <div class="col-md-4">
                     <div class="cause shadow-sm">
-                      <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
-                      <a href="detail?no=${donation.no}" class="cause-link d-block">
-                        <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
+                      <input type="hidden" name="percentage" type="hidden" value="${ongoingList.totalAmount div ongoingList.targetAmount * 100}">
+                      <a href="detail?no=${ongoingList.no}" class="cause-link d-block">
+                        <img src="/../../../upload/donation/thumbnail/${ongoingList.thumbnail}" alt="Image" class="img-fluid-card">
 
                         <div class="custom-progress-wrap">
                           <c:choose>
-                            <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                            <c:when test="${(ongoingList.totalAmount div ongoingList.targetAmount * 100) > 100}">
                               <span class="caption">100% complete</span>
                               <div class="custom-progress-inner">
                                 <div class="custom-progress bg-primary" style="width: 100%;"></div>
                               </div>
                             </c:when>
                             <c:otherwise>
-                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${ongoingList.totalAmount div ongoingList.targetAmount * 100}"/>% complete</span>
                               <div class="custom-progress-inner">
-                                <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                                <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${ongoingList.totalAmount div ongoingList.targetAmount * 100}"/>%;"></div>
                               </div>
                             </c:otherwise>
                           </c:choose>
@@ -160,29 +162,32 @@
                       </a>
 
                       <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                        <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                        <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${ongoingList.detailCode.detailCodeName}</span>
                         <span class="ml-1 badge-warning py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">D${strDate - endDate}</span>
-                        <h3 class="mb-4 nanumsquare"><a href="detail?no=${donation.no}">${donation.name}</a></h3>
+                        <h3 class="mb-4 nanumsquare"><a href="detail?no=${ongoingList.no}">${ongoingList.name}</a></h3>
                         <div class="border-top border-light border-bottom py-2 d-flex">
                           <div>Donated</div>
-                          <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
+                          <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${ongoingList.totalAmount}"/>원</strong></div>
                         </div>
 
                         <div class="py-4">
                           <div class="d-flex align-items-center">
                             <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                            <div class="nanumsquare">${donation.orgnName}</div>
+                            <div class="nanumsquare">${ongoingList.orgnName}</div>
                           </div>
                         </div>
                       </div>
 
                     </div>
                   </div>
-                </c:if>
                 <%--요기--%>
               </c:forEach>
 
-             <div class="col-12">
+              <%--<div class="col-12">
+                <div id="pagination"></div>
+            </div>--%>
+            </div>
+             <%--
               <div class="ongoingPage" id="ongoingPage">
                 <c:if test="${ongoingPagination.curRange ne 1 }">
                   <a href="#" onClick="ongoing_fn_paging(1);">[처음]</a>
@@ -213,22 +218,23 @@
                 / 지금 안나오는애:  ${ongoingPagination.pageSize * (ongoingPagination.curPage - 1)} 얘랑 ${ongoingPagination.pageSize * ongoingPagination.curPage - 1} 얘
               </div>
 
-             </div>
+            --%>
+
 
 
 
 
             </div>
-          </div>
+
           <!--종료 탭 -->
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="row">
-              <c:forEach items="${donations}" var="donation">
+              <c:forEach items="${finishedList}" var="finishedList">
 
                 <%--지저분쓰한 날짜계산--%>
                 <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
                 <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
-                <fmt:formatDate var="tDate" value="${donation.endDate}" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate var="tDate" value="${finishedList.endDate}" pattern="yyyy-MM-dd"/>
                 <fmt:parseDate value="${sDate}" var="strPlanDate" pattern="yyyy-MM-dd"/>
                 <fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
                 <fmt:parseDate value="${tDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
@@ -236,25 +242,25 @@
                 <c:set value="${strDate - endDate }" var="dayDiff" />
 
 
-                <c:if test="${dayDiff >= 0 }">
+                <%--<c:if test="${dayDiff >= 0 }">--%>
                   <div class="col-md-4">
                     <div class="cause shadow-sm">
-                      <input type="hidden" name="percentage" type="hidden" value="${donation.totalAmount div donation.targetAmount * 100}">
-                      <a href="detail?no=${donation.no}" class="cause-link d-block">
-                        <img src="/../../../upload/donation/thumbnail/${donation.thumbnail}" alt="Image" class="img-fluid-card">
+                      <input type="hidden" name="percentage" type="hidden" value="${finishedList.totalAmount div finishedList.targetAmount * 100}">
+                      <a href="detail?no=${finishedList.no}" class="cause-link d-block">
+                        <img src="/../../../upload/donation/thumbnail/${finishedList.thumbnail}" alt="Image" class="img-fluid-card">
 
                         <div class="custom-progress-wrap">
                           <c:choose>
-                            <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
+                            <c:when test="${(finishedList.totalAmount div finishedList.targetAmount * 100) > 100}">
                               <span class="caption">100% complete</span>
                               <div class="custom-progress-inner">
                                 <div class="custom-progress bg-primary" style="width: 100%;"></div>
                               </div>
                             </c:when>
                             <c:otherwise>
-                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
+                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${finishedList.totalAmount div finishedList.targetAmount * 100}"/>% complete</span>
                               <div class="custom-progress-inner">
-                                <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>%;"></div>
+                                <div class="custom-progress bg-primary" style="width: <fmt:formatNumber type = "number" pattern = "###" value = "${finishedList.totalAmount div finishedList.targetAmount * 100}"/>%;"></div>
                               </div>
                             </c:otherwise>
                           </c:choose>
@@ -263,29 +269,33 @@
                       </a>
 
                       <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                        <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${donation.detailCode.detailCodeName}</span>
+                        <span class="badge-primary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">${finishedList.detailCode.detailCodeName}</span>
                         <span class="ml-1 badge-secondary py-1 small px-2 rounded mb-3 d-inline-block nanumsquare">종료</span>
-                        <h3 class="mb-4 nanumsquare"><a href="detail?no=${donation.no}">${donation.name}</a></h3>
+                        <h3 class="mb-4 nanumsquare"><a href="detail?no=${finishedList.no}">${finishedList.name}</a></h3>
                         <div class="border-top border-light border-bottom py-2 d-flex">
                           <div>Donated</div>
-                          <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.totalAmount}"/>원</strong></div>
+                          <div class="ml-auto"><strong class="nanumsquare"><fmt:formatNumber pattern="#,###" value = "${finishedList.totalAmount}"/>원</strong></div>
                         </div>
 
                         <div class="py-4">
                           <div class="d-flex align-items-center">
                             <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
-                            <div class="nanumsquare">${donation.orgnName}</div>
+                            <div class="nanumsquare">${finishedList.orgnName}</div>
                           </div>
                         </div>
                       </div>
 
                     </div>
                   </div>
-                </c:if>
+                <%--</c:if>--%>
+
                 <%--요기--%>
               </c:forEach>
-
               <div class="col-12">
+                <div id="data-container"></div>
+                <div id="pagination"></div>
+              </div>
+              <%--
                 <div class="finishedPage" id="finishedPage">
                   <c:if test="${finishedPagination.curRange ne 1 }">
                     <a href="#" onClick="finished_fn_paging(1);">[처음]</a>
@@ -315,20 +325,20 @@
                   총 게시글 수 : ${finishedPagination.listCnt } /    총 페이지 수 : ${finishedPagination.pageCnt } / 현재 페이지 : ${finishedPagination.curPage } / 현재 블럭 : ${finishedPagination.curRange } / 총 블럭 수 : ${finishedPagination.rangeCnt }
                   / 지금 안나오는애:  ${finishedPagination.pageSize * (finishedPagination.curPage - 1)} 얘랑 ${finishedPagination.pageSize * finishedPagination.curPage - 1} 얘
                 </div>
-              </div>
+              </div>--%>
 
 
 
             </div>
           </div>
         </div>
-
+      </div>
 
 
 
 
       </div>
-    </div>
+
 
 
 
@@ -365,7 +375,7 @@
 
     </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
       function ongoing_fn_paging(curPage1) {
         location.href = "/donation/list?curPage1=" + curPage1;
@@ -378,8 +388,37 @@
         location.href = "/donation/list?curPage2=" + curPage2;
       }
 
-    </script>
+    </script>--%>
+    <!-- js 파일 include -->
+    <script>
+      $(function () {
 
+        let container = $('#pagination');
+          container.pagination({
+            dataSource: function(done){
+              $.ajax({
+                type: 'GET',
+                url: '/test.json',
+                success: function(response) {
+                  done(response);
+                }
+              });
+            },
+            pageSize: 6,
+            callback: function (data, pagination) {
+              var dataHtml = '<ul>';
+
+              $.each(data, function (index, item) {
+                dataHtml += '<li>' + index+ ":"+ item+ '</li>';
+              });
+
+              dataHtml += '</ul>';
+
+              $("#data-container").html(dataHtml);
+            }
+          })
+      });
+    </script>
 
 
 

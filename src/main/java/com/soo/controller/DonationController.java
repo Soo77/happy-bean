@@ -18,7 +18,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
 @Controller
 @RequestMapping("/donation")
 @SessionAttributes("loginUser")
@@ -63,6 +62,8 @@ public class DonationController {
 
 
         model.addAttribute("donations", donations);
+        model.addAttribute("ongoingList", ongoingList);
+        model.addAttribute("finishedList", finishedList);
         model.addAttribute("pageSize1", pageSize1);
         model.addAttribute("pageSize2", pageSize2);
 
@@ -83,8 +84,6 @@ public class DonationController {
             Date FirstDate = sdf.parse(today);
             Date SecondDate = sdf.parse(endDate);
 
-            System.out.println("1오늘: " + FirstDate);
-            System.out.println("2마감날: " + SecondDate);
             // Date로 변환된 두 날짜를 계산한 뒤 그 리턴값으로 long type 변수를 초기화 하고 있다.
             // 연산결과 -950400000. long type 으로 return 된다.
             long calDate = FirstDate.getTime() - SecondDate.getTime();
@@ -95,17 +94,14 @@ public class DonationController {
 
             // 두 날짜의 차이
 
-            System.out.println("두날짜차이"+ i + "번째:" + calDateDays);
             if(calDateDays < 0) {
                 donationIndex.add(i);
             }
 
         }
-        System.out.println(donationIndex);
         int index = donationIndex.get(0);
         Donation oneDonation = donations.get(index);
         model.addAttribute("oneDonation", oneDonation);
-        System.out.println(oneDonation);
         /*String date1 = "2016-09-21";
         String date2 = "2016-09-10";*/
 
@@ -150,8 +146,6 @@ public class DonationController {
             Date FirstDate = sdf.parse(today);
             Date SecondDate = sdf.parse(endDate);
 
-            System.out.println("1오늘: " + FirstDate);
-            System.out.println("2마감날: " + SecondDate);
             // Date로 변환된 두 날짜를 계산한 뒤 그 리턴값으로 long type 변수를 초기화 하고 있다.
             // 연산결과 -950400000. long type 으로 return 된다.
             long calDate = FirstDate.getTime() - SecondDate.getTime();
@@ -162,20 +156,38 @@ public class DonationController {
 
             // 두 날짜의 차이
 
-            System.out.println("두날짜차이"+ i + "번째:" + calDateDays);
             if(calDateDays < 0) {
                 donationIndex.add(i);
             }
 
         }
-        System.out.println(donationIndex);
         int index = donationIndex.get(0);
         Donation oneDonation = donations.get(index);
         model.addAttribute("oneDonation", oneDonation);
-        System.out.println(oneDonation);
 
 
     }
+
+    @GetMapping("paging/finishedList")
+    @ResponseBody
+    private List<Donation> pagingFinishedListList() throws Exception{
+        ArrayList<Donation> arrayList = (ArrayList<Donation>)donationService.finishedList();
+        List<Donation> list = donationService.finishedList();
+        for(int i=0; i<list.size(); i++) {
+            System.out.println("사이즈맞나?!#@@@@@@@@@@@@" + list.size() + "번호는?:"+list.get(i).getName());
+        }
+
+        return arrayList;
+    }
+
+    /*@GetMapping("/test.json")
+    @ResponseBody
+    private JSONArray testJson() throws Exception{
+        List<Donation> list = donationService.finishedList();
+        JSONArray mapResult = JSONArray.fromObject(list);
+
+        return mapResult;
+    }*/
 
 
 
@@ -205,7 +217,6 @@ public class DonationController {
 
         String filename = UUID.randomUUID().toString()+".jpg";
         file.transferTo(new File(uploadDir + "/" + filename));
-        System.out.println("uploadDir**********" + uploadDir);
         return filename;
     }
 
@@ -228,10 +239,8 @@ public class DonationController {
 
     @PostMapping("update")
     public String update(Donation donation, MultipartFile file) throws Exception {
-        System.out.println("짠@@@@@@@@@@@@@@@:"+file);
         donation.setThumbnail(writeFile(file));
         donationService.update(donation);
-        System.out.println("업데이트했어용.");
         return "redirect:list";
     }
 
@@ -253,11 +262,6 @@ public class DonationController {
 
         model.addAttribute("donation", donation);
         model.addAttribute("loginUser", member);
-
-        System.out.println("멤버의돈:" + member.getMoney());
-        System.out.println("기부된 돈전체:" + donation.getTotalAmount());
-        System.out.println("입력된 머니:" + money);
-
 
         donationHistory.setMemberNo(member.getNo());
         donationHistory.setDonaNo(donation.getNo());
@@ -309,7 +313,6 @@ public class DonationController {
             int donaNo,
             String recommentContents,
             int parentNo) throws Exception {
-        System.out.println("donaNo:" + donaNo + ", recommentContents:" + recommentContents + ", parentNo:" + parentNo);
         Member member = (Member) session.getAttribute("loginUser");
         int memberNo = member.getNo();
         DonationComment comment = new DonationComment();
@@ -347,7 +350,6 @@ public class DonationController {
         int count = donationCommentService.countCmt(no);
 
         int childCount = donationCommentDao.countChild(commentNo);
-        System.out.println("@@@@@@@@@@@@@@@@@@@" + childCount);
         if (childCount != 0) {
             donation.setCountCmt(count-(childCount+1));
             donationService.update(donation);
