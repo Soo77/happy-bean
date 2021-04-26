@@ -228,9 +228,8 @@
 
           <!--종료 탭 -->
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row">
+            <div class="row finish-paginated">
               <c:forEach items="${finishedList}" var="finishedList">
-
                 <%--지저분쓰한 날짜계산--%>
                 <c:set var="toDay_C" value="<%=new java.util.Date()%>"/>
                 <fmt:formatDate var="sDate" value="${toDay_C}" pattern="yyyy-MM-dd"/>
@@ -243,7 +242,8 @@
 
 
                 <%--<c:if test="${dayDiff >= 0 }">--%>
-                  <div class="col-md-4">
+                <input type="hidden" name="countFinish" value="${finishedListCnt}">
+                  <div class="col-md-4 eachFinish">
                     <div class="cause shadow-sm">
                       <input type="hidden" name="percentage" type="hidden" value="${finishedList.totalAmount div finishedList.targetAmount * 100}">
                       <a href="detail?no=${finishedList.no}" class="cause-link d-block">
@@ -292,8 +292,9 @@
                 <%--요기--%>
               </c:forEach>
               <div class="col-12">
-                <div id="data-container"></div>
-                <div id="pagination"></div>
+                <nav aria-label="Page navigation example">
+                <div class="finish-paginated2"></div>
+                </nav>
               </div>
               <%--
                 <div class="finishedPage" id="finishedPage">
@@ -326,7 +327,6 @@
                   / 지금 안나오는애:  ${finishedPagination.pageSize * (finishedPagination.curPage - 1)} 얘랑 ${finishedPagination.pageSize * finishedPagination.curPage - 1} 얘
                 </div>
               </div>--%>
-
 
 
             </div>
@@ -390,36 +390,80 @@
 
     </script>--%>
     <!-- js 파일 include -->
-    <script>
+    <%--<script>
+
       $(function () {
-
         let container = $('#pagination');
-          container.pagination({
-            dataSource: function(done){
-              $.ajax({
-                type: 'GET',
-                url: '/test.json',
-                success: function(response) {
-                  done(response);
-                }
-              });
-            },
-            pageSize: 6,
-            callback: function (data, pagination) {
-              var dataHtml = '<ul>';
+        container.pagination({
+          dataSource: [
+            {name: "hello1"},
+            {name: "hello2"},
+            {name: "hello3"},
+            {name: "hello4"},
+            {name: "hello5"},
+            {name: "hello6"},
+            {name: "hello7"},
+            {name: "hello8"},
+            {name: "hello9"},
+            {name: "hello10"},
+            {name: "hello11"},
+            {name: "hello12"},
+          ],
+          callback: function (data, pagination) {
+            var dataHtml = '<ul>';
 
-              $.each(data, function (index, item) {
-                dataHtml += '<li>' + index+ ":"+ item+ '</li>';
-              });
+            $.each(data, function (index, item) {
+              dataHtml += '<li>' + item.name + '</li>';
+            });
 
-              dataHtml += '</ul>';
+            dataHtml += '</ul>';
 
-              $("#data-container").html(dataHtml);
-            }
-          })
+            $("#data-container").html(dataHtml);
+          }
+        })
       });
-    </script>
 
+    </script>--%>
+
+  <script>
+    $('.finish-paginated').each(function() {
+
+    //.each(function() {
+
+
+      var currentPage = 0;
+      var numPerPage = 6;
+      var $table = $(this);
+      var repaginate = function () {
+        $table.find('.eachFinish').hide().slice(currentPage * numPerPage,(currentPage + 1) * numPerPage).show();
+        //현재페이지+1 곱하기 현재페이지까지 보여준다
+      };
+
+      var numRows = $('input[name=countFinish]').val();
+      var numPages = Math.ceil(numRows / numPerPage);
+
+      //var $pager = $('<div class="pager"></div>');
+      var $pager = $('<ul class="pagination"></ul>');
+      //$('<span class="page-number"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
+      for (var page = 0; page < numPages; page++) {
+        //var $pager = $("#pagination");
+        var $pager2 = $('<li class="page-item"></li>');
+        //$('<li class="page-item"><a class="page-link" href="javascript:void(0);"></a></li>').text(page + 1).bind('click', {newPage: page}, function(event) {
+        $pager2.html($('<a class="page-link" href="javascript:void(0);"></a>').text(page + 1).bind('click', {newPage: page}, function(event) {
+                  currentPage = event.data['newPage'];
+                  repaginate();
+                  $(this).addClass('active').siblings().removeClass('active');})).appendTo($pager).addClass('clickable');
+
+
+        }
+      var $target = $table.find('.finish-paginated2');
+      //$pager.insertBefore($table).find('span.page-number:first').addClass('active');
+      $pager.insertBefore($target).find('span.page-number:first').addClass('active');
+
+      repaginate();
+
+    });
+  </script>
 
 
 
