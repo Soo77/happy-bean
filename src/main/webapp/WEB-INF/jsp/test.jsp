@@ -13,9 +13,20 @@
  </br>ya</br>ya</br>ya</br></br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya</br>ya
  <nav aria-label="Page navigation example">
   <ul class="pagination">
+   <li class="page-item">
+    <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+     &laquo;
+    </a>
+   </li>
    <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+   <li class="page-item">
+    <a class="page-link" href="javascript:void(0);" aria-label="Next">
+     <span aria-hidden="true">&raquo;</span>
+     <span class="sr-only">Next</span>
+    </a>
+   </li>
   </ul>
  </nav>
 

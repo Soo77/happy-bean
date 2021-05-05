@@ -431,38 +431,103 @@
     //.each(function() {
 
 
-      var currentPage = 0;
+      var currentPage = 1;
       var numPerPage = 6;
       var $table = $(this);
-      var repaginate = function () {
-        $table.find('.eachFinish').hide().slice(currentPage * numPerPage,(currentPage + 1) * numPerPage).show();
-        //현재페이지+1 곱하기 현재페이지까지 보여준다
-      };
 
       var numRows = $('input[name=countFinish]').val();
+      console.log("총몇명:"+numRows);
       var numPages = Math.ceil(numRows / numPerPage);
 
-      //var $pager = $('<div class="pager"></div>');
-      var $pager = $('<ul class="pagination"></ul>');
-      //$('<span class="page-number"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
-      for (var page = 0; page < numPages; page++) {
-        //var $pager = $("#pagination");
-        var $pager2 = $('<li class="page-item"></li>');
-        //$('<li class="page-item"><a class="page-link" href="javascript:void(0);"></a></li>').text(page + 1).bind('click', {newPage: page}, function(event) {
-        $pager2.html($('<a class="page-link" href="javascript:void(0);"></a>').text(page + 1).bind('click', {newPage: page}, function(event) {
-                  currentPage = event.data['newPage'];
-                  repaginate();
-                  $(this).addClass('active').siblings().removeClass('active');})).appendTo($pager).addClass('clickable');
+      //var startPage = (( ( Math.floor( ((currentPage+1) / 10) + 0.9 )  ) -1 ) * 10 +1);
+
+      var startPage = Math.floor(((currentPage - 1) / numPages)) * numPages + 1;
+      console.log("새로운 스따또 페이지는?:"+startPage);
+      var endPage = startPage + 9;
+      if(endPage > numPages) {
+        endPage=numPages;
+      }
+
+      var repaginate = function () {
+        //$table.find('.eachFinish').hide().slice(currentPage * numPerPage,(currentPage + 1) * numPerPage).show();
+        $table.find('.eachFinish').hide().slice((currentPage-1) * numPerPage,(currentPage) * numPerPage).show();
+
+
+        //var $pager = $('<div class="pager"></div>');
+        var $pager = $('<ul class="pagination"></ul>');
+
+
+      //var grouping = function () {
+        if (startPage > 1) {
+          var $pager3 = $('<li class="page-item"></li>');
+
+          $pager3.html($('<a class="page-link" href="javascript:void(0);" aria-label="Previous"></a>').text('<<').bind('click', {newPage: startPage - 1}, function (event) {
+            currentPage = event.data['newPage'];
+            //startPage = (((Math.floor(((currentPage) / 10) + 0.9)) - 1) * 10 + 1);
+            startPage = (((Math.floor(((currentPage) / 10) + 0.9)) - 1) * 10 + 1);
+            console.log("startPage가머냐면:" + startPage);
+            endPage = startPage + 9;
+            if (endPage > numPages) {
+              endPage = numPages;
+            }
+            $('.pagination').hide();
+            repaginate();
+            $(this).addClass('active').siblings().removeClass('active');
+          })).appendTo($pager).addClass('clickable');
+
+        }
+
+        //$('<span class="page-number"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
+
+
+        for (var page = startPage; page <= endPage; page++) {
+          //var $pager = $("#pagination");
+          var $pager2 = $('<li class="page-item"></li>');
+          //$('<li class="page-item"><a class="page-link" href="javascript:void(0);"></a></li>').text(page + 1).bind('click', {newPage: page}, function(event) {
+          $pager2.html($('<a class="page-link" href="javascript:void(0);"></a>').text(page).bind('click', {newPage: page}, function (event) {
+            currentPage = event.data['newPage'];
+            console.log("지금페이지가 궁금해:"+currentPage);
+            $('.pagination').hide();
+            repaginate();
+            $(this).addClass('active').siblings().removeClass('active');
+          })).appendTo($pager).addClass('clickable');
+
+        }
+
+
+        if (endPage < numPages) {
+          var $pager4 = $('<li class="page-item"></li>');
+
+          console.log("대체 endpage가 얼만데:"+endPage);
+          console.log("대체 current가 얼만데:"+currentPage);
+          $pager4.html($('<a class="page-link" href="javascript:void(0);" aria-label="Next"></a>').text('>>').bind('click', {newPage: endPage + 1}, function (event) {
+            currentPage = event.data['newPage'];
+            console.log("currentPage:" + currentPage);
+            startPage = (((Math.floor(((currentPage + 1) / 10) + 0.9)) - 1) * 10 + 1);
+            console.log("startpage는:"+startPage);
+            endPage = startPage + 9;
+            if (endPage > numPages) {
+              endPage = numPages;
+            }
+            console.log("startPage:" + startPage);
+            $('.pagination').hide();
+            repaginate();
+            $(this).addClass('active').siblings().removeClass('active');
+          })).appendTo($pager).addClass('clickable');
 
 
         }
+
+
+
       var $target = $table.find('.finish-paginated2');
       //$pager.insertBefore($table).find('span.page-number:first').addClass('active');
       $pager.insertBefore($target).find('span.page-number:first').addClass('active');
-
+      };
       repaginate();
 
     });
+
   </script>
 
 

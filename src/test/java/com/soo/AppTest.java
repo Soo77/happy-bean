@@ -3,12 +3,27 @@
  */
 package com.soo;
 
+import com.soo.domain.Member;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
     @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+        Member member = new Member();
+        member.setId("1");
+        Member member2  = new Member();
+        member2.setId("2");
+        List<Member> members = new ArrayList<>();
+
+        members.add(member);
+        members.add(member2);
+
+        System.out.println("여기에 나옵니다.");
+        members.forEach(r -> System.out.println(r.getId()));
     }
 }
