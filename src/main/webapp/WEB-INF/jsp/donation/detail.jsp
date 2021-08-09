@@ -53,11 +53,11 @@
           <!-- END comment-list -->
 
           <div class="comment-form-wrap pt-5">
-            <h3 class="mb-5">Leave a comment</h3>
+            <%--<h3 class="mb-5">Leave a comment</h3>--%>
             <form name="commentInsertForm">
               <input type="hidden" name="donaNo" value="${donation.no}" />
               <div class="form-group">
-                <label for="commentContents">Message</label>
+                <label for="commentContents">댓글</label>
                 <textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
               </div>
               <div class="form-group" id="commentAdd">
@@ -89,7 +89,7 @@
               <div class="custom-progress-wrap">
                 <c:choose>
                   <c:when test="${(donation.totalAmount div donation.targetAmount * 100) > 100}">
-                    <span class="caption">100% complete</span>
+                    <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${donation.totalAmount div donation.targetAmount * 100}"/>% complete</span>
                     <div class="custom-progress-inner">
                       <div class="custom-progress bg-primary" style="width: 100%;"></div>
                     </div>
@@ -285,7 +285,15 @@
         var count = Object.keys(data).length;
 
         let a = '';
-        a += '<h3 class="mb-5">'+ count + ' Comments</h3>'
+        if (count == 0) {
+          a += '<p align="center">'
+          a += '<img src="/../../../upload/donation/content/comment/no-comment.png" vspace=5 width="80" alt="댓글없음"></br>'
+          /*a += '<div class="pt-1" style="text-align:center">댓글이 없습니다. 댓글을 작성해주세요.</div>'*/
+          a += '댓글이 없습니다. 댓글을 작성해주세요.'
+          a += '</p>'
+        } else {
+           a += '<h3 class="mb-5">'+ count + ' Comments</h3>'
+        }
         a += '<ul class="comment-list">'
         $.each(
                 data,

@@ -53,7 +53,7 @@
                 <div class="custom-progress-wrap">
                   <c:choose>
                     <c:when test="${(oneDonation.totalAmount div oneDonation.targetAmount * 100) > 100}">
-                      <span class="caption">100% complete</span>
+                      <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${oneDonation.totalAmount div oneDonation.targetAmount * 100}"/>% complete</span>
                       <div class="custom-progress-inner">
                         <div class="custom-progress bg-primary" style="width: 100%;"></div>
                       </div>
@@ -145,7 +145,7 @@
                         <div class="custom-progress-wrap">
                           <c:choose>
                             <c:when test="${(ongoingList.totalAmount div ongoingList.targetAmount * 100) > 100}">
-                              <span class="caption">100% complete</span>
+                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${ongoingList.totalAmount div ongoingList.targetAmount * 100}"/>% complete</span>
                               <div class="custom-progress-inner">
                                 <div class="custom-progress bg-primary" style="width: 100%;"></div>
                               </div>
@@ -252,7 +252,7 @@
                         <div class="custom-progress-wrap">
                           <c:choose>
                             <c:when test="${(finishedList.totalAmount div finishedList.targetAmount * 100) > 100}">
-                              <span class="caption">100% complete</span>
+                              <span class="caption"><fmt:formatNumber type = "percent" pattern = "###" value = "${finishedList.totalAmount div finishedList.targetAmount * 100}"/>% complete</span>
                               <div class="custom-progress-inner">
                                 <div class="custom-progress bg-primary" style="width: 100%;"></div>
                               </div>
