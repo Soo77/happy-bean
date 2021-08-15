@@ -1,14 +1,13 @@
 package com.soo.service.impl;
 
 import com.soo.dao.MemberDao;
-import com.soo.domain.Donation;
+import com.soo.domain.ChargeHistory;
 import com.soo.domain.Member;
 import com.soo.service.MemberService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class DefaultMemberService implements MemberService {
@@ -39,5 +38,11 @@ public class DefaultMemberService implements MemberService {
             throw new Exception("해당 번호의 데이터가 없습니다!");
         }
         return member;
+    }
+
+
+    @Override
+    public void insertChargeHistory(ChargeHistory chargeHistory) throws Exception {
+        memberDao.insertChargeHistory(chargeHistory);
     }
 }

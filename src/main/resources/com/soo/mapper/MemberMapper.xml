@@ -11,6 +11,13 @@
         <result column="rdt" property="registeredDate"/>
     </resultMap>
 
+    <resultMap type="ChargeHistory" id="ChargeHistoryMap">
+        <id column="charge_no" property="chargeNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="charge_amount" property="chargeAmount"/>
+        <result column="charge_date" property="chargeDate"/>
+    </resultMap>
+
     <sql id="basicColumn">
         select
         member_no,
@@ -60,6 +67,10 @@
       select count(*) from member where id=#{id}
     </select>-->
 
+    <insert id="insertChargeHistory" parameterType="ChargeHistory">
+        insert into charge_history(member_no,charge_amount,charge_date)
+        values(#{memberNo},#{chargeAmount},now())
+    </insert>
 
 
 </mapper>

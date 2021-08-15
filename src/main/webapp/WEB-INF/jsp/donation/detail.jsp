@@ -12,6 +12,7 @@
   <meta http-equiv="Content-Type" content="text/html;">
 </head>
 
+
 <jsp:include page="../header.jsp"/>
 
 <div class="ftco-blocks-cover-1">
@@ -58,7 +59,7 @@
               <input type="hidden" name="donaNo" value="${donation.no}" />
               <div class="form-group">
                 <label for="commentContents">댓글</label>
-                <textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick='loginFirstbeforeCmt()'></textarea>
+                <textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick='loginCheck()'></textarea>
               </div>
               <div class="form-group" id="commentAdd">
                 <%--<input type="submit" name="commentInsertBtn" value="Post Comment" class="btn btn-primary btn-md text-white">
@@ -138,7 +139,7 @@
                 <div class="ml-auto nanumsquare"><fmt:formatNumber pattern="#,###" value = "${donation.targetAmount}"/>원 목표</div>
               </div>
 
-              <div class="py-4">
+              <div class="pb-2">
                 <div class="d-flex align-items-center">
                   <img src="/../../../images/main/orgn1.jpg" alt="Image" class="rounded-circle mr-3" width="50">
                   <div class="nanumsquare">${donation.orgnName}</div>
@@ -146,17 +147,52 @@
               </div>
 
               <c:if test="${dayDiff < 1 }">
-                <form action="/donation/donate" name="donateForm" method="post" class="footer-suscribe-form"  onsubmit='return loginFirstbeforeCmt()'>
-                  <input type='hidden' name='no' id='no' value='${donation.no}'>
+              <div class="pt-1 pb-4">
+              <button type="button" style="width:100%" class="btn btn-primary btn-lg" id="donationModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                  기부하기
+              </button>
+              </div>
 
-                  <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
-                  <div class="input-group mb-3">
-                    <input type="text" name="money" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="금액을 입력하세요." aria-label="Enter Email" aria-describedby="button-addon2 " required="" autofocus="">
-                    <div class="input-group-append">
-                      <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="button-addon22" />
+                <!-- Modal -->
+                <div class="modal fade" id="donationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title nanumsquare" id="staticBackdropLabel">기부하기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h5 class="nanumsquare">보유금액 기부</h5>
+                        <form action="/donation/donate" name="donateForm" method="post" class="footer-suscribe-form"  onsubmit='return loginCheck()'>
+                          <input type='hidden' name='no' id='no' value='${donation.no}'>
+                          <input type='hidden' name='memberNo' id='memberNo' value='${loginUser.no}'>
+                          <div class="input-group mb-3">
+                            <input type="text" name="money" class="form-control rounded-0 text-white bg-transparent" placeholder="기부하실 금액을 입력하세요." aria-label="기부하실 금액을 입력하세요." required="" autofocus=""><div id="won" class="nanumsquare" style="line-height:45px;"> 원/ &nbsp;${loginUser.money}원 &nbsp;</div>
+                            <div>
+                              <input type="submit" value="기부하기" class="btn btn-primary btn-md text-white" id="finalDonateBtn" data-bs-target="#secondModal" />
+                            </div>
+                          </div>
+                        </form>
+                        <hr>
+                        <h5 class="nanumsquare">충전하기</h5>
+                        <form action="/donation/charge" name="chargeForm" method="post" class="footer-suscribe-form"  onsubmit='return loginCheck()'>
+                          <input type='input' name='chargeDonationNo' id='chargeDonationNo' value='${donation.no}'>
+                          <input type='input' name='chargeMemberNo' id='chargeMemberNo' value='${loginUser.no}'>
+                          <div class="input-group mb-3">
+                            <input type="text" name="chargeAmount" class="form-control rounded-0 text-white bg-transparent" placeholder="충전하실 금액을 입력하세요." aria-label="충전하실 금액을 입력하세요." required="" autofocus=""><div class="nanumsquare" style="line-height:45px;"> 원  &nbsp;</div>
+                            <div>
+                              <input type="submit" value="충전하기" class="btn btn-primary btn-md text-white" id="chargeBtn"/>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeModalBtn" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" >Understood</button>
+                      </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </c:if>
             </div>
 
@@ -208,7 +244,31 @@
 
 
 <script>
-  function loginFirstbeforeCmt() {
+  // 모달 버튼에 이벤트를 건다.
+  let session = $('input[name=loginsession]').val();
+  $('#donationModalBtn').on('click', function(){
+    console.log("session:"+session);
+    if (session == "") {
+      console.log("로그인안해서 들어왔어.")
+      alert('로그인을 해주세요.');
+      location.href = '../auth/signInForm';
+      return false;
+    } else {
+      $('#donationModal').modal('show');
+    }
+  });
+  // 모달 안의 취소 버튼에 이벤트를 건다.
+  $('#closeModalBtn').on('click', function(){
+    $('#donationModal').modal('hide');
+  });
+  $("#finalDonateBtn").click(function() {
+    //alert("버튼1을 누르셨습니다.");
+    $('#secondModal').modal('show');
+  });
+</script>
+
+<script>
+  function loginCheck() {
     let session = $('input[name=loginsession]').val();
     if (session == "") {
       if (confirm('로그인을 해주세요.')) {
@@ -342,7 +402,7 @@
                   a += '　'
                   a += '<input type="hidden" name="donaNo" value=\'${donation.no}\' />'
                   a += '<div class="css_test' + value.commentNo+ '" name="hi" style="display: none">'
-                  a += '<textarea class="form-control" name="recommentContents_' + value.commentNo + '" rows="3" maxlength="300" onclick="loginFirstbeforeCmt()"></textarea>'
+                  a += '<textarea class="form-control" name="recommentContents_' + value.commentNo + '" rows="3" maxlength="300" onclick="loginCheck()"></textarea>'
                   a += '<div class="row  float-right">';
                   a += '<div class="col complete pt-1"> <button type="button" name="replyAddBtn" class="btn btn-outline-success btn-round btn-sm" onclick="recommentAddProc('
                           + value.commentNo
@@ -474,7 +534,7 @@
 /*  //답글 등록창 열리게
   function openReplyArea() {
       var a = '';
-      a += '<textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick="loginFirstbeforeCmt()"></textarea>';
+      a += '<textarea name="commentContents" id="commentContents" rows="5" class="form-control" onclick="loginCheck()"></textarea>';
       a += '<div class="row float-right">';
       a += '<div class="col complete"> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="">답글등록</button>';
       a += '</div></div>';
@@ -490,6 +550,12 @@
 
 
 </script>
+
+
+
+
+
+
 
 
 </html>

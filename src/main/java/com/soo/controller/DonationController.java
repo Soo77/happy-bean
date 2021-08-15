@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -200,6 +201,30 @@ public class DonationController {
     public void form() throws Exception {
     }
 
+    /* 기부 후 확인창 */
+    @GetMapping("donation_confirm")
+    public void donationConfirm(HttpServletRequest request,
+                                @RequestParam("donateMoney") int donateMoney,
+                                @RequestParam("donationNo") int donationNo,
+                                Model model) throws Exception {
+        Donation donation = donationService.get(donationNo);
+        model.addAttribute("donateMoney",donateMoney);
+        model.addAttribute("donation",donation);
+    }
+
+    /* 충전 후 확인창 */
+    @GetMapping("charge_confirm")
+    public void chargeConfirm(HttpServletRequest request,
+                                @RequestParam("chargeDonationNo") int chargeDonationNo,
+                                @RequestParam("chargeAmount") int chargeAmount,
+                                @RequestParam("memberMoney") int memberMoney,
+                                Model model) throws Exception {
+        Donation donation = donationService.get(chargeDonationNo);
+        model.addAttribute("chargeAmount",chargeAmount);
+        model.addAttribute("memberMoney",memberMoney);
+        model.addAttribute("donation",donation);
+    }
+
     /* 기부 추가 기능 */
     @PostMapping("add")
     public String add(Donation donation, MultipartFile file) throws Exception {
@@ -250,8 +275,33 @@ public class DonationController {
         return "redirect:list";
     }
 
+    @PostMapping("charge")
+    @RequestMapping(value = "charge", method = RequestMethod.POST)
+    public String charge(RedirectAttributes redirect, @ModelAttribute("loginUser") Member member, Model model, int chargeDonationNo, int chargeMemberNo, int chargeAmount, ChargeHistory chargeHistory) throws Exception {
+        System.out.println("들어왔니?");
+        System.out.println("chargeDonationNo:"+chargeDonationNo + ",chargeMemberNo:"+chargeMemberNo+",chargeAmount:"+chargeAmount);
+
+        Donation donation = donationService.get(chargeDonationNo);
+        member = memberService.get(chargeMemberNo);
+        member.setMoney(member.getMoney()+chargeAmount);
+
+        memberService.update(member);
+
+        model.addAttribute("donation", donation);
+        model.addAttribute("loginUser", member);
+
+        chargeHistory.setMemberNo(member.getNo());
+        chargeHistory.setChargeAmount(chargeAmount);
+        memberService.insertChargeHistory(chargeHistory);
+
+        redirect.addAttribute("chargeDonationNo", chargeDonationNo);
+        redirect.addAttribute("chargeAmount", chargeAmount);
+        redirect.addAttribute("memberMoney", member.getMoney());
+        return "redirect:charge_confirm";
+    }
+
     @PostMapping("donate")
-    public String donate(@ModelAttribute("loginUser") Member member, Model model, int no, int memberNo, int money, DonationHistory donationHistory) throws Exception {
+    public String donate(RedirectAttributes redirect, @ModelAttribute("loginUser") Member member, Model model, int no, int memberNo, int money, DonationHistory donationHistory) throws Exception {
         Donation donation = donationService.get(no);
         member = memberService.get(memberNo);
         donation.setTotalAmount(donation.getTotalAmount()+money);
@@ -268,8 +318,10 @@ public class DonationController {
         donationHistory.setDonateAmount(money);
         donationService.insertDonationHistory(donationHistory);
 
-
-        return "redirect:detail?no="+no;
+        redirect.addAttribute("donateMoney", money);
+        redirect.addAttribute("donationNo", no);
+        //return "redirect:detail?no="+no;
+        return "redirect:donation_confirm";
     }
 
     @GetMapping("comment/list")
