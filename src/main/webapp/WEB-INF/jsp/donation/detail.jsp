@@ -333,6 +333,149 @@
   });*/
 
   /* 댓글 목록 */
+  function showCommentList0() {
+
+    $.ajax({
+      url : 'comment/list',
+      type : 'get',
+      data : { 'no' : ${donation.no},
+        'cnt' : ${donation.countCmt}
+      },
+      success : function(data) {
+        var count = Object.keys(data).length;
+        var realParentNo =  $('#realParentCommentNo').val();
+        console.log("realParentNo:"+realParentNo);
+        function childrenCnt(realParentNo) {
+          var childCount=0;
+          for(var i=0; i<Object.keys(data).length; i++) {
+            if (JSON.stringify(data[i].parentCommentNo) == realParentNo) {
+              childCount++;
+            }
+            //console.log("data["+i+"]:"+(JSON.stringify(data[i])));
+            //console.log("data["+i+"]:"+(JSON.stringify(data[i].parentCommentNo)));
+            //console.log("data["+i+"]:"+(JSON.parse(data[i])));
+            console.log("Object.keys(data).length"+Object.keys(data).length);
+          }
+          console.log("함수안에 숫자는"+realChildCount+"개입니다.");
+          return childCount;
+        }
+        var realChildCount=childrenCnt();
+        console.log("부모넘버"+realParentNo+"의 자식개수는 "+realChildCount+"개입니다.");
+
+        var realRealChildCnt = 0;
+
+        let childCntMap = new Map();
+        for (var i = 0; i < Object.keys(data).length; i++) {
+          //console.log("부모넘버:"+JSON.stringify(data[i].parentCommentNo) +", 자신넘버:"+JSON.stringify(data[i].commentNo));
+          childCntMap.set(JSON.stringify(data[i].commentNo),JSON.stringify(data[i].parentCommentNo));
+        }
+        let childCntMap2 = new Map();
+        let realChildCnt;
+        for (var i = 0; i < Object.keys(data).length; i++) {
+          realChildCnt = 0;
+          for(var j=0; j<Object.keys(data).length; j++) {
+            console.log("commentNo:"+JSON.stringify(data[i].commentNo)+",parentCommentNo:"+JSON.stringify(data[j].parentCommentNo)+",realChildCnt:"+realChildCnt);
+            if(JSON.stringify(data[i].commentNo) == JSON.stringify(data[j].parentCommentNo)) {
+              realChildCnt++;
+              console.log("i:"+i+",j:"+j+",realChildCnt:"+realChildCnt);
+            }
+          }
+          childCntMap2.set(JSON.stringify(data[i].commentNo),realChildCnt);
+        }
+        console.log(childCntMap2.get("7"));
+        console.log(childCntMap2.get(String(7)));
+        console.log(childCntMap);
+        console.log(childCntMap2);
+        //console.log("childCntMap.get(79):"+childCntMap.get("79"));
+
+        let a = '';
+        if (count == 0) {
+          a += '<p align="center">'
+          a += '<img src="/../../../upload/donation/content/comment/no-comment.png" vspace=5 width="80" alt="댓글없음"></br>'
+          /*a += '<div class="pt-1" style="text-align:center">댓글이 없습니다. 댓글을 작성해주세요.</div>'*/
+          a += '댓글이 없습니다. 댓글을 작성해주세요.'
+          a += '</p>'
+        } else {
+          a += '<h3 class="mb-5">'+ count + ' Comments</h3>'
+        }
+        a += '<ul class="comment-list">'
+        $.each(
+                data,
+                function(key, value) {
+                  if (value.parentCommentNo !== 0) {
+                    a += '<li class="comment reply_content' + value.parentCommentNo+ '" style="display: none">';
+                    a += '<ul class="children">';
+                    a += '<li class="comment">';
+                  } else {
+                    a += '<li class="comment">'
+                  }
+                  a += '<div class="vcard bio">';
+                  if (value.parentCommentNo !== 0) {
+                    a += 'ㄴ&ensp;<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
+                  } else {
+                    a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
+                  }
+                  a += '</div>';
+                  a += '<div class="comment-body" id="eachComment">'
+                  a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
+                  a += '<div class="meta">'+ value.createDate + '</div>'
+
+                  a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '" style="float:right";>'
+
+                  if(value.parentCommentNo != 0) {
+                    console.log("value.parentCommentNo:"+value.parentCommentNo);
+                    realRealChildCnt++;
+                  }
+                  if (value.parentCommentNo == 0) {
+                    a += '<button class="btn btn-outline-info btn-round btn-sm" type="button" onclick=$(".reply_content' + value.commentNo +'").toggle(300);> 답글 ' + childCntMap2.get(String(value.commentNo)) + '개</button>'
+                  }
+                  a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+                          + value.commentNo
+                          + ',\''
+                          + value.content
+                          + '\');"> 수정 </button>'
+                  a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
+                          + value.commentNo
+                          + ');"> 삭제 </button>'
+
+                  a += '</div>'
+                  a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;font-size: larger;">&emsp;&emsp;&emsp;&emsp;'
+                          + value.content + '</div>'
+
+
+                  a += '</div>'
+                  a += '</div>'
+                  if (value.parentCommentNo !== 0) {
+                    a += '</li>';
+                    a += '</ul>';
+                  }
+                  a += '<form name="recommentInsertForm">'
+                  a += '　'
+                  a += '<input type="hidden" name="donaNo" value=\'${donation.no}\' />'
+                  if(value.parentCommentNo == 0) {
+                    a += '<div class="reply_content' + value.commentNo + '" id="reply_content" style="display: none">'
+                    a += '<textarea class="form-control" name="recommentContents_' + value.commentNo + '" rows="3" maxlength="300" onclick="loginCheck()"></textarea>'
+
+                    a += '<div class="row  float-right">';
+                    a += '<div class="col complete pt-1"> <button type="button" name="replyAddBtn" class="btn btn-outline-success btn-round btn-sm" onclick="recommentAddProc('
+                            + value.commentNo
+                            + ');">등록</button>';
+                    a += '</div></div>'
+                    a += '</div>'
+                  }
+                  a += '</form>'
+                  /*a += '<div class="replyArea">'
+                  a += '<textarea class="replyCommentContents'+value.commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>';
+                  a += '</div>'*/
+                  a += '</li>'
+
+                });
+        a += '</ul>'
+        $(".showCommentList").html(a);
+      }
+    });
+  };
+
   function showCommentList() {
 
     $.ajax({
@@ -343,6 +486,50 @@
       },
       success : function(data) {
         var count = Object.keys(data).length;
+        var realParentNo =  $('#realParentCommentNo').val();
+        console.log("realParentNo:"+realParentNo);
+         function childrenCnt(realParentNo) {
+           var childCount=0;
+           for(var i=0; i<Object.keys(data).length; i++) {
+             if (JSON.stringify(data[i].parentCommentNo) == realParentNo) {
+               childCount++;
+             }
+             //console.log("data["+i+"]:"+(JSON.stringify(data[i])));
+             //console.log("data["+i+"]:"+(JSON.stringify(data[i].parentCommentNo)));
+             //console.log("data["+i+"]:"+(JSON.parse(data[i])));
+             console.log("Object.keys(data).length"+Object.keys(data).length);
+           }
+           console.log("함수안에 숫자는"+realChildCount+"개입니다.");
+           return childCount;
+         }
+         var realChildCount=childrenCnt();
+         console.log("부모넘버"+realParentNo+"의 자식개수는 "+realChildCount+"개입니다.");
+
+        var realRealChildCnt = 0;
+
+        let childCntMap = new Map();
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            //console.log("부모넘버:"+JSON.stringify(data[i].parentCommentNo) +", 자신넘버:"+JSON.stringify(data[i].commentNo));
+            childCntMap.set(JSON.stringify(data[i].commentNo),JSON.stringify(data[i].parentCommentNo));
+        }
+        let childCntMap2 = new Map();
+        let realChildCnt;
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            realChildCnt = 0;
+            for(var j=0; j<Object.keys(data).length; j++) {
+              console.log("commentNo:"+JSON.stringify(data[i].commentNo)+",parentCommentNo:"+JSON.stringify(data[j].parentCommentNo)+",realChildCnt:"+realChildCnt);
+              if(JSON.stringify(data[i].commentNo) == JSON.stringify(data[j].parentCommentNo)) {
+                realChildCnt++;
+                console.log("i:"+i+",j:"+j+",realChildCnt:"+realChildCnt);
+              }
+            }
+          childCntMap2.set(JSON.stringify(data[i].commentNo),realChildCnt);
+        }
+        console.log(childCntMap2.get("7"));
+        console.log(childCntMap2.get(String(7)));
+        console.log(childCntMap);
+        console.log(childCntMap2);
+        //console.log("childCntMap.get(79):"+childCntMap.get("79"));
 
         let a = '';
         if (count == 0) {
@@ -358,10 +545,12 @@
         $.each(
                 data,
                 function(key, value) {
-                  a += '<li class="comment">';
-                    if (value.parentCommentNo !== 0) {
-                    a += '<ul  class="children">';
-                      a += '<li class="comment">';
+                  if (value.parentCommentNo !== 0) {
+                    a += '<li class="comment reply_content' + value.parentCommentNo+ '" id="reply_content">';
+                      a += '<ul class="children">';
+                        a += '<li class="comment">';
+                  } else {
+                      a += '<li class="comment">'
                   }
                   a += '<div class="vcard bio">';
                   if (value.parentCommentNo !== 0) {
@@ -370,13 +559,18 @@
                     a += '<img src="/../../../upload/member/default.png" alt="Free Website Template by Free-Template.co">';
                   }
                   a += '</div>';
-                  a += '<div    class="comment-body" id="eachComment">'
+                  a += '<div class="comment-body" id="eachComment">'
                   a += '<h3 class="nanumsquare">' + value.member.name + '</h3>'
                     a += '<div class="meta">'+ value.createDate + '</div>'
 
                     a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '" style="float:right";>'
+
+                    if(value.parentCommentNo != 0) {
+                      console.log("value.parentCommentNo:"+value.parentCommentNo);
+                      realRealChildCnt++;
+                    }
                     if (value.parentCommentNo == 0) {
-                      a += '<button class="btn btn-outline-info btn-round btn-sm" type="button" onclick=$(".css_test' + value.commentNo +'").toggle(300);> 답글 </button>'
+                      a += '<button class="btn btn-outline-info btn-round btn-sm" type="button" onclick=$(".reply_content' + value.commentNo +'").toggle(300);> 답글 ' + childCntMap2.get(String(value.commentNo)) + '개</button>'
                     }
                     a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
                         + value.commentNo
@@ -401,14 +595,17 @@
                   a += '<form name="recommentInsertForm">'
                   a += '　'
                   a += '<input type="hidden" name="donaNo" value=\'${donation.no}\' />'
-                  a += '<div class="css_test' + value.commentNo+ '" name="hi" style="display: none">'
-                  a += '<textarea class="form-control" name="recommentContents_' + value.commentNo + '" rows="3" maxlength="300" onclick="loginCheck()"></textarea>'
-                  a += '<div class="row  float-right">';
-                  a += '<div class="col complete pt-1"> <button type="button" name="replyAddBtn" class="btn btn-outline-success btn-round btn-sm" onclick="recommentAddProc('
-                          + value.commentNo
-                          + ');">등록</button>';
-                  a += '</div></div>'
-                  a += '</div>'
+                  if(value.parentCommentNo == 0) {
+                    a += '<div class="reply_content' + value.commentNo + '" id="reply_content" >'
+                    a += '<textarea class="form-control" name="recommentContents_' + value.commentNo + '" rows="3" maxlength="300" onclick="loginCheck()"></textarea>'
+
+                    a += '<div class="row  float-right">';
+                    a += '<div class="col complete pt-1"> <button type="button" name="replyAddBtn" class="btn btn-outline-success btn-round btn-sm" onclick="recommentAddProc('
+                            + value.commentNo
+                            + ');">등록</button>';
+                    a += '</div></div>'
+                    a += '</div>'
+                  }
                   a += '</form>'
                   /*a += '<div class="replyArea">'
                   a += '<textarea class="replyCommentContents'+value.commentNo+'" rows="3" cols="20" maxlength="300" style="width:100%;"></textarea>';
@@ -544,7 +741,7 @@
 
 
   $(document).ready(function() {
-    showCommentList();
+    showCommentList0();
   });
 
 
