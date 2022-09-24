@@ -1,4 +1,4 @@
-# happy-bin
+# happy-bean
 creating a donation website
 
 로그인 회원가입
